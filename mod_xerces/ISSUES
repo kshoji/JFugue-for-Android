@@ -1,0 +1,39 @@
+*** UNRESOLVED ***
+
+1. Naming
+ 1.1. XNI package names and content. Drop the XNI prefix?
+
+2. Dependencies
+ 2.2. Java version
+
+3. APIs
+ 3.2. Parser configuration
+  3.2.1. Filters
+ 3.3. Buffer management
+  3.3.1. To transcode or not to transcode
+
+4. Layering and Packaging
+ 4.1. Core vs. optional modules (dependencies?)
+ 4.2. How to deal with community donations
+
+5. Website and Documentation
+ 5.1. Continue to use Stylebook? plain HTML?
+
+*** DEFERRED ***
+
+*** RESOLVED ***
+
+2. Dependencies
+ 2.1. APIs: DOM, SAX, etc.
+      Resolution: SAX dependence removed from XNI
+3. APIs
+ 3.1. DTD handlers
+  3.1.1. Separate or combined?
+         Resolution: Separate.
+  3.1.2. Which methods are needed?
+         Resolution: Modification to content model callbacks
+                     so that start/endEntity is more useful.
+ 3.2. Parser configuration
+  3.2.2. Scanners
+         Resolution: Source and scanner interfaces added.
+

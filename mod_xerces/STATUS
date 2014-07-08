@@ -1,0 +1,21 @@
+This is the Status file for the Xerces for Java code base.
+This file provides an overview of the things that need to
+be done. However, specific action items are enumerated in
+the TODO file.
+
+There are lots of things that need to be done: 
+
+* Performance, performance, performance!
+* Conformance, conformance, conformance!
+* Kill bugs
+
+* Grammar caching
+* Grammar access
+* Re-validation
+
+* Documentation
+* Samples
+* Scripts to build parser subconfigurations
+* Additional configuration options
+
+* Anything else?

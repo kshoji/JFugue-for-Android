@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>jp.kshoji</groupId>
+  <artifactId>jfugue-android</artifactId>
+  <version>4.0.3</version>
+  <packaging>aar</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>com.android.support</groupId>
+      <artifactId>appcompat-v7</artifactId>
+      <version>19.+</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>jp.kshoji</groupId>
+      <artifactId>midi-driver</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <type>aar</type>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>JFugue-for-Android</groupId>
+      <artifactId>mod_xalan</artifactId>
+      <version>unspecified</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>xom</groupId>
+      <artifactId>xom</artifactId>
+      <version>1.2.5</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+</project>

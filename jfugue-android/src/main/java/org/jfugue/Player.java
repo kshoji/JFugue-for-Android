@@ -189,23 +189,22 @@ public class Player
         // Start the sequence
         getSequencer().start();
 
-        // Wait for the sequence to finish
-        while (isPlaying() || isPaused())
-        {
-            try {
-                Thread.sleep(20);  // don't hog all of the CPU
-            } catch (InterruptedException e)
-            {
-                throw new JFugueException(JFugueException.ERROR_SLEEP);
+        getSequencer().addMetaEventListener(new MetaEventListener() {
+            @Override
+            public void meta(MetaMessage metaMessage) {
+                if (metaMessage.getType() == MetaMessage.TYPE_END_OF_TRACK) {
+                    // Close the sequencer
+                    getSequencer().close();
+
+                    setStarted(false);
+                    setFinished(true);
+
+                    getSequencer().removeMetaEventListener(this);
+                }
             }
-        }
-
-        // Close the sequencer
-        getSequencer().close();
-
-        setStarted(false);
-        setFinished(true);
+        });
     }
+
 
     /**
      * Plays a string of music.  Be sure to call player.close() after play() has returned.

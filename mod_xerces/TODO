@@ -1,0 +1,33 @@
+*** CURRENT ***
+
+1. Documentation
+ 1.4. JavaDoc
+  1.4.1. Fix all warnings reported by JavaDoc
+
+3. Validation Engine
+ 3.2. Implement grammar cache
+ 3.3. Add PSVI items to streaming infoset
+
+*** COMPLETED ***
+
+1. Documentation
+ 1.1. Samples
+ 1.2. Xerces Native Interface (XNI)
+  1.2.1. XNI overview
+  1.2.2. Parser components and configurations
+  1.2.3. Using Xerces2 Components
+ 1.3. Remove/add FAQ items
+2. Schema Validation
+ 2.1. Port of Xerces 1.x Schema code [andyc,???]
+      * in ...impl.v1 package
+  2.1.1. Remove old classes
+  2.1.2. Add classes, changing packaging
+  2.1.3. Remove StringPool dependencies
+  2.1.4. Move from internal interfaces to XNI
+ 2.2. Implement new Schema code
+3. Validation Engine
+ 3.1. Separate "universal" validator into separate components:
+      DTD validator, namespace binder
+  3.1.1. Separate source code, changing packages as needed
+  3.1.2. Update parser configuration
+      
