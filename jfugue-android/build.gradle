@@ -21,7 +21,9 @@ android {
 }
 
 repositories {
-    maven { url 'file:///Users/kshoji/Documents/github/USB-MIDI-Driver/MIDIDriver/snapshots' }
+    maven {
+        url 'https://github.com/kshoji/USB-MIDI-Driver/raw/feature/add_j.s.m.Synthesizer/MIDIDriver/snapshots'
+    }
     mavenCentral()
 }
 
