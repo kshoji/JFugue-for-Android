@@ -2,10 +2,9 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion '19.1.0'
+    buildToolsVersion '21.1.2'
 
     defaultConfig {
-        applicationId "org.apache.xalan"
         minSdkVersion 12
         targetSdkVersion 19
         versionCode 1
@@ -13,7 +12,7 @@ android {
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -21,6 +20,5 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:19.+'
     compile project(':mod_xerces')
 }

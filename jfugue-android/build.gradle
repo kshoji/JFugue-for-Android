@@ -2,9 +2,8 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion '19.1.0'
+    buildToolsVersion '21.1.2'
     defaultConfig {
-        applicationId 'jp.kshoji.android.jfugue'
         minSdkVersion 12
         targetSdkVersion 19
         versionCode 1
@@ -12,7 +11,7 @@ android {
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -22,7 +21,7 @@ android {
 
 repositories {
     maven {
-        url 'https://github.com/kshoji/USB-MIDI-Driver/raw/feature/add_j.s.m.Synthesizer/MIDIDriver/snapshots'
+        url 'https://github.com/kshoji/javax.sound.midi-for-Android/raw/master/javax.sound.midi/repository'
     }
     mavenCentral()
 }
@@ -35,18 +34,18 @@ configurations.compile {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:19.+'
     compile 'xom:xom:1.2.5'
-    compile 'jp.kshoji:midi-driver:0.0.1-SNAPSHOT:@aar'
+    compile 'jp.kshoji:javax-sound-midi:0.0.1:@aar'
     compile project(':mod_xalan')
 }
 
 apply plugin: 'maven'
 group = 'jp.kshoji'
-version = '4.0.3'
 uploadArchives {
     repositories {
         mavenDeployer {
+            pom.version = '4.0.3'
+            pom.artifactId = 'jfugue-android'
             repository url: 'file://' + file('snapshot').absolutePath
         }
     }
