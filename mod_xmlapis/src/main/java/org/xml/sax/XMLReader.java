@@ -1,8 +1,8 @@
 // XMLReader.java - read an XML document.
-// http://www.saxproject.org
-// Written by David Megginson
+// Written by David Megginson, sax@megginson.com
 // NO WARRANTY!  This class is in the Public Domain.
-// $Id: XMLReader.java 226184 2005-04-08 10:53:24Z neeraj $
+
+// $Id: XMLReader.java,v 1.6 2000/05/05 17:48:56 david Exp $
 
 package org.xml.sax;
 
@@ -15,8 +15,6 @@ import java.io.IOException;
  * <blockquote>
  * <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em>
- * See <a href='http://www.saxproject.org'>http://www.saxproject.org</a>
- * for further information.
  * </blockquote>
  *
  * <p><strong>Note:</strong> despite its name, this interface does 
@@ -38,7 +36,7 @@ import java.io.IOException;
  * <p>This interface replaces the (now deprecated) SAX 1.0 {@link
  * Parser Parser} interface.  The XMLReader interface
  * contains two important enhancements over the old Parser
- * interface (as well as some minor ones):</p>
+ * interface:</p>
  *
  * <ol>
  * <li>it adds a standard way to query and set features and 
@@ -51,8 +49,9 @@ import java.io.IOException;
  * a SAX2 XMLReader and vice-versa.</p>
  *
  * @since SAX 2.0
- * @author David Megginson
- * @version 2.0.1+ (sax2r3pre1)
+ * @author David Megginson, 
+ *         <a href="mailto:sax@megginson.com">sax@megginson.com</a>
+ * @version 2.0
  * @see XMLFilter
  * @see org.xml.sax.helpers.ParserAdapter
  * @see org.xml.sax.helpers.XMLReaderAdapter 
@@ -67,22 +66,21 @@ public interface XMLReader
 
 
     /**
-     * Look up the value of a feature flag.
+     * Look up the value of a feature.
      *
      * <p>The feature name is any fully-qualified URI.  It is
      * possible for an XMLReader to recognize a feature name but
-     * temporarily be unable to return its value.
-     * Some feature values may be available only in specific
-     * contexts, such as before, during, or after a parse.
-     * Also, some feature values may not be programmatically accessible.
-     * (In the case of an adapter for SAX1 {@link org.xml.sax.Parser}, there is no
-     * implementation-independent way to expose whether the underlying
-     * parser is performing validation, expanding external entities,
-     * and so forth.) </p>
+     * to be unable to return its value; this is especially true
+     * in the case of an adapter for a SAX1 Parser, which has
+     * no way of knowing whether the underlying parser is
+     * performing validation or expanding external entities.</p>
      *
      * <p>All XMLReaders are required to recognize the
      * http://xml.org/sax/features/namespaces and the
      * http://xml.org/sax/features/namespace-prefixes feature names.</p>
+     *
+     * <p>Some feature values may be available only in specific
+     * contexts, such as before, during, or after a parse.</p>
      *
      * <p>Typical usage is something like this:</p>
      *
@@ -114,9 +112,9 @@ public interface XMLReader
      * using names built on their own URIs.</p>
      *
      * @param name The feature name, which is a fully-qualified URI.
-     * @return The current value of the feature (true or false).
-     * @exception SAXNotRecognizedException If the feature
-     *            value can't be assigned or retrieved.
+     * @return The current state of the feature (true or false).
+     * @exception SAXNotRecognizedException When the
+     *            XMLReader does not recognize the feature name.
      * @exception SAXNotSupportedException When the
      *            XMLReader recognizes the feature name but 
      *            cannot determine its value at this time.
@@ -127,23 +125,27 @@ public interface XMLReader
 
 
     /**
-     * Set the value of a feature flag.
+     * Set the state of a feature.
      *
      * <p>The feature name is any fully-qualified URI.  It is
-     * possible for an XMLReader to expose a feature value but
-     * to be unable to change the current value.
-     * Some feature values may be immutable or mutable only 
-     * in specific contexts, such as before, during, or after 
-     * a parse.</p>
+     * possible for an XMLReader to recognize a feature name but
+     * to be unable to set its value; this is especially true
+     * in the case of an adapter for a SAX1 {@link Parser Parser},
+     * which has no way of affecting whether the underlying parser is
+     * validating, for example.</p>
      *
      * <p>All XMLReaders are required to support setting
      * http://xml.org/sax/features/namespaces to true and
      * http://xml.org/sax/features/namespace-prefixes to false.</p>
      *
+     * <p>Some feature values may be immutable or mutable only 
+     * in specific contexts, such as before, during, or after 
+     * a parse.</p>
+     *
      * @param name The feature name, which is a fully-qualified URI.
-     * @param value The requested value of the feature (true or false).
-     * @exception SAXNotRecognizedException If the feature
-     *            value can't be assigned or retrieved.
+     * @param state The requested state of the feature (true or false).
+     * @exception SAXNotRecognizedException When the
+     *            XMLReader does not recognize the feature name.
      * @exception SAXNotSupportedException When the
      *            XMLReader recognizes the feature name but 
      *            cannot set the requested value.
@@ -158,21 +160,24 @@ public interface XMLReader
      *
      * <p>The property name is any fully-qualified URI.  It is
      * possible for an XMLReader to recognize a property name but
-     * temporarily be unable to return its value.
-     * Some property values may be available only in specific
-     * contexts, such as before, during, or after a parse.</p>
+     * to be unable to return its state; this is especially true
+     * in the case of an adapter for a SAX1 {@link Parser
+     * Parser}.</p>
      *
      * <p>XMLReaders are not required to recognize any specific
      * property names, though an initial core set is documented for
      * SAX2.</p>
+     *
+     * <p>Some property values may be available only in specific
+     * contexts, such as before, during, or after a parse.</p>
      *
      * <p>Implementors are free (and encouraged) to invent their own properties,
      * using names built on their own URIs.</p>
      *
      * @param name The property name, which is a fully-qualified URI.
      * @return The current value of the property.
-     * @exception SAXNotRecognizedException If the property
-     *            value can't be assigned or retrieved.
+     * @exception SAXNotRecognizedException When the
+     *            XMLReader does not recognize the property name.
      * @exception SAXNotSupportedException When the
      *            XMLReader recognizes the property name but 
      *            cannot determine its value at this time.
@@ -187,22 +192,25 @@ public interface XMLReader
      *
      * <p>The property name is any fully-qualified URI.  It is
      * possible for an XMLReader to recognize a property name but
-     * to be unable to change the current value.
-     * Some property values may be immutable or mutable only 
-     * in specific contexts, such as before, during, or after 
-     * a parse.</p>
+     * to be unable to set its value; this is especially true
+     * in the case of an adapter for a SAX1 {@link Parser
+     * Parser}.</p>
      *
      * <p>XMLReaders are not required to recognize setting
-     * any specific property names, though a core set is defined by 
+     * any specific property names, though a core set is provided with 
      * SAX2.</p>
+     *
+     * <p>Some property values may be immutable or mutable only 
+     * in specific contexts, such as before, during, or after 
+     * a parse.</p>
      *
      * <p>This method is also the standard mechanism for setting
      * extended handlers.</p>
      *
      * @param name The property name, which is a fully-qualified URI.
-     * @param value The requested value for the property.
-     * @exception SAXNotRecognizedException If the property
-     *            value can't be assigned or retrieved.
+     * @param state The requested value for the property.
+     * @exception SAXNotRecognizedException When the
+     *            XMLReader does not recognize the property name.
      * @exception SAXNotSupportedException When the
      *            XMLReader recognizes the property name but 
      *            cannot set the requested value.
@@ -228,6 +236,8 @@ public interface XMLReader
      * resolver immediately.</p>
      *
      * @param resolver The entity resolver.
+     * @exception NullPointerException If the resolver
+     *            argument is null.
      * @see #getEntityResolver
      */
     public void setEntityResolver(EntityResolver resolver);
@@ -254,6 +264,8 @@ public interface XMLReader
      * handler immediately.</p>
      *
      * @param handler The DTD handler.
+     * @exception NullPointerException If the handler
+     *            argument is null.
      * @see #getDTDHandler
      */
     public void setDTDHandler(DTDHandler handler);
@@ -281,6 +293,8 @@ public interface XMLReader
      * handler immediately.</p>
      *
      * @param handler The content handler.
+     * @exception NullPointerException If the handler
+     *            argument is null.
      * @see #getContentHandler
      */
     public void setContentHandler(ContentHandler handler);
@@ -310,6 +324,8 @@ public interface XMLReader
      * handler immediately.</p>
      *
      * @param handler The error handler.
+     * @exception NullPointerException If the handler
+     *            argument is null.
      * @see #getErrorHandler
      */
     public void setErrorHandler(ErrorHandler handler);
@@ -341,14 +357,7 @@ public interface XMLReader
      * progress (they should create a new XMLReader instead for each
      * nested XML document).  Once a parse is complete, an
      * application may reuse the same XMLReader object, possibly with a
-     * different input source.
-     * Configuration of the XMLReader object (such as handler bindings and
-     * values established for feature flags and properties) is unchanged
-     * by completion of a parse, unless the definition of that aspect of
-     * the configuration explicitly specifies other behavior.
-     * (For example, feature flags or properties exposing
-     * characteristics of the document being parsed.)
-     * </p>
+     * different input source.</p>
      *
      * <p>During the parse, the XMLReader will provide information
      * about the XML document through the registered event
@@ -358,7 +367,7 @@ public interface XMLReader
      * has ended.  If a client application wants to terminate 
      * parsing early, it should throw an exception.</p>
      *
-     * @param input The input source for the top-level of the
+     * @param source The input source for the top-level of the
      *        XML document.
      * @exception SAXException Any SAX exception, possibly
      *            wrapping another exception.
@@ -402,3 +411,5 @@ public interface XMLReader
 	throws IOException, SAXException;
 
 }
+
+// end of XMLReader.java

@@ -241,7 +241,7 @@ public class XMLDTDLoader
      * 
      * @param propertyId The property identifier.
      * 
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown on configuration error.
+     * @throws XMLConfigurationException Thrown on configuration error.
      */
     public Object getProperty(String propertyId) 
             throws XMLConfigurationException {
@@ -309,7 +309,7 @@ public class XMLDTDLoader
      * 
      * @param featureId The feature identifier.
      * 
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown on configuration error.
+     * @throws XMLConfigurationException Thrown on configuration error.
      */
     public boolean getFeature(String featureId) 
             throws XMLConfigurationException {
@@ -339,7 +339,7 @@ public class XMLDTDLoader
      *
      * @param locale The locale object to use for localization of messages.
      *
-     * @exception org.apache.xerces.xni.XNIException Thrown if the parser does not support the
+     * @exception XNIException Thrown if the parser does not support the
      *                         specified locale.
      */
     public void setLocale(Locale locale) {

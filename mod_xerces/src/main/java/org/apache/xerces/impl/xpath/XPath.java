@@ -112,7 +112,7 @@ public class XPath {
     //
 
     /**
-     * Used by the {@link #parseExpression(org.apache.xerces.xni.NamespaceContext)} method
+     * Used by the {@link #parseExpression(NamespaceContext)} method
      * to verify the assumption.
      * 
      * If <tt>b</tt> is false, this method throws XPathException
@@ -123,7 +123,7 @@ public class XPath {
     }
     
     /**
-     * Used by the {@link #parseExpression(org.apache.xerces.xni.NamespaceContext)} method
+     * Used by the {@link #parseExpression(NamespaceContext)} method
      * to build a {@link org.apache.xerces.impl.xpath.XPath.LocationPath} object from the accumulated
      * {@link org.apache.xerces.impl.xpath.XPath.Step}s.
      */

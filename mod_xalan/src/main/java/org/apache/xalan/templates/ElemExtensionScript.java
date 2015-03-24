@@ -90,7 +90,7 @@ public class ElemExtensionScript extends ElemTemplateElement
 
   /**
    * Get an int constant identifying the type of element.
-   * @see Constants
+   * @see org.apache.xalan.templates.Constants
    *
    * @return The token ID for this element 
    */

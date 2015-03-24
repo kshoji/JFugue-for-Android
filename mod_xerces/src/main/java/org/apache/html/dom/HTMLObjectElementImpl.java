@@ -15,7 +15,6 @@
  */
 package org.apache.html.dom;
 
-import org.w3c.dom.Document;
 import org.w3c.dom.html.HTMLObjectElement;
 
 /**
@@ -239,7 +238,8 @@ public class HTMLObjectElementImpl
         setAttribute( "width", width );
     }
 
-
+    
+    
     /**
      * Constructor requires owner document.
      * 

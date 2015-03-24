@@ -88,7 +88,7 @@ public class AVTPartSimple extends AVTPart
     buf.append(m_val);
   }
   /**
-   * @see XSLTVisitable#callVisitors(org.apache.xalan.templates.XSLTVisitor)
+   * @see XSLTVisitable#callVisitors(XSLTVisitor)
    */
   public void callVisitors(XSLTVisitor visitor)
   {

@@ -51,7 +51,7 @@ public interface XMLErrorHandler {
      * @throws XNIException Thrown to signal that the parser should stop
      *                      parsing the document.
      */
-    public void warning(String domain, String key,
+    public void warning(String domain, String key, 
                         XMLParseException exception) throws XNIException;
 
     /**
@@ -70,7 +70,7 @@ public interface XMLErrorHandler {
      * @throws XNIException Thrown to signal that the parser should stop
      *                      parsing the document.
      */
-    public void error(String domain, String key,
+    public void error(String domain, String key, 
                       XMLParseException exception) throws XNIException;
 
     /**
@@ -97,7 +97,7 @@ public interface XMLErrorHandler {
      * @throws XNIException Thrown to signal that the parser should stop
      *                      parsing the document.
      */
-    public void fatalError(String domain, String key,
+    public void fatalError(String domain, String key, 
                            XMLParseException exception) throws XNIException;
 
 } // interface XMLErrorHandler

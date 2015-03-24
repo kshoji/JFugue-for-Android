@@ -286,7 +286,7 @@ public class StandardParserConfiguration
      *
      * @param featureId The unique identifier (URI) of the feature.
      *
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown for configuration error.
+     * @throws XMLConfigurationException Thrown for configuration error.
      *                                   In general, components should
      *                                   only throw this exception if
      *                                   it is <strong>really</strong>
@@ -344,7 +344,7 @@ public class StandardParserConfiguration
      * @param propertyId The unique identifier (URI) of the property
      *                   being set.
      *
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown for configuration error.
+     * @throws XMLConfigurationException Thrown for configuration error.
      *                                   In general, components should
      *                                   only throw this exception if
      *                                   it is <strong>really</strong>

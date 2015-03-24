@@ -56,7 +56,7 @@ public interface XMLPullParserConfiguration
      *
      * @param inputSource The document's input source.
      *
-     * @exception org.apache.xerces.xni.parser.XMLConfigurationException Thrown if there is a
+     * @exception XMLConfigurationException Thrown if there is a 
      *                        configuration error when initializing the
      *                        parser.
      * @exception java.io.IOException Thrown on I/O error.

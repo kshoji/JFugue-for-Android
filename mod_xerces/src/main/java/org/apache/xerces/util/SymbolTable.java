@@ -68,7 +68,7 @@ package org.apache.xerces.util;
  * entries to be inserted more efficiently than letting it perform 
  * automatic rehashing as needed to grow the table. <p>
 
- * @see org.apache.xerces.util.SymbolHash
+ * @see SymbolHash
  *
  * @author Andy Clark
  * @author John Kim, IBM

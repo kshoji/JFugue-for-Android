@@ -15,7 +15,6 @@
  */
 package org.apache.html.dom;
 
-import org.w3c.dom.Document;
 import org.w3c.dom.html.HTMLFrameElement;
 
 /**
@@ -127,7 +126,7 @@ public class HTMLFrameElementImpl
         setAttribute( "src", src );
     }
 
-
+    
     /**
      * Constructor requires owner document.
      * 

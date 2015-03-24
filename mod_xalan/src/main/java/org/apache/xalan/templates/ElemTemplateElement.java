@@ -51,7 +51,7 @@ import org.xml.sax.helpers.NamespaceSupport;
  * of that interface... it only implements enough for
  * basic traversal of the tree.
  *
- * @see org.apache.xalan.templates.Stylesheet
+ * @see Stylesheet
  * @xsl.usage advanced
  */
 public class ElemTemplateElement extends UnImplNode
@@ -81,7 +81,7 @@ public class ElemTemplateElement extends UnImplNode
    *
    * @return An integer representation of the element, defined in the
    *     Constants class.
-   * @see Constants
+   * @see org.apache.xalan.templates.Constants
    */
   public int getXSLToken()
   {
@@ -943,7 +943,7 @@ public class ElemTemplateElement extends UnImplNode
   }
 
   /**
-   * The table of {@link org.apache.xalan.templates.XMLNSDecl}s for this element
+   * The table of {@link XMLNSDecl}s for this element
    * and all parent elements, screened for excluded prefixes.
    * @serial
    */
@@ -953,7 +953,7 @@ public class ElemTemplateElement extends UnImplNode
    * Return a table that contains all prefixes available
    * within this element context.
    *
-   * @return reference to vector of {@link org.apache.xalan.templates.XMLNSDecl}s, which may be null.
+   * @return reference to vector of {@link XMLNSDecl}s, which may be null.
    */
   public Vector getPrefixes()
   {
@@ -963,7 +963,7 @@ public class ElemTemplateElement extends UnImplNode
   /**
    * Get whether or not the passed URL is contained flagged by
    * the "extension-element-prefixes" property.  This method is overridden 
-   * by {@link org.apache.xalan.templates.ElemLiteralResult#containsExcludeResultPrefix}.
+   * by {@link ElemLiteralResult#containsExcludeResultPrefix}.
    * @see <a href="http://www.w3.org/TR/xslt#extension-element">extension-element in XSLT Specification</a>
    *
    * @param prefix non-null reference to prefix that might be excluded.
@@ -1609,7 +1609,7 @@ public class ElemTemplateElement extends UnImplNode
   }
 
   /**
-   * @see org.apache.xalan.templates.XSLTVisitable#callVisitors(org.apache.xalan.templates.XSLTVisitor)
+   * @see XSLTVisitable#callVisitors(XSLTVisitor)
    */
   public void callVisitors(XSLTVisitor visitor)
   {
@@ -1644,7 +1644,7 @@ public class ElemTemplateElement extends UnImplNode
 
 
 	/**
-	 * @see org.apache.xml.utils.PrefixResolver#handlesNullPrefixes()
+	 * @see PrefixResolver#handlesNullPrefixes()
 	 */
 	public boolean handlesNullPrefixes() {
 		return false;

@@ -75,7 +75,7 @@ public final class BooleanType extends Type {
      * translation to int is undefined since booleans are always converted to
      * reals in arithmetic expressions.
      *
-     * @see	Type#translateTo
+     * @see	org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    Type type) {
@@ -100,7 +100,7 @@ public final class BooleanType extends Type {
      * stack is zero, then the string 'false' is pushed. Otherwise, the string
      * 'true' is pushed.
      *
-     * @see	Type#translateTo
+     * @see	org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    StringType type) {
@@ -117,7 +117,7 @@ public final class BooleanType extends Type {
      * Expects a boolean on the stack and pushes a real. The value "true" is
      * converted to 1.0 and the value "false" to 0.0.
      *
-     * @see	Type#translateTo
+     * @see	org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    RealType type) {
@@ -129,7 +129,7 @@ public final class BooleanType extends Type {
      * Boxed booleans are represented by an instance of
      * <code>java.lang.Boolean</code>.
      *
-     * @see	Type#translateTo
+     * @see	org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    ReferenceType type) {
@@ -152,7 +152,7 @@ public final class BooleanType extends Type {
 	    methodGen.getInstructionList().append(NOP);
 	}
         // Is Boolean <: clazz? I.e. clazz in { Boolean, Object }
-        else if (clazz.isAssignableFrom(java.lang.Boolean.class)) {
+        else if (clazz.isAssignableFrom(Boolean.class)) {
             translateTo(classGen, methodGen, Type.Reference);
         }
 	else {

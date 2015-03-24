@@ -30,7 +30,7 @@ import org.apache.xerces.xni.parser.XMLInputSource;
  *
  * @version $Id: XInclude11TextReader.java 320201 2005-01-11 13:40:29Z mrglavas $
  *
- * @see org.apache.xerces.xinclude.XIncludeHandler
+ * @see XIncludeHandler
  */
 public class XInclude11TextReader
     extends XIncludeTextReader {

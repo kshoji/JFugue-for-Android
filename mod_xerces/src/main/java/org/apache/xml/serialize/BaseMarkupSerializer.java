@@ -43,22 +43,16 @@
 package org.apache.xml.serialize;
 
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.Writer;
-import java.util.Hashtable;
-import java.util.Vector;
-
 import org.apache.xerces.dom.DOMErrorImpl;
 import org.apache.xerces.dom.DOMLocatorImpl;
 import org.apache.xerces.dom.DOMMessageFormatter;
 import org.apache.xerces.util.XMLChar;
+import org.w3c.dom.DOMError;
+import org.w3c.dom.DOMErrorHandler;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.DocumentType;
-import org.w3c.dom.DOMError;
-import org.w3c.dom.DOMErrorHandler;
 import org.w3c.dom.Element;
 import org.w3c.dom.Entity;
 import org.w3c.dom.NamedNodeMap;
@@ -74,6 +68,12 @@ import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 import org.xml.sax.ext.DeclHandler;
 import org.xml.sax.ext.LexicalHandler;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.Writer;
+import java.util.Hashtable;
+import java.util.Vector;
 
 /**
  * Base class for a serializer supporting both DOM and SAX pretty
@@ -121,7 +121,7 @@ import org.xml.sax.ext.LexicalHandler;
  * @author <a href="mailto:arkin@intalio.com">Assaf Arkin</a>
  * @author <a href="mailto:rahul.srivastava@sun.com">Rahul Srivastava</a>
  * @author Elena Litani, IBM 
- * @see org.apache.xml.serialize.Serializer
+ * @see Serializer
  * @see LSSerializer
  */
 public abstract class BaseMarkupSerializer
@@ -1509,7 +1509,7 @@ public abstract class BaseMarkupSerializer
     /**
      * Called to print additional text with whitespace handling.
      * If spaces are preserved, the text is printed as if by calling
-     * {@link #printText(String,boolean,boolean)} with a call to {@link org.apache.xml.serialize.Printer#breakLine}
+     * {@link #printText(String,boolean,boolean)} with a call to {@link Printer#breakLine}
      * for each new line. If spaces are not preserved, the text is
      * broken at space boundaries if longer than the line width;
      * Multiple spaces are printed as such, but spaces at beginning

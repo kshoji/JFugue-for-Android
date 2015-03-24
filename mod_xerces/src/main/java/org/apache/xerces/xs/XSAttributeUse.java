@@ -47,7 +47,7 @@ public interface XSAttributeUse extends XSObject {
      * Value Constraint: Binding specific actual constraint value or 
      * <code>null</code> if the value is in error or there is no value 
      * constraint. 
-     * @exception org.apache.xerces.xs.XSException
+     * @exception XSException
      *   NOT_SUPPORTED_ERR: Raised if the implementation does not support this 
      *   method.
      */
@@ -65,7 +65,7 @@ public interface XSAttributeUse extends XSObject {
      * <code>itemValueTypes</code>. If the <code>actualNormalizedValue</code>
      *  is <code>null</code>, this method returns <code>UNAVAILABLE_DT</code>
      * . 
-     * @exception org.apache.xerces.xs.XSException
+     * @exception XSException
      *   NOT_SUPPORTED_ERR: Raised if the implementation does not support this 
      *   method.
      */
@@ -81,7 +81,7 @@ public interface XSAttributeUse extends XSObject {
      * for each actual constraint value in the list the array contains the 
      * corresponding memberType kind. For examples, see 
      * <code>ItemPSVI.itemValueTypes</code>. 
-     * @exception org.apache.xerces.xs.XSException
+     * @exception XSException
      *   NOT_SUPPORTED_ERR: Raised if the implementation does not support this 
      *   method.
      */

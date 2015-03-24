@@ -199,7 +199,7 @@ implements DTM, ContentHandler, LexicalHandler
          * @param w2 int As in ChunkedIntArray.append
          * @param w3 int As in ChunkedIntArray.append
          * @return int As in ChunkedIntArray.append
-         * @see org.apache.xml.dtm.ref.ChunkedIntArray.append
+         * @see ChunkedIntArray.append
          */
         private final int appendNode(int w0, int w1, int w2, int w3)
         {

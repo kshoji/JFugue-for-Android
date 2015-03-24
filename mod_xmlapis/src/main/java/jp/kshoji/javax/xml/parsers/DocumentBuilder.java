@@ -1,37 +1,70 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
+ * The Apache Software License, Version 1.1
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright (c) 2001 The Apache Software Foundation.  All rights 
+ * reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer. 
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in
+ *    the documentation and/or other materials provided with the
+ *    distribution.
+ *
+ * 3. The end-user documentation included with the redistribution,
+ *    if any, must include the following acknowledgment:  
+ *       "This product includes software developed by the
+ *        Apache Software Foundation (http://www.apache.org/)."
+ *    Alternately, this acknowledgment may appear in the software itself,
+ *    if and wherever such third-party acknowledgments normally appear.
+ *
+ * 4. The name "Apache Software Foundation" must not be used to endorse or
+ *    promote products derived from this software without prior written
+ *    permission. For written permission, please contact apache@apache.org.
+ *
+ * 5. Products derived from this software may not be called "Apache",
+ *    nor may "Apache" appear in their name, without prior written
+ *    permission of the Apache Software Foundation.
+ *
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+ * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ * ====================================================================
+ *
+ * This software consists of voluntary contributions made by many
+ * individuals on behalf of the Apache Software Foundation and was
+ * originally based on software copyright (c) 1999-2001, Sun Microsystems,
+ * Inc., http://www.sun.com.  For more information on the Apache Software
+ * Foundation, please see <http://www.apache.org/>.
  */
-
-// $Id: DocumentBuilder.java 446598 2006-09-15 12:55:40Z jeremias $
-
 package jp.kshoji.javax.xml.parsers;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
+import java.io.IOException;
+import java.io.File;
 
-import javax.xml.validation.Schema;
+import org.xml.sax.Parser;
+import org.xml.sax.HandlerBase;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.DOMImplementation;
-
-import org.xml.sax.EntityResolver;
-import org.xml.sax.ErrorHandler;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 /**
  * Defines the API to obtain DOM Document instances from an XML
@@ -39,7 +72,8 @@ import org.xml.sax.SAXException;
  * {@link org.w3c.dom.Document} from XML.<p>
  *
  * An instance of this class can be obtained from the
- * {@link javax.xml.parsers.DocumentBuilderFactory#newDocumentBuilder()} method. Once
+ * {@link javax.xml.parsers.DocumentBuilderFactory#newDocumentBuilder()
+ * DocumentBuilderFactory.newDocumentBuilder} method. Once
  * an instance of this class is obtained, XML can be parsed from a
  * variety of input sources. These input sources are InputStreams,
  * Files, URLs, and SAX InputSources.<p>
@@ -48,60 +82,39 @@ import org.xml.sax.SAXException;
  * does not require that the implementor of the underlying DOM
  * implementation use a SAX parser to parse XML document into a
  * <code>Document</code>. It merely requires that the implementation
- * communicate with the application using these existing APIs.
+ * communicate with the application using these existing APIs. <p>
  *
- * @author <a href="mailto:Jeff.Suttor@Sun.com">Jeff Suttor</a>
- * @version $Revision: 446598 $, $Date: 2006-09-15 08:55:40 -0400 (Fri, 15 Sep 2006) $
+ * An implementation of <code>DocumentBuilder</code> is <em>NOT</em> 
+ * guaranteed to behave as per the specification if it is used concurrently by 
+ * two or more threads. It is recommended to have one instance of the
+ * <code>DocumentBuilder</code> per thread or it is upto the application to 
+ * make sure about the use of <code>DocumentBuilder</code> from more than one
+ * thread.
+ *
+ * @since JAXP 1.0
+ * @version 1.0
  */
 
 public abstract class DocumentBuilder {
-    
-    private static final boolean DEBUG = false;
-    
-    /** Protected constructor */
+
     protected DocumentBuilder () {
     }
 
-	/**
-	  * <p>Reset this <code>DocumentBuilder</code> to its original configuration.</p>
-	  * 
-	  * <p><code>DocumentBuilder</code> is reset to the same state as when it was created with
-	  * {@link javax.xml.parsers.DocumentBuilderFactory#newDocumentBuilder()}.
-	  * <code>reset()</code> is designed to allow the reuse of existing <code>DocumentBuilder</code>s
-	  * thus saving resources associated with the creation of new <code>DocumentBuilder</code>s.</p>
-	  * 
-	  * <p>The reset <code>DocumentBuilder</code> is not guaranteed to have the same {@link org.xml.sax.EntityResolver} or {@link org.xml.sax.ErrorHandler}
-	  * <code>Object</code>s, e.g. {@link Object#equals(Object obj)}.  It is guaranteed to have a functionally equal
-	  * <code>EntityResolver</code> and <code>ErrorHandler</code>.</p>
-	  * 
-	  * @since 1.5
-	  */
-	public void reset() {
-	
-		// implementors should override this method
-		throw new UnsupportedOperationException(
-			"This DocumentBuilder, \"" + this.getClass().getName() + "\", does not support the reset functionality."
-			+ "  Specification \"" + this.getClass().getPackage().getSpecificationTitle() + "\""
-			+ " version \"" + this.getClass().getPackage().getSpecificationVersion() + "\""
-			);
-	}
-
+    private static final boolean DEBUG = false ;
     /**
-     * Parse the content of the given <code>InputStream</code> as an XML
+     * Parse the content of the given <code>InputStream</code> as an XML 
      * document and return a new DOM {@link org.w3c.dom.Document} object.
-     * An <code>IllegalArgumentException</code> is thrown if the
-     * <code>InputStream</code> is null.
      *
      * @param is InputStream containing the content to be parsed.
-     * @return <code>Document</code> result of parsing the
-     *  <code>InputStream</code>
      * @exception java.io.IOException If any IO errors occur.
      * @exception org.xml.sax.SAXException If any parse errors occur.
+     * @exception IllegalArgumentException If the InputStream is null
      * @see org.xml.sax.DocumentHandler
      */
     
     public Document parse(InputStream is)
-        throws SAXException, IOException {
+        throws SAXException, IOException
+    {
         if (is == null) {
             throw new IllegalArgumentException("InputStream cannot be null");
         }
@@ -111,45 +124,45 @@ public abstract class DocumentBuilder {
     }
 
     /**
-     * Parse the content of the given <code>InputStream</code> as an
-     * XML document and return a new DOM {@link org.w3c.dom.Document} object.
-     * An <code>IllegalArgumentException</code> is thrown if the
-     * <code>InputStream</code> is null.
+     * Parse the content of the given <code>InputStream</code> as an XML 
+     * document and return a new DOM {@link org.w3c.dom.Document} object.
      *
      * @param is InputStream containing the content to be parsed.
      * @param systemId Provide a base for resolving relative URIs.
-     * @return A new DOM Document object.
      * @exception java.io.IOException If any IO errors occur.
      * @exception org.xml.sax.SAXException If any parse errors occur.
+     * @exception IllegalArgumentException If the InputStream is null.
      * @see org.xml.sax.DocumentHandler
+     * @return A new DOM Document object.
      */
     
     public Document parse(InputStream is, String systemId)
-        throws SAXException, IOException {
+        throws SAXException, IOException
+    {
         if (is == null) {
             throw new IllegalArgumentException("InputStream cannot be null");
         }
         
         InputSource in = new InputSource(is);
-        in.setSystemId(systemId);
+    in.setSystemId(systemId);
         return parse(in);
     }
 
     /**
      * Parse the content of the given URI as an XML document
      * and return a new DOM {@link org.w3c.dom.Document} object.
-     * An <code>IllegalArgumentException</code> is thrown if the
-     * URI is <code>null</code> null.
      *
      * @param uri The location of the content to be parsed.
-     * @return A new DOM Document object.
      * @exception java.io.IOException If any IO errors occur.
      * @exception org.xml.sax.SAXException If any parse errors occur.
+     * @exception IllegalArgumentException If the URI is null.
      * @see org.xml.sax.DocumentHandler
+     * @return A new DOM Document object.
      */
     
     public Document parse(String uri)
-        throws SAXException, IOException {
+        throws SAXException, IOException
+    {
         if (uri == null) {
             throw new IllegalArgumentException("URI cannot be null");
         }
@@ -161,26 +174,26 @@ public abstract class DocumentBuilder {
     /**
      * Parse the content of the given file as an XML document
      * and return a new DOM {@link org.w3c.dom.Document} object.
-     * An <code>IllegalArgumentException</code> is thrown if the
-     * <code>File</code> is <code>null</code> null.
      *
      * @param f The file containing the XML to parse.
      * @exception java.io.IOException If any IO errors occur.
      * @exception org.xml.sax.SAXException If any parse errors occur.
+     * @exception IllegalArgumentException If the file is null.
      * @see org.xml.sax.DocumentHandler
      * @return A new DOM Document object.
      */
     
-    public Document parse(File f) throws SAXException, IOException {
+    public Document parse(File f)
+       throws SAXException, IOException
+    {
         if (f == null) {
             throw new IllegalArgumentException("File cannot be null");
         }
         
-        String escapedURI = FilePathToURI.filepath2URI(f.getAbsolutePath());
-        
-        if (DEBUG) {
-            System.out.println("Escaped URI = " + escapedURI);
-        }
+        String escapedURI = FilePathToURI.filepath2URI(f.getAbsolutePath()) ;
+
+        if(DEBUG)
+            System.out.println("Escaped URI = " + escapedURI) ;
 
         InputSource in = new InputSource(escapedURI);
         return parse(in);
@@ -189,12 +202,11 @@ public abstract class DocumentBuilder {
     /**
      * Parse the content of the given input source as an XML document
      * and return a new DOM {@link org.w3c.dom.Document} object.
-     * An <code>IllegalArgumentException</code> is thrown if the
-     * <code>InputSource</code> is <code>null</code> null.
      *
      * @param is InputSource containing the content to be parsed.
      * @exception java.io.IOException If any IO errors occur.
      * @exception org.xml.sax.SAXException If any parse errors occur.
+     * @exception IllegalArgumentException If the InputSource is null.
      * @see org.xml.sax.DocumentHandler
      * @return A new DOM Document object.
      */
@@ -234,22 +246,28 @@ public abstract class DocumentBuilder {
      *           present in the XML document to be parsed.
      */
 
-    public abstract void setEntityResolver(EntityResolver er);
+    public abstract void setEntityResolver(org.xml.sax.EntityResolver er);
 
     /**
-     * Specify the {@link org.xml.sax.ErrorHandler} to be used by the parser.
-     * Setting this to <code>null</code> will result in the underlying
+     * Specify the {@link org.xml.sax.ErrorHandler} to be used to report 
+     * errors present in the XML document to be parsed. Setting
+     * this to <code>null</code> will result in the underlying
      * implementation using it's own default implementation and
      * behavior.
      *
-     * @param eh The <code>ErrorHandler</code> to be used by the parser.
+     * @param eh The <code>ErrorHandler</code> to be used to report errors
+     *           present in the XML document to be parsed.
      */
 
-    public abstract void setErrorHandler(ErrorHandler eh);
+    public abstract void setErrorHandler(org.xml.sax.ErrorHandler eh);
 
     /**
      * Obtain a new instance of a DOM {@link org.w3c.dom.Document} object
-     * to build a DOM tree with.
+     * to build a DOM tree with.  An alternative way to create a DOM
+     * Document object is to use the
+     * {@link #getDOMImplementation() getDOMImplementation}
+     * method to get a DOM Level 2 DOMImplementation object and then use
+     * DOM Level 2 methods on that object to create a DOM Document object.
      *
      * @return A new instance of a DOM Document object.
      */
@@ -263,67 +281,4 @@ public abstract class DocumentBuilder {
      */
 
     public abstract DOMImplementation getDOMImplementation();
-    
-    /** <p>Get current state of canonicalization.</p>
-     *
-     * @return current state canonicalization control
-     */
-    /*
-    public boolean getCanonicalization() {
-        return canonicalState;
-    }
-    */
-    
-    /** <p>Get a reference to the the {@link javax.xml.validation.Schema} being used by
-     * the XML processor.</p>
-     *
-     * <p>If no schema is being used, <code>null</code> is returned.</p>
-     *
-     * @return {@link javax.xml.validation.Schema} being used or <code>null</code>
-     *  if none in use
-     * 
-     * @throws UnsupportedOperationException
-     *      For backward compatibility, when implementations for
-     *      earlier versions of JAXP is used, this exception will be
-     *      thrown.
-     * 
-     * @since 1.5
-     */
-    public Schema getSchema() {
-        throw new UnsupportedOperationException(
-            "This parser does not support specification \""
-            + this.getClass().getPackage().getSpecificationTitle()
-            + "\" version \""
-            + this.getClass().getPackage().getSpecificationVersion()
-            + "\""
-            );
-    }
-    
-    
-    /**
-     * <p>Get the XInclude processing mode for this parser.</p>
-     * 
-     * @return
-     *      the return value of
-     *      the {@link javax.xml.parsers.DocumentBuilderFactory#isXIncludeAware()}
-     *      when this parser was created from factory.
-     * 
-     * @throws UnsupportedOperationException
-     *      For backward compatibility, when implementations for
-     *      earlier versions of JAXP is used, this exception will be
-     *      thrown.
-     * 
-     * @since 1.5
-     * 
-     * @see javax.xml.parsers.DocumentBuilderFactory#setXIncludeAware(boolean)
-     */
-    public boolean isXIncludeAware() {
-        throw new UnsupportedOperationException(
-            "This parser does not support specification \""
-            + this.getClass().getPackage().getSpecificationTitle()
-            + "\" version \""
-            + this.getClass().getPackage().getSpecificationVersion()
-            + "\""
-            );
-    }
 }

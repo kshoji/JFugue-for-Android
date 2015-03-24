@@ -24,7 +24,7 @@ import java.io.IOException;
 
 
 /**
- * Extends {@link org.apache.xml.serialize.Printer} and adds support for indentation and line
+ * Extends {@link Printer} and adds support for indentation and line
  * wrapping.
  *
  * @version $Revision: 319808 $ $Date: 2004-02-24 18:34:05 -0500 (Tue, 24 Feb 2004) $

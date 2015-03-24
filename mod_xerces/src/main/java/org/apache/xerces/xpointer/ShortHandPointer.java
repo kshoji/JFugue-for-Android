@@ -60,7 +60,7 @@ class ShortHandPointer implements XPointerPart {
     /**
      * The XPointerProcessor takes care of this.  Simply set the ShortHand Pointer here.
      * 
-     * @see XPointerPart#parseXPointer(String)
+     * @see org.apache.xerces.xpointer.XPointerPart#parseXPointer(String)
      */
     public void parseXPointer(String part) throws XNIException {
         fShortHandPointer = part;
@@ -73,7 +73,7 @@ class ShortHandPointer implements XPointerPart {
      * Section 3.2 of the XPointer Framework Recommendation.
      * Note that in the current implementation only supports DTD determined ID's. 
      *
-     * @see XPointerPart#resolveXPointer(org.apache.xerces.xni.QName, org.apache.xerces.xni.XMLAttributes, org.apache.xerces.xni.Augmentations, int event)
+     * @see org.apache.xerces.xpointer.XPointerPart#resolveXPointer(org.apache.xerces.xni.QName, org.apache.xerces.xni.XMLAttributes, org.apache.xerces.xni.Augmentations, int event)
      */
     int fMatchingChildCount = 0;
     public boolean resolveXPointer(QName element, XMLAttributes attributes,
@@ -118,7 +118,7 @@ class ShortHandPointer implements XPointerPart {
      * @param augs
      * @param event
      * @return
-     * @throws org.apache.xerces.xni.XNIException
+     * @throws XNIException
      */
     private boolean hasMatchingIdentifier(QName element,
             XMLAttributes attributes, Augmentations augs, int event)
@@ -176,7 +176,7 @@ class ShortHandPointer implements XPointerPart {
      * @param attributes
      * @param index
      * @return String 
-     * @throws org.apache.xerces.xni.XNIException
+     * @throws XNIException
      */
     public String getDTDDeterminedID(XMLAttributes attributes, int index)
     throws XNIException {
@@ -194,7 +194,7 @@ class ShortHandPointer implements XPointerPart {
      * @param attributes
      * @param index
      * @return A String containing the schema-determined ID. 
-     * @throws org.apache.xerces.xni.XNIException
+     * @throws XNIException
      */
     public String getSchemaDeterminedID(XMLAttributes attributes, int index)
     throws XNIException {
@@ -238,7 +238,7 @@ class ShortHandPointer implements XPointerPart {
      * @param attributes
      * @param index
      * @return String - We return null since we currenly do not supprt this. 
-     * @throws org.apache.xerces.xni.XNIException
+     * @throws XNIException
      */
     public String getChildrenSchemaDeterminedID(XMLAttributes attributes,
             int index) throws XNIException {
@@ -247,7 +247,7 @@ class ShortHandPointer implements XPointerPart {
     
     /**
      * 
-     * @see XPointerPart#isFragmentResolved()
+     * @see org.apache.xerces.xpointer.XPointerPart#isFragmentResolved()
      */
     public boolean isFragmentResolved() {
         return fIsFragmentResolved;
@@ -255,7 +255,7 @@ class ShortHandPointer implements XPointerPart {
     
     /**
      * 
-     * @see XPointerPart#isChildFragmentResolved()
+     * @see org.apache.xerces.xpointer.XPointerPart#isChildFragmentResolved()
      */
     public boolean isChildFragmentResolved() {
         return fIsFragmentResolved && (fMatchingChildCount > 0);
@@ -264,28 +264,28 @@ class ShortHandPointer implements XPointerPart {
     /**
      * Returns the name of the ShortHand pointer
      * 
-     * @see XPointerPart#getSchemeName()
+     * @see org.apache.xerces.xpointer.XPointerPart#getSchemeName()
      */
     public String getSchemeName() {
         return fShortHandPointer;
     }
     
     /**
-     * @see XPointerPart#getSchemeData()
+     * @see org.apache.xerces.xpointer.XPointerPart#getSchemeData()
      */
     public String getSchemeData() {
         return null;
     }
     
     /**
-     * @see XPointerPart#setSchemeName(String)
+     * @see org.apache.xerces.xpointer.XPointerPart#setSchemeName(String)
      */
     public void setSchemeName(String schemeName) {
         fShortHandPointer = schemeName;
     }
     
     /**
-     * @see XPointerPart#setSchemeData(String)
+     * @see org.apache.xerces.xpointer.XPointerPart#setSchemeData(String)
      */
     public void setSchemeData(String schemeData) {
         // NA

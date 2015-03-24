@@ -25,7 +25,7 @@ import org.apache.xalan.templates.Constants;
 /**
  * Used during assembly of a stylesheet to collect the information for each 
  * extension namespace that is required during the transformation process 
- * to generate an {@link org.apache.xalan.extensions.ExtensionHandler}.
+ * to generate an {@link ExtensionHandler}.
  * 
  */
 public class ExtensionNamespacesManager

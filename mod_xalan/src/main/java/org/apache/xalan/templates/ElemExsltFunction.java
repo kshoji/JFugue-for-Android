@@ -42,7 +42,7 @@ public class ElemExsltFunction extends ElemTemplate
    *
    * @return An integer representation of the element, defined in the
    *     Constants class.
-   * @see Constants
+   * @see org.apache.xalan.templates.Constants
    */
   public int getXSLToken()
   {
@@ -52,7 +52,7 @@ public class ElemExsltFunction extends ElemTemplate
    /**
    * Return the node name, defined in the
    *     Constants class.
-   * @see Constants
+   * @see org.apache.xalan.templates.Constants
    * @return The node name
    * 
    */ 

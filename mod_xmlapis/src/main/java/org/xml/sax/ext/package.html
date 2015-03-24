@@ -1,46 +1,108 @@
-<HTML><HEAD>
-<!-- $Id: package.html 226184 2005-04-08 10:53:24Z neeraj $ -->
-</HEAD><BODY>
+<!-- $Id: package.html,v 1.2 2001/08/23 00:35:38 lehors Exp $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<p>
-This package contains interfaces to SAX2 facilities that
-conformant SAX drivers won't necessarily support.
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>SAX2 is Free!</title>
+</head>
 
-<p>See <a href='http://www.saxproject.org'>http://www.saxproject.org</a>
-for more information about SAX.</p>
+<body>
+<p>This package, SAX2-ext, is an extension package for SAX2.  It is
+designed both to allow SAX drivers to pass certain types of none-core
+information to applications and to serve as a simple model for other
+SAX2 extension packages.</p>
 
-<p> This package is independent of the SAX2 core, though the functionality
-exposed generally needs to be implemented within a parser core.
-That independence has several consequences:</p>
+<p><strong>NOTE:</strong> this package alone does add any
+functionality; it simply provides optional interfaces for SAX2 drivers
+to use.  You must find a SAX2 driver that supports these interfaces if
+you actually want to have access to lexical and declaration
+information.</p>
+
+<p>The SAX2-ext package currently contains two extension handlers for
+SAX2:</p>
+
+<ol>
+
+<li><a href="javadoc/org/xml/sax/ext/LexicalHandler.html"
+>LexicalHandler</a>, which reports comments, the DOCTYPE declaration,
+CDATA sections, and (some) entity boundaries; and</li>
+
+<li><a href="javadoc/org/xml/sax/ext/DeclHandler.html"
+>DeclHandler</a>, which reports element, attribute, and entity
+declarations.</li>
+
+</ol>
+
+<p>This package is independent of the SAX2 core, and that independence
+has several consequences:</p>
 
 <ul>
 
-<li>SAX2 drivers are <em>not</em> required to recognize these handlers.
-</li>
-
-<li>You cannot assume that the class files will be present in every SAX2
+<li>SAX2 drivers are <em>not</em> required to support these handlers,
+and you cannot assume that the classes will be present in every SAX2
 installation.</li>
 
 <li>This package may be updated independently of SAX2 (i.e. new
-handlers and classes may be added without updating SAX2 itself).</li>
+handlers may be added without updating SAX2 itself).</li>
 
-<li>The new handlers are not implemented by the SAX2
-<code>org.xml.sax.helpers.DefaultHandler</code> or
-<code>org.xml.sax.helpers.XMLFilterImpl</code> classes.
-You can subclass these if you need such behavior, or
-use the helper classes found here.</li>
+<li>The handlers are not supported explicitly by the SAX2
+<var>XMLFilter</var> interface (i.e. events are not passed on by
+default); you can subclass XMLFilter if you need such behaviour.</li>
 
-<li>The handlers need to be registered differently than core SAX2
+<li>The handlers need to be registered differently than regular SAX2
 handlers.</li>
 
 </ul>
 
-<p>This package, SAX2-ext, is a standardized extension to SAX2.  It is
-designed both to allow SAX parsers to pass certain types of information
-to applications, and to serve as a simple model for other SAX2 parser
-extension packages.  Not all such extension packages should need to
-be recognized directly by parsers, however.
-As an example, most validation systems can be cleanly layered on top
-of parsers supporting the standardized SAX2 interfaces.  </p>
+<p>To set a LexicalHandler, for example, you need to do something like 
+this:</p>
 
-</BODY></HTML>
+<blockquote><pre xml:space="preserve">
+LexicalHandler lh = new MyLexicalHandler();
+try {
+  xmlReader.setProperty("http://xml.org/sax/properties/lexical-handler",
+                        lh);
+} catch (SAXException e) {
+  System.out.println("LexicalHandler not supported by this SAX2 driver.");
+}
+</pre></blockquote>
+
+
+<div>
+<h2>SAX2-ext Properties</h2>
+
+<p>Here is a full definition of the two new SAX2 properties introduced
+in this version of SAX2-ext:</p>
+
+<dl>
+
+<dt><code>http://xml.org/sax/properties/lexical-handler</code></dt>
+<dd><strong>data type:</strong>
+<code>org.xml.sax.ext.LexicalHandler</code></dd>
+<dd><strong>description:</strong> An optional extension handler for
+lexical events like comments.</dd>
+<dd><strong>access:</strong> read/write</dd>
+
+<dt><code>http://xml.org/sax/properties/declaration-handler</code></dt>
+<dd><strong>data type:</strong>
+<code>org.xml.sax.ext.DeclHandler</code></dd>
+<dd><strong>description:</strong> An optional extension handler for
+DTD-related events other than notations and unparsed entities.</dd>
+<dd><strong>access:</strong> read/write</dd>
+
+</dl>
+
+<h1>SAX2 is Free!</h1>
+
+<p>I hereby abandon any property rights to SAX 2.0 (the Simple API for
+XML), and release all of the SAX 2.0 source code, compiled code, and
+documentation contained in this distribution into the Public Domain.
+SAX comes with NO WARRANTY or guarantee of fitness for any
+purpose.</p>
+
+<p>David Megginson, david@megginson.com</p>
+<p>2000-05-05</p>
+
+</body>
+</html>

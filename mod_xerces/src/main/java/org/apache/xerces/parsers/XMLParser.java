@@ -97,7 +97,7 @@ public abstract class XMLParser {
      *
      * @param inputSource
      *
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      * @exception java.io.IOException
      */
     public void parse(XMLInputSource inputSource) 

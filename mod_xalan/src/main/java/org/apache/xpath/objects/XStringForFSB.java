@@ -93,7 +93,7 @@ public class XStringForFSB extends XString
    *
    * @return The string this wraps or the empty string if null
    */
-  public void appendToFsb(FastStringBuffer fsb)
+  public void appendToFsb(org.apache.xml.utils.FastStringBuffer fsb)
   {
     // %OPT% !!! FSB has to be updated to take partial fsb's for append.
     fsb.append(str());

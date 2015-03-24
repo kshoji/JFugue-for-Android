@@ -55,7 +55,7 @@ public class JAXPPrefixResolver implements PrefixResolver
     }
 
     /**
-     * @see org.apache.xml.utils.PrefixResolver#handlesNullPrefixes()
+     * @see PrefixResolver#handlesNullPrefixes() 
      */
     public boolean handlesNullPrefixes() {
         return false;

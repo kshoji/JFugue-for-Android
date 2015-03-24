@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
  * has the required getContents() method that returns
  * an array of message-key/message associations.
  * <p>
- * The message keys are defined in {@link org.apache.xml.serializer.utils.MsgKey}. The
+ * The message keys are defined in {@link MsgKey}. The
  * messages that those keys map to are defined here.
  * <p>
  * The messages in the English version are intended to be

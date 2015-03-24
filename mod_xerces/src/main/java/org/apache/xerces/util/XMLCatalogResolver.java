@@ -383,7 +383,7 @@ public class XMLCatalogResolver
      *
      * @param resourceIdentifier location of the XML resource to resolve
      *
-     * @throws org.apache.xerces.xni.XNIException thrown on general error
+     * @throws XNIException thrown on general error
      * @throws java.io.IOException thrown if some i/o error occurs
      */
     public XMLInputSource resolveEntity(XMLResourceIdentifier resourceIdentifier)
@@ -406,7 +406,7 @@ public class XMLCatalogResolver
      * 
      * @param resourceIdentifier the identifier to resolve
      * 
-     * @throws org.apache.xerces.xni.XNIException thrown on general error
+     * @throws XNIException thrown on general error
      * @throws java.io.IOException thrown if some i/o error occurs
      */
     public String resolveIdentifier(XMLResourceIdentifier resourceIdentifier)

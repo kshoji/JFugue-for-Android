@@ -52,9 +52,9 @@ public interface XMLEntityHandler {
      *                 parsed from a java.io.Reader).
      * @param augs     Additional information that may include infoset augmentations
      * 
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
-    public void startEntity(String name,
+    public void startEntity(String name, 
                             XMLResourceIdentifier identifier,
                             String encoding, Augmentations augs) throws XNIException;
 
@@ -66,7 +66,7 @@ public interface XMLEntityHandler {
      * @param name The name of the entity.
      * @param augs Additional information that may include infoset augmentations
      * 
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endEntity(String name, Augmentations augs) throws XNIException;
 

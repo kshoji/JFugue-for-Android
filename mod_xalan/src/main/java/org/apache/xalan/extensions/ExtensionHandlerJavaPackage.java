@@ -142,7 +142,7 @@ public class ExtensionHandlerJavaPackage extends ExtensionHandlerJava
             Class[] paramTypes = methods[i].getParameterTypes();
             if ( (paramTypes.length == 2)
               && paramTypes[0].isAssignableFrom(
-                                     XSLProcessorContext.class)
+                                     org.apache.xalan.extensions.XSLProcessorContext.class)
               && paramTypes[1].isAssignableFrom(
                                        org.apache.xalan.templates.ElemExtensionCall.class) )
             {

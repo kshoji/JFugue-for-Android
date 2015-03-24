@@ -3,11 +3,10 @@
 // Written by David Megginson
 // and by David Brownell
 // NO WARRANTY!  This class is in the Public Domain.
-// $Id: XMLReaderFactory.java 226251 2005-06-21 19:19:22Z mrglavas $
+// $Id: XMLReaderFactory.java,v 1.8 2001/11/21 01:02:50 dbrownell Exp $
 
 package org.xml.sax.helpers;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import org.xml.sax.XMLReader;
@@ -45,7 +44,7 @@ import org.xml.sax.SAXException;
  *
  * @since SAX 2.0
  * @author David Megginson, David Brownell
- * @version 2.0.1 (sax2r2)
+ * @version 2.0r2pre3
  */
 final public class XMLReaderFactory
 {
@@ -57,14 +56,9 @@ final public class XMLReaderFactory
     private XMLReaderFactory ()
     {
     }
-    
+
     private static final String property = "org.xml.sax.driver";
-    
-    /**
-     * Default columns per line.
-     */
-    private static final int DEFAULT_LINE_LENGTH = 80;
-    
+
     /**
      * Attempt to create an XMLReader from system defaults.
      * In environments which can support it, the name of the XMLReader
@@ -108,109 +102,107 @@ final public class XMLReaderFactory
      * @see #createXMLReader(String)
      */
     public static XMLReader createXMLReader ()
-    throws SAXException
+	throws SAXException
     {
-        String		className = null;
+	    String		className = null;
         SecuritySupport ss = SecuritySupport.getInstance();
-        ClassLoader	loader = NewInstance.getClassLoader ();
-        
-        // 1. try the JVM-instance-wide system property
-        try { className = ss.getSystemProperty (property); }
-        catch (Exception e) { /* normally fails for applets */ }
-        
-        // 2. if that fails, try META-INF/services/
-        if (className == null) {
-            String      service = "META-INF/services/" + property;
-            
-            InputStream is = null;
-            
-            // First try the Context ClassLoader
-            ClassLoader cl = ss.getContextClassLoader();
-            if (cl != null) {
-                is = ss.getResourceAsStream(cl, service);
-                
-                // If no provider found then try the current ClassLoader
-                if (is == null) {
-                    cl = XMLReaderFactory.class.getClassLoader();
-                    is = ss.getResourceAsStream(cl, service);
-                }
-            } else {
-                // No Context ClassLoader or JDK 1.1 so try the current
-                // ClassLoader
+	    ClassLoader	loader = NewInstance.getClassLoader ();
+	
+	    // 1. try the JVM-instance-wide system property 
+        try {
+            className = ss.getSystemProperty(property);
+	    } catch (Exception e) { /* normally fails for applets */ }
+
+	// 2. if that fails, try META-INF/services/
+	if (className == null) {
+        String		service = "META-INF/services/" + property;
+
+        InputStream is = null;
+
+        // First try the Context ClassLoader
+        ClassLoader cl = ss.getContextClassLoader();
+        if (cl != null) {
+            is = ss.getResourceAsStream(cl, service);
+
+            // If no provider found then try the current ClassLoader
+            if (is == null) {
                 cl = XMLReaderFactory.class.getClassLoader();
                 is = ss.getResourceAsStream(cl, service);
             }
-            
-            if (is != null) {
-                
-                // Read the service provider name in UTF-8 as specified in
-                // the jar spec.  Unfortunately this fails in Microsoft
-                // VJ++, which does not implement the UTF-8
-                // encoding. Theoretically, we should simply let it fail in
-                // that case, since the JVM is obviously broken if it
-                // doesn't support such a basic standard.  But since there
-                // are still some users attempting to use VJ++ for
-                // development, we have dropped in a fallback which makes a
-                // second attempt using the platform's default encoding. In
-                // VJ++ this is apparently ASCII, which is a subset of
-                // UTF-8... and since the strings we'll be reading here are
-                // also primarily limited to the 7-bit ASCII range (at
-                // least, in English versions), this should work well
-                // enough to keep us on the air until we're ready to
-                // officially decommit from VJ++. [Edited comment from
-                // jkesselm]
-                BufferedReader rd;
-                try {
-                    rd = new BufferedReader(new InputStreamReader(is, "UTF-8"), DEFAULT_LINE_LENGTH);
-                } catch (java.io.UnsupportedEncodingException e) {
-                    rd = new BufferedReader(new InputStreamReader(is), DEFAULT_LINE_LENGTH);
-                }
-                
-                try {
-                    // XXX Does not handle all possible input as specified by the
-                    // Jar Service Provider specification
-                    className = rd.readLine();
-                } 
-                catch (Exception x) {
-                    // No provider found
-                } 
-                finally {
-                    try { 
-                        // try to close the reader. 
-                        rd.close(); 
-                    } 
-                    // Ignore the exception. 
-                    catch (IOException exc) {}
-                }
+        } else {
+            // No Context ClassLoader or JDK 1.1 so try the current
+            // ClassLoader
+            cl = XMLReaderFactory.class.getClassLoader();
+            is = ss.getResourceAsStream(cl, service);
+        }
+
+        if (is != null) {
+
+            // Read the service provider name in UTF-8 as specified in
+            // the jar spec.  Unfortunately this fails in Microsoft
+            // VJ++, which does not implement the UTF-8
+            // encoding. Theoretically, we should simply let it fail in
+            // that case, since the JVM is obviously broken if it
+            // doesn't support such a basic standard.  But since there
+            // are still some users attempting to use VJ++ for
+            // development, we have dropped in a fallback which makes a
+            // second attempt using the platform's default encoding. In
+            // VJ++ this is apparently ASCII, which is a subset of
+            // UTF-8... and since the strings we'll be reading here are
+            // also primarily limited to the 7-bit ASCII range (at
+            // least, in English versions), this should work well
+            // enough to keep us on the air until we're ready to
+            // officially decommit from VJ++. [Edited comment from
+            // jkesselm]
+            BufferedReader rd;
+            try {
+                rd = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            } catch (java.io.UnsupportedEncodingException e) {
+                rd = new BufferedReader(new InputStreamReader(is));
             }
-        }
         
-        // 3. Distro-specific fallback
-        if (className == null) {
-            // BEGIN DISTRIBUTION-SPECIFIC
-            
-            // EXAMPLE:
-            // className = "com.example.sax.XmlReader";
-            // or a $JAVA_HOME/jre/lib/*properties setting...
-            className = "org.apache.xerces.parsers.SAXParser";
-            
-            // END DISTRIBUTION-SPECIFIC
+            try {
+                // XXX Does not handle all possible input as specified by the
+                // Jar Service Provider specification
+                className = rd.readLine();
+                rd.close();
+            } catch (Exception x) {
+                // No provider found
+            } 
         }
-        
-        // do we know the XMLReader implementation class yet?
-        if (className != null)
-            return loadClass (loader, className);
-        
-        // 4. panic -- adapt any SAX1 parser
-        try {
-            return new ParserAdapter (ParserFactory.makeParser ());
-        } catch (Exception e) {
-            throw new SAXException ("Can't create default XMLReader; "
-                    + "is system property org.xml.sax.driver set?");
-        }
+	}
+    // REVISIT:  there is a comment in the original FactoryFinder codde to the effect:
+    //
+    // ClassLoader because we want to avoid the case where the
+    // resource file was found using one ClassLoader and the
+    // provider class was instantiated using a different one.
+    //
+    // But it's not clear how the class loader "cl" (now out of scope!)
+    // that loaded the inputStream would matter here...
+
+	// 3. Distro-specific fallback
+	if (className == null) {
+        // modified by neilg in accordance with the "strong encouragement"
+        // provided to distributions which include parsers.
+
+	    className = "org.apache.xerces.parsers.SAXParser";
+
+	}
+	
+	// do we know the XMLReader implementation class yet?
+	if (className != null)
+	    return loadClass (loader, className);
+
+	// 4. panic -- adapt any SAX1 parser
+	try {
+	    return new ParserAdapter (ParserFactory.makeParser ());
+	} catch (Exception e) {
+	    throw new SAXException ("Can't create default XMLReader; "
+		    + "is system property org.xml.sax.driver set?");
+	}
     }
-    
-    
+
+
     /**
      * Attempt to create an XML reader from a class name.
      *
@@ -227,29 +219,29 @@ final public class XMLReaderFactory
      * @see #createXMLReader()
      */
     public static XMLReader createXMLReader (String className)
-    throws SAXException
+	throws SAXException
     {
-        return loadClass (NewInstance.getClassLoader (), className);
+	return loadClass (NewInstance.getClassLoader (), className);
     }
-    
+
     private static XMLReader loadClass (ClassLoader loader, String className)
     throws SAXException
     {
-        try {
-            return (XMLReader) NewInstance.newInstance (loader, className);
-        } catch (ClassNotFoundException e1) {
-            throw new SAXException("SAX2 driver class " + className +
-                    " not found", e1);
-        } catch (IllegalAccessException e2) {
-            throw new SAXException("SAX2 driver class " + className +
-                    " found but cannot be loaded", e2);
-        } catch (InstantiationException e3) {
-            throw new SAXException("SAX2 driver class " + className +
-                    " loaded but cannot be instantiated (no empty public constructor?)",
-                    e3);
-        } catch (ClassCastException e4) {
-            throw new SAXException("SAX2 driver class " + className +
-                    " does not implement XMLReader", e4);
-        }
+	try {
+	    return (XMLReader) NewInstance.newInstance (loader, className);
+	} catch (ClassNotFoundException e1) {
+	    throw new SAXException("SAX2 driver class " + className +
+				   " not found", e1);
+	} catch (IllegalAccessException e2) {
+	    throw new SAXException("SAX2 driver class " + className +
+				   " found but cannot be loaded", e2);
+	} catch (InstantiationException e3) {
+	    throw new SAXException("SAX2 driver class " + className +
+	   " loaded but cannot be instantiated (no empty public constructor?)",
+				   e3);
+	} catch (ClassCastException e4) {
+	    throw new SAXException("SAX2 driver class " + className +
+				   " does not implement XMLReader", e4);
+	}
     }
 }

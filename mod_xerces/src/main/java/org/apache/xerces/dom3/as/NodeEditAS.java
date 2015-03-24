@@ -56,7 +56,7 @@ public interface NodeEditAS {
      * @return <code>true</code> if no reason it can't be done; 
      *   <code>false</code> if it can't be done.
      */
-    public boolean canInsertBefore(Node newChild,
+    public boolean canInsertBefore(Node newChild, 
                                    Node refChild);
 
     /**
@@ -74,7 +74,7 @@ public interface NodeEditAS {
      * @return <code>true</code> if no reason it can't be done; 
      *   <code>false</code> if it can't be done.
      */
-    public boolean canReplaceChild(Node newChild,
+    public boolean canReplaceChild(Node newChild, 
                                    Node oldChild);
 
     /**
@@ -108,7 +108,7 @@ public interface NodeEditAS {
      *   is set to <code>PARTIAL</code> or <code>STRICT_VALIDITY_CHECK</code>
      *   .
      */
-    public boolean isNodeValid(boolean deep,
+    public boolean isNodeValid(boolean deep, 
                                short wFValidityCheckLevel)
                                throws DOMASException;
 

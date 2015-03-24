@@ -796,7 +796,7 @@ public class TemplateList implements java.io.Serializable
    * that are template elements.
    *
    * @return A Hashtable dictionary that contains {@link String}s
-   * as the keys, and {@link ElemTemplate}s as the
+   * as the keys, and {@link org.apache.xalan.templates.ElemTemplate}s as the 
    * values. 
    */
   private Hashtable getNamedTemplates()
@@ -810,7 +810,7 @@ public class TemplateList implements java.io.Serializable
    * that are template elements in the XSL DOM tree.
    *
    * @param v Hashtable dictionary that contains {@link String}s
-   * as the keys, and {@link ElemTemplate}s as the
+   * as the keys, and {@link org.apache.xalan.templates.ElemTemplate}s as the 
    * values.
    */
   private void setNamedTemplates(Hashtable v)

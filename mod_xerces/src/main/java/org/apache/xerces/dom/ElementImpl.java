@@ -1074,7 +1074,7 @@ public class ElementImpl
 
     /**
      * NON-DOM: Subclassed to flip the attributes' readonly switch as well.
-     * @see org.apache.xerces.dom.NodeImpl#setReadOnly
+     * @see NodeImpl#setReadOnly
      */
     public void setReadOnly(boolean readOnly, boolean deep) {
     	super.setReadOnly(readOnly,deep);

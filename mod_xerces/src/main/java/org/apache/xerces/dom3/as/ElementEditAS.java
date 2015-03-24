@@ -44,7 +44,7 @@ public interface ElementEditAS extends NodeEditAS {
      * @return <code>true</code> if no reason it can't be done; 
      *   <code>false</code> if it can't be done.
      */
-    public boolean canSetAttribute(String attrname,
+    public boolean canSetAttribute(String attrname, 
                                    String attrval);
 
     /**
@@ -71,8 +71,8 @@ public interface ElementEditAS extends NodeEditAS {
      * @return <code>true</code> if no reason it can't be done; 
      *   <code>false</code> if it can't be done.
      */
-    public boolean canSetAttributeNS(String name,
-                                     String attrval,
+    public boolean canSetAttributeNS(String name, 
+                                     String attrval, 
                                      String namespaceURI);
 
     /**
@@ -91,7 +91,7 @@ public interface ElementEditAS extends NodeEditAS {
      * @return <code>true</code> if no reason it can't be done; 
      *   <code>false</code> if it can't be done.
      */
-    public boolean canRemoveAttributeNS(String attrname,
+    public boolean canRemoveAttributeNS(String attrname, 
                                         String namespaceURI);
 
     /**
@@ -143,8 +143,8 @@ public interface ElementEditAS extends NodeEditAS {
      * @return A boolean that is <code>true</code> if the element is defined, 
      *   <code>false</code> otherwise.
      */
-    public boolean isElementDefinedNS(String elemTypeName,
-                                      String namespaceURI,
+    public boolean isElementDefinedNS(String elemTypeName, 
+                                      String namespaceURI, 
                                       String name);
 
 }

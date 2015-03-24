@@ -195,7 +195,7 @@ public class XMLGrammarCachingConfiguration
      * <strong>The parser will not expand this URI or make it
      * available to the EntityResolver</strong>
      * @return The newly created <code>Grammar</code>.
-     * @exception org.apache.xerces.xni.XNIException thrown on an error in grammar
+     * @exception XNIException thrown on an error in grammar
      * construction
      * @exception java.io.IOException thrown if an error is encountered
      * in reading the file
@@ -218,7 +218,7 @@ public class XMLGrammarCachingConfiguration
      * <strong>If a URI is included in the systemId field, the parser will not expand this URI or make it
      * available to the EntityResolver</strong>
      * @return The newly created <code>Grammar</code>.
-     * @exception org.apache.xerces.xni.XNIException thrown on an error in grammar
+     * @exception XNIException thrown on an error in grammar
      * construction
      * @exception java.io.IOException thrown if an error is encountered
      * in reading the file
@@ -247,7 +247,7 @@ public class XMLGrammarCachingConfiguration
      *
      * @param featureId The unique identifier (URI) of the feature.
      *
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown for configuration error.
+     * @throws XMLConfigurationException Thrown for configuration error.
      *                                   In general, components should
      *                                   only throw this exception if
      *                                   it is <strong>really</strong>
@@ -267,7 +267,7 @@ public class XMLGrammarCachingConfiguration
      * @param propertyId The unique identifier (URI) of the property
      *                   being set.
      *
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown for configuration error.
+     * @throws XMLConfigurationException Thrown for configuration error.
      *                                   In general, components should
      *                                   only throw this exception if
      *                                   it is <strong>really</strong>

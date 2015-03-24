@@ -23,7 +23,7 @@ package org.apache.xerces.xni;
  * <strong>Note:</strong> Some of these methods overlap methods
  * found in the XMLDocumentHandler interface.
  *
- * @see org.apache.xerces.xni.XMLDocumentHandler
+ * @see XMLDocumentHandler
  *
  * @author Andy Clark, IBM
  * @version $Id: XMLDocumentFragmentHandler.java 319806 2004-02-24 23:15:58Z mrglavas $
@@ -54,7 +54,7 @@ public interface XMLDocumentFragmentHandler {
      * @param augmentations    Additional information that may include infoset
      *                         augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startDocumentFragment(XMLLocator locator,
                                       NamespaceContext namespaceContext,
@@ -77,9 +77,9 @@ public interface XMLDocumentFragmentHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
-    public void startGeneralEntity(String name,
+    public void startGeneralEntity(String name, 
                                    XMLResourceIdentifier identifier,
                                    String encoding,
                                    Augmentations augmentations) throws XNIException;
@@ -100,7 +100,7 @@ public interface XMLDocumentFragmentHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void textDecl(String version, String encoding,
                          Augmentations augmentations) throws XNIException;
@@ -115,7 +115,7 @@ public interface XMLDocumentFragmentHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endGeneralEntity(String name, Augmentations augmentations) 
         throws XNIException;
@@ -127,7 +127,7 @@ public interface XMLDocumentFragmentHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by application to signal an error.
+     * @throws XNIException Thrown by application to signal an error.
      */
     public void comment(XMLString text, Augmentations augmentations) 
         throws XNIException;
@@ -148,7 +148,7 @@ public interface XMLDocumentFragmentHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void processingInstruction(String target, XMLString data,
                                       Augmentations augmentations)
@@ -162,7 +162,7 @@ public interface XMLDocumentFragmentHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startElement(QName element, XMLAttributes attributes,
                              Augmentations augmentations) throws XNIException;
@@ -175,7 +175,7 @@ public interface XMLDocumentFragmentHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void emptyElement(QName element, XMLAttributes attributes,
                              Augmentations augmentations) throws XNIException;
@@ -187,7 +187,7 @@ public interface XMLDocumentFragmentHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void characters(XMLString text, Augmentations augmentations) 
         throws XNIException;
@@ -204,7 +204,7 @@ public interface XMLDocumentFragmentHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void ignorableWhitespace(XMLString text,
                                     Augmentations augmentations) 
@@ -217,7 +217,7 @@ public interface XMLDocumentFragmentHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endElement(QName element, Augmentations augmentations) 
         throws XNIException;
@@ -228,7 +228,7 @@ public interface XMLDocumentFragmentHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startCDATA(Augmentations augmentations) throws XNIException;
 
@@ -238,7 +238,7 @@ public interface XMLDocumentFragmentHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endCDATA(Augmentations augmentations) throws XNIException;
 
@@ -248,7 +248,7 @@ public interface XMLDocumentFragmentHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endDocumentFragment(Augmentations augmentations) 
         throws XNIException;

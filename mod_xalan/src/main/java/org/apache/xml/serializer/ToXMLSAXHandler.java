@@ -56,7 +56,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see org.apache.xml.serializer.Serializer#getOutputFormat()
+     * @see Serializer#getOutputFormat()
      */
     public Properties getOutputFormat()
     {
@@ -64,7 +64,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see org.apache.xml.serializer.Serializer#getOutputStream()
+     * @see Serializer#getOutputStream()
      */
     public OutputStream getOutputStream()
     {
@@ -72,7 +72,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see org.apache.xml.serializer.Serializer#getWriter()
+     * @see Serializer#getWriter()
      */
     public Writer getWriter()
     {
@@ -88,7 +88,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
 
 
     /**
-     * @see org.apache.xml.serializer.DOMSerializer#serialize(org.w3c.dom.Node)
+     * @see DOMSerializer#serialize(org.w3c.dom.Node)
      */
     public void serialize(Node node) throws IOException
     {
@@ -112,21 +112,21 @@ public final class ToXMLSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see org.apache.xml.serializer.Serializer#setOutputFormat(java.util.Properties)
+     * @see Serializer#setOutputFormat(java.util.Properties)
      */
     public void setOutputFormat(Properties format)
     {
     }
 
     /**
-     * @see org.apache.xml.serializer.Serializer#setOutputStream(java.io.OutputStream)
+     * @see Serializer#setOutputStream(java.io.OutputStream)
      */
     public void setOutputStream(OutputStream output)
     {
     }
 
     /**
-     * @see org.apache.xml.serializer.Serializer#setWriter(java.io.Writer)
+     * @see Serializer#setWriter(java.io.Writer)
      */
     public void setWriter(Writer writer)
     {
@@ -748,7 +748,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
      * (mostly for performance reasons).
      * 
      * @return true if the class was successfuly reset.
-     * @see org.apache.xml.serializer.Serializer#reset()
+     * @see Serializer#reset()
      */
     public boolean reset()
     {

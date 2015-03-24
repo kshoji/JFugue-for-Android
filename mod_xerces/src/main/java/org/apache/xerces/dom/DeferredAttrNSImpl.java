@@ -32,7 +32,7 @@ package org.apache.xerces.dom;
  * @author Andy Clark, IBM
  * @author Arnaud  Le Hors, IBM
  * @version $Id: DeferredAttrNSImpl.java 320096 2004-10-05 17:12:51Z mrglavas $
- * @see org.apache.xerces.dom.DeferredAttrImpl
+ * @see DeferredAttrImpl
  */
 public final class DeferredAttrNSImpl
     extends AttrNSImpl

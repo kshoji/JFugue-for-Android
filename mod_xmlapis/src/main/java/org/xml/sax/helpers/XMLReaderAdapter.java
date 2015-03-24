@@ -1,8 +1,8 @@
 // XMLReaderAdapter.java - adapt an SAX2 XMLReader to a SAX1 Parser
-// http://www.saxproject.org
-// Written by David Megginson
+// Written by David Megginson, sax@megginson.com
 // NO WARRANTY!  This class is in the public domain.
-// $Id: XMLReaderAdapter.java 226184 2005-04-08 10:53:24Z neeraj $
+
+// $Id: XMLReaderAdapter.java,v 1.5 2000/05/05 17:50:46 david Exp $
 
 package org.xml.sax.helpers;
 
@@ -31,8 +31,6 @@ import org.xml.sax.SAXNotSupportedException;
  * <blockquote>
  * <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em>
- * See <a href='http://www.saxproject.org'>http://www.saxproject.org</a>
- * for further information.
  * </blockquote>
  *
  * <p>This class wraps a SAX2 {@link org.xml.sax.XMLReader XMLReader}
@@ -44,8 +42,9 @@ import org.xml.sax.SAXNotSupportedException;
  * property, that will also be used to improve efficiency.</p>
  *
  * @since SAX 2.0
- * @author David Megginson
- * @version 2.0.1 (sax2r2)
+ * @author David Megginson, 
+ *         <a href="mailto:sax@megginson.com">sax@megginson.com</a>
+ * @version 2.0
  * @see org.xml.sax.Parser
  * @see org.xml.sax.XMLReader
  */
@@ -107,7 +106,7 @@ public class XMLReaderAdapter implements Parser, ContentHandler
     }
 
 
-
+
     ////////////////////////////////////////////////////////////////////
     // Implementation of org.xml.sax.Parser.
     ////////////////////////////////////////////////////////////////////
@@ -119,9 +118,8 @@ public class XMLReaderAdapter implements Parser, ContentHandler
      * <p>This is not supported in SAX2, and will always throw
      * an exception.</p>
      *
-     * @param locale the locale for error reporting.
+     * @param The locale for error reporting.
      * @see org.xml.sax.Parser#setLocale
-     * @exception org.xml.sax.SAXException Thrown unless overridden.
      */
     public void setLocale (Locale locale)
 	throws SAXException
@@ -257,8 +255,7 @@ public class XMLReaderAdapter implements Parser, ContentHandler
      */
     public void setDocumentLocator (Locator locator)
     {
-	if (documentHandler != null)
-	    documentHandler.setDocumentLocator(locator);
+	documentHandler.setDocumentLocator(locator);
     }
 
 
@@ -272,8 +269,7 @@ public class XMLReaderAdapter implements Parser, ContentHandler
     public void startDocument ()
 	throws SAXException
     {
-	if (documentHandler != null)
-	    documentHandler.startDocument();
+	documentHandler.startDocument();
     }
 
 
@@ -287,8 +283,7 @@ public class XMLReaderAdapter implements Parser, ContentHandler
     public void endDocument ()
 	throws SAXException
     {
-	if (documentHandler != null)
-	    documentHandler.endDocument();
+	documentHandler.endDocument();
     }
 
 
@@ -330,10 +325,8 @@ public class XMLReaderAdapter implements Parser, ContentHandler
 			      String qName, Attributes atts)
 	throws SAXException
     {
-	if (documentHandler != null) {
-	    qAtts.setAttributes(atts);
-	    documentHandler.startElement(qName, qAtts);
-	}
+	qAtts.setAttributes(atts);
+	documentHandler.startElement(qName, qAtts);
     }
 
 
@@ -351,8 +344,7 @@ public class XMLReaderAdapter implements Parser, ContentHandler
 			    String qName)
 	throws SAXException
     {
-	if (documentHandler != null)
-	    documentHandler.endElement(qName);
+	documentHandler.endElement(qName);
     }
 
 
@@ -369,8 +361,7 @@ public class XMLReaderAdapter implements Parser, ContentHandler
     public void characters (char ch[], int start, int length)
 	throws SAXException
     {
-	if (documentHandler != null)
-	    documentHandler.characters(ch, start, length);
+	documentHandler.characters(ch, start, length);
     }
 
 
@@ -387,8 +378,7 @@ public class XMLReaderAdapter implements Parser, ContentHandler
     public void ignorableWhitespace (char ch[], int start, int length)
 	throws SAXException
     {
-	if (documentHandler != null)
-	    documentHandler.ignorableWhitespace(ch, start, length);
+	documentHandler.ignorableWhitespace(ch, start, length);
     }
 
 
@@ -404,8 +394,7 @@ public class XMLReaderAdapter implements Parser, ContentHandler
     public void processingInstruction (String target, String data)
 	throws SAXException
     {
-	if (documentHandler != null)
-	    documentHandler.processingInstruction(target, data);
+	documentHandler.processingInstruction(target, data);
     }
 
 
@@ -414,7 +403,6 @@ public class XMLReaderAdapter implements Parser, ContentHandler
      *
      * @param name The name of the skipped entity.
      * @see org.xml.sax.ContentHandler#skippedEntity
-     * @exception org.xml.sax.SAXException Throwable by subclasses.
      */
     public void skippedEntity (String name)
 	throws SAXException

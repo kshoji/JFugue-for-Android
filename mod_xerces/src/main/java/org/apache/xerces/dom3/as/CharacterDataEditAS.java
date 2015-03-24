@@ -34,7 +34,7 @@ public interface CharacterDataEditAS extends NodeEditAS {
      * @return <code>true</code> if no reason it can't be done; 
      *   <code>false</code> if it can't be done.
      */
-    public boolean canSetData(int offset,
+    public boolean canSetData(int offset, 
                               int count);
 
     /**
@@ -53,8 +53,8 @@ public interface CharacterDataEditAS extends NodeEditAS {
      * @return <code>true</code> if no reason it can't be done; 
      *   <code>false</code> if it can't be done.
      */
-    public boolean canReplaceData(int offset,
-                                  int count,
+    public boolean canReplaceData(int offset, 
+                                  int count, 
                                   String arg);
 
     /**
@@ -64,7 +64,7 @@ public interface CharacterDataEditAS extends NodeEditAS {
      * @return <code>true</code> if no reason it can't be done; 
      *   <code>false</code> if it can't be done.
      */
-    public boolean canInsertData(int offset,
+    public boolean canInsertData(int offset, 
                                  String arg);
 
     /**
@@ -74,7 +74,7 @@ public interface CharacterDataEditAS extends NodeEditAS {
      * @return <code>true</code> if no reason it can't be done; 
      *   <code>false</code> if it can't be done.
      */
-    public boolean canDeleteData(int offset,
+    public boolean canDeleteData(int offset, 
                                  int count);
 
 }

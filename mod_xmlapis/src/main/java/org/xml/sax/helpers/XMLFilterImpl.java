@@ -1,8 +1,8 @@
 // XMLFilterImpl.java - base SAX2 filter implementation.
-// http://www.saxproject.org
-// Written by David Megginson
+// Written by David Megginson, sax@megginson.com
 // NO WARRANTY!  This class is in the Public Domain.
-// $Id: XMLFilterImpl.java 226184 2005-04-08 10:53:24Z neeraj $
+
+// $Id: XMLFilterImpl.java,v 1.4 2000/05/05 17:50:37 david Exp $
 
 package org.xml.sax.helpers;
 
@@ -29,8 +29,6 @@ import org.xml.sax.SAXNotRecognizedException;
  * <blockquote>
  * <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em>
- * See <a href='http://www.saxproject.org'>http://www.saxproject.org</a>
- * for further information.
  * </blockquote>
  *
  * <p>This class is designed to sit between an {@link org.xml.sax.XMLReader
@@ -41,8 +39,9 @@ import org.xml.sax.SAXNotRecognizedException;
  * requests as they pass through.</p>
  *
  * @since SAX 2.0
- * @author David Megginson
- * @version 2.0.1 (sax2r2)
+ * @author David Megginson, 
+ *         <a href="mailto:sax@megginson.com">sax@megginson.com</a>
+ * @version 2.0
  * @see org.xml.sax.XMLFilter
  * @see org.xml.sax.XMLReader
  * @see org.xml.sax.EntityResolver
@@ -65,12 +64,10 @@ public class XMLFilterImpl
      *
      * <p>This filter will have no parent: you must assign a parent
      * before you start a parse or do any configuration with
-     * setFeature or setProperty, unless you use this as a pure event
-     * consumer rather than as an {@link org.xml.sax.XMLReader}.</p>
+     * setFeature or setProperty.</p>
      *
      * @see org.xml.sax.XMLReader#setFeature
      * @see org.xml.sax.XMLReader#setProperty
-     * @see #setParent
      */
     public XMLFilterImpl ()
     {
@@ -108,10 +105,14 @@ public class XMLFilterImpl
      * or to set or get a feature or property will fail.</p>
      *
      * @param parent The parent XML reader.
+     * @exception NullPointerException If the parent is null.
      * @see #getParent
      */
     public void setParent (XMLReader parent)
     {
+	if (parent == null) {
+	    throw new NullPointerException("Null parent");
+	}
 	this.parent = parent;
     }
 
@@ -135,23 +136,24 @@ public class XMLFilterImpl
 
 
     /**
-     * Set the value of a feature.
+     * Set the state of a feature.
      *
      * <p>This will always fail if the parent is null.</p>
      *
      * @param name The feature name.
-     * @param value The requested feature value.
-     * @exception org.xml.sax.SAXNotRecognizedException If the feature
-     *            value can't be assigned or retrieved from the parent.
+     * @param state The requested feature state.
+     * @exception org.xml.sax.SAXNotRecognizedException When the
+     *            XMLReader does not recognize the feature name.
      * @exception org.xml.sax.SAXNotSupportedException When the
-     *            parent recognizes the feature name but 
+     *            XMLReader recognizes the feature name but 
      *            cannot set the requested value.
+     * @see org.xml.sax.XMLReader#setFeature
      */
-    public void setFeature (String name, boolean value)
+    public void setFeature (String name, boolean state)
 	throws SAXNotRecognizedException, SAXNotSupportedException
     {
 	if (parent != null) {
-	    parent.setFeature(name, value);
+	    parent.setFeature(name, state);
 	} else {
 	    throw new SAXNotRecognizedException("Feature: " + name);
 	}
@@ -159,17 +161,18 @@ public class XMLFilterImpl
 
 
     /**
-     * Look up the value of a feature.
+     * Look up the state of a feature.
      *
      * <p>This will always fail if the parent is null.</p>
      *
      * @param name The feature name.
-     * @return The current value of the feature.
-     * @exception org.xml.sax.SAXNotRecognizedException If the feature
-     *            value can't be assigned or retrieved from the parent.
+     * @return The current state of the feature.
+     * @exception org.xml.sax.SAXNotRecognizedException When the
+     *            XMLReader does not recognize the feature name.
      * @exception org.xml.sax.SAXNotSupportedException When the
-     *            parent recognizes the feature name but 
-     *            cannot determine its value at this time.
+     *            XMLReader recognizes the feature name but 
+     *            cannot determine its state at this time.
+     * @see org.xml.sax.XMLReader#getFeature
      */
     public boolean getFeature (String name)
 	throws SAXNotRecognizedException, SAXNotSupportedException
@@ -188,12 +191,13 @@ public class XMLFilterImpl
      * <p>This will always fail if the parent is null.</p>
      *
      * @param name The property name.
-     * @param value The requested property value.
-     * @exception org.xml.sax.SAXNotRecognizedException If the property
-     *            value can't be assigned or retrieved from the parent.
+     * @param state The requested property value.
+     * @exception org.xml.sax.SAXNotRecognizedException When the
+     *            XMLReader does not recognize the property name.
      * @exception org.xml.sax.SAXNotSupportedException When the
-     *            parent recognizes the property name but 
+     *            XMLReader recognizes the property name but 
      *            cannot set the requested value.
+     * @see org.xml.sax.XMLReader#setProperty
      */
     public void setProperty (String name, Object value)
 	throws SAXNotRecognizedException, SAXNotSupportedException
@@ -211,11 +215,12 @@ public class XMLFilterImpl
      *
      * @param name The property name.
      * @return The current value of the property.
-     * @exception org.xml.sax.SAXNotRecognizedException If the property
-     *            value can't be assigned or retrieved from the parent.
+     * @exception org.xml.sax.SAXNotRecognizedException When the
+     *            XMLReader does not recognize the feature name.
      * @exception org.xml.sax.SAXNotSupportedException When the
-     *            parent recognizes the property name but 
+     *            XMLReader recognizes the property name but 
      *            cannot determine its value at this time.
+     * @see org.xml.sax.XMLReader#setFeature
      */
     public Object getProperty (String name)
 	throws SAXNotRecognizedException, SAXNotSupportedException
@@ -232,10 +237,17 @@ public class XMLFilterImpl
      * Set the entity resolver.
      *
      * @param resolver The new entity resolver.
+     * @exception NullPointerException If the resolver
+     *            is null.
+     * @see org.xml.sax.XMLReader#setEntityResolver
      */
     public void setEntityResolver (EntityResolver resolver)
     {
-	entityResolver = resolver;
+	if (resolver == null) {
+	    throw new NullPointerException("Null entity resolver");
+	} else {
+	    entityResolver = resolver;
+	}
     }
 
 
@@ -243,6 +255,7 @@ public class XMLFilterImpl
      * Get the current entity resolver.
      *
      * @return The current entity resolver, or null if none was set.
+     * @see org.xml.sax.XMLReader#getEntityResolver
      */
     public EntityResolver getEntityResolver ()
     {
@@ -253,11 +266,18 @@ public class XMLFilterImpl
     /**
      * Set the DTD event handler.
      *
-     * @param handler the new DTD handler
+     * @param resolver The new DTD handler.
+     * @exception NullPointerException If the handler
+     *            is null.
+     * @see org.xml.sax.XMLReader#setDTDHandler
      */
     public void setDTDHandler (DTDHandler handler)
     {
-	dtdHandler = handler;
+	if (handler == null) {
+	    throw new NullPointerException("Null DTD handler");
+	} else {
+	    dtdHandler = handler;
+	}
     }
 
 
@@ -265,6 +285,7 @@ public class XMLFilterImpl
      * Get the current DTD event handler.
      *
      * @return The current DTD handler, or null if none was set.
+     * @see org.xml.sax.XMLReader#getDTDHandler
      */
     public DTDHandler getDTDHandler ()
     {
@@ -275,11 +296,18 @@ public class XMLFilterImpl
     /**
      * Set the content event handler.
      *
-     * @param handler the new content handler
+     * @param resolver The new content handler.
+     * @exception NullPointerException If the handler
+     *            is null.
+     * @see org.xml.sax.XMLReader#setContentHandler
      */
     public void setContentHandler (ContentHandler handler)
     {
-	contentHandler = handler;
+	if (handler == null) {
+	    throw new NullPointerException("Null content handler");
+	} else {
+	    contentHandler = handler;
+	}
     }
 
 
@@ -287,6 +315,7 @@ public class XMLFilterImpl
      * Get the content event handler.
      *
      * @return The current content handler, or null if none was set.
+     * @see org.xml.sax.XMLReader#getContentHandler
      */
     public ContentHandler getContentHandler ()
     {
@@ -297,11 +326,18 @@ public class XMLFilterImpl
     /**
      * Set the error event handler.
      *
-     * @param handler the new error handler
+     * @param handle The new error handler.
+     * @exception NullPointerException If the handler
+     *            is null.
+     * @see org.xml.sax.XMLReader#setErrorHandler
      */
     public void setErrorHandler (ErrorHandler handler)
     {
-	errorHandler = handler;
+	if (handler == null) {
+	    throw new NullPointerException("Null error handler");
+	} else {
+	    errorHandler = handler;
+	}
     }
 
 
@@ -309,6 +345,7 @@ public class XMLFilterImpl
      * Get the current error event handler.
      *
      * @return The current error handler, or null if none was set.
+     * @see org.xml.sax.XMLReader#getErrorHandler
      */
     public ErrorHandler getErrorHandler ()
     {
@@ -325,6 +362,7 @@ public class XMLFilterImpl
      * @exception java.io.IOException An IO exception from the parser,
      *            possibly from a byte stream or character stream
      *            supplied by the application.
+     * @see org.xml.sax.XMLReader#parse(org.xml.sax.InputSource)
      */
     public void parse (InputSource input)
 	throws SAXException, IOException
@@ -343,6 +381,7 @@ public class XMLFilterImpl
      * @exception java.io.IOException An IO exception from the parser,
      *            possibly from a byte stream or character stream
      *            supplied by the application.
+     * @see org.xml.sax.XMLReader#parse(String)
      */
     public void parse (String systemId)
 	throws SAXException, IOException
@@ -368,6 +407,7 @@ public class XMLFilterImpl
      * @exception java.io.IOException The client may throw an
      *            I/O-related exception while obtaining the
      *            new InputSource.
+     * @see org.xml.sax.EntityResolver#resolveEntity
      */
     public InputSource resolveEntity (String publicId, String systemId)
 	throws SAXException, IOException
@@ -394,6 +434,7 @@ public class XMLFilterImpl
      * @param systemId The notation's system identifier, or null.
      * @exception org.xml.sax.SAXException The client may throw
      *            an exception during processing.
+     * @see org.xml.sax.DTDHandler#notationDecl
      */
     public void notationDecl (String name, String publicId, String systemId)
 	throws SAXException
@@ -413,6 +454,7 @@ public class XMLFilterImpl
      * @param notationName The name of the associated notation.
      * @exception org.xml.sax.SAXException The client may throw
      *            an exception during processing.
+     * @see org.xml.sax.DTDHandler#unparsedEntityDecl
      */
     public void unparsedEntityDecl (String name, String publicId,
 				    String systemId, String notationName)
@@ -435,6 +477,7 @@ public class XMLFilterImpl
      * Filter a new document locator event.
      *
      * @param locator The document locator.
+     * @see org.xml.sax.ContentHandler#setDocumentLocator
      */
     public void setDocumentLocator (Locator locator)
     {
@@ -450,6 +493,7 @@ public class XMLFilterImpl
      *
      * @exception org.xml.sax.SAXException The client may throw
      *            an exception during processing.
+     * @see org.xml.sax.ContentHandler#startDocument
      */
     public void startDocument ()
 	throws SAXException
@@ -465,6 +509,7 @@ public class XMLFilterImpl
      *
      * @exception org.xml.sax.SAXException The client may throw
      *            an exception during processing.
+     * @see org.xml.sax.ContentHandler#endDocument
      */
     public void endDocument ()
 	throws SAXException
@@ -482,6 +527,7 @@ public class XMLFilterImpl
      * @param uri The Namespace URI.
      * @exception org.xml.sax.SAXException The client may throw
      *            an exception during processing.
+     * @see org.xml.sax.ContentHandler#startPrefixMapping
      */
     public void startPrefixMapping (String prefix, String uri)
 	throws SAXException
@@ -498,6 +544,7 @@ public class XMLFilterImpl
      * @param prefix The Namespace prefix.
      * @exception org.xml.sax.SAXException The client may throw
      *            an exception during processing.
+     * @see org.xml.sax.ContentHandler#endPrefixMapping
      */
     public void endPrefixMapping (String prefix)
 	throws SAXException
@@ -518,6 +565,7 @@ public class XMLFilterImpl
      * @param atts The element's attributes.
      * @exception org.xml.sax.SAXException The client may throw
      *            an exception during processing.
+     * @see org.xml.sax.ContentHandler#startElement
      */
     public void startElement (String uri, String localName, String qName,
 			      Attributes atts)
@@ -538,6 +586,7 @@ public class XMLFilterImpl
      *        string.
      * @exception org.xml.sax.SAXException The client may throw
      *            an exception during processing.
+     * @see org.xml.sax.ContentHandler#endElement
      */
     public void endElement (String uri, String localName, String qName)
 	throws SAXException
@@ -556,6 +605,7 @@ public class XMLFilterImpl
      * @param length The number of characters to use from the array.
      * @exception org.xml.sax.SAXException The client may throw
      *            an exception during processing.
+     * @see org.xml.sax.ContentHandler#characters
      */
     public void characters (char ch[], int start, int length)
 	throws SAXException
@@ -574,6 +624,7 @@ public class XMLFilterImpl
      * @param length The number of characters to use from the array.
      * @exception org.xml.sax.SAXException The client may throw
      *            an exception during processing.
+     * @see org.xml.sax.ContentHandler#ignorableWhitespace
      */
     public void ignorableWhitespace (char ch[], int start, int length)
 	throws SAXException
@@ -591,6 +642,7 @@ public class XMLFilterImpl
      * @param data The text following the target.
      * @exception org.xml.sax.SAXException The client may throw
      *            an exception during processing.
+     * @see org.xml.sax.ContentHandler#processingInstruction
      */
     public void processingInstruction (String target, String data)
 	throws SAXException
@@ -607,6 +659,7 @@ public class XMLFilterImpl
      * @param name The name of the skipped entity.
      * @exception org.xml.sax.SAXException The client may throw
      *            an exception during processing.
+     * @see org.xml.sax.ContentHandler#skippedEntity
      */
     public void skippedEntity (String name)
 	throws SAXException
@@ -626,9 +679,10 @@ public class XMLFilterImpl
     /**
      * Filter a warning event.
      *
-     * @param e The warning as an exception.
+     * @param e The nwarning as an exception.
      * @exception org.xml.sax.SAXException The client may throw
      *            an exception during processing.
+     * @see org.xml.sax.ErrorHandler#warning
      */
     public void warning (SAXParseException e)
 	throws SAXException
@@ -645,6 +699,7 @@ public class XMLFilterImpl
      * @param e The error as an exception.
      * @exception org.xml.sax.SAXException The client may throw
      *            an exception during processing.
+     * @see org.xml.sax.ErrorHandler#error
      */
     public void error (SAXParseException e)
 	throws SAXException
@@ -661,6 +716,7 @@ public class XMLFilterImpl
      * @param e The error as an exception.
      * @exception org.xml.sax.SAXException The client may throw
      *            an exception during processing.
+     * @see org.xml.sax.ErrorHandler#fatalError
      */
     public void fatalError (SAXParseException e)
 	throws SAXException

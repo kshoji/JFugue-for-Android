@@ -1,7 +1,6 @@
 // SAX locator interface for document events.
-// http://www.saxproject.org
 // No warranty; no copyright -- use this as you will.
-// $Id: Locator.java 226184 2005-04-08 10:53:24Z neeraj $
+// $Id: Locator.java,v 1.4 2000/05/05 17:46:57 david Exp $
 
 package org.xml.sax;
 
@@ -12,8 +11,6 @@ package org.xml.sax;
  * <blockquote>
  * <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em>
- * See <a href='http://www.saxproject.org'>http://www.saxproject.org</a>
- * for further information.
  * </blockquote>
  *
  * <p>If a SAX parser provides location information to the SAX
@@ -21,13 +18,13 @@ package org.xml.sax;
  * passing an instance to the application using the content
  * handler's {@link ContentHandler#setDocumentLocator
  * setDocumentLocator} method.  The application can use the
- * object to obtain the location of any other SAX event
+ * object to obtain the location of any other content handler event
  * in the XML source document.</p>
  *
  * <p>Note that the results returned by the object will be valid only
- * during the scope of each callback method: the application
+ * during the scope of each content handler method: the application
  * will receive unpredictable results if it attempts to use the
- * locator at any other time, or after parsing completes.</p>
+ * locator at any other time.</p>
  *
  * <p>SAX parsers are not required to supply a locator, but they are
  * very strongly encouraged to do so.  If the parser supplies a
@@ -38,8 +35,9 @@ package org.xml.sax;
  * available.</p>
  *
  * @since SAX 1.0
- * @author David Megginson
- * @version 2.0.1 (sax2r2)
+ * @author David Megginson, 
+ *         <a href="mailto:sax@megginson.com">sax@megginson.com</a>
+ * @version 2.0
  * @see ContentHandler#setDocumentLocator
  */
 public interface Locator {
@@ -67,9 +65,7 @@ public interface Locator {
      * triggering the event appears.</p>
      *
      * <p>If the system identifier is a URL, the parser must resolve it
-     * fully before passing it to the application.  For example, a file
-     * name must always be provided as a <em>file:...</em> URL, and other
-     * kinds of relative URI are also resolved against their bases.</p>
+     * fully before passing it to the application.</p>
      *
      * @return A string containing the system identifier, or null
      *         if none is available.
@@ -80,16 +76,11 @@ public interface Locator {
     
     /**
      * Return the line number where the current document event ends.
-     * Lines are delimited by line ends, which are defined in
-     * the XML specification.
      *
      * <p><strong>Warning:</strong> The return value from the method
-     * is intended only as an approximation for the sake of diagnostics;
-     * it is not intended to provide sufficient information
-     * to edit the character content of the original XML document.
-     * In some cases, these "line" numbers match what would be displayed
-     * as columns, and in others they may not match the source text
-     * due to internal entity expansion.  </p>
+     * is intended only as an approximation for the sake of error
+     * reporting; it is not intended to provide sufficient information
+     * to edit the character content of the original XML document.</p>
      *
      * <p>The return value is an approximation of the line number
      * in the document entity or external parsed entity where the
@@ -97,7 +88,7 @@ public interface Locator {
      *
      * <p>If possible, the SAX driver should provide the line position 
      * of the first character after the text associated with the document 
-     * event.  The first line is line 1.</p>
+     * event.  The first line in the document is line 1.</p>
      *
      * @return The line number, or -1 if none is available.
      * @see #getColumnNumber
@@ -107,20 +98,19 @@ public interface Locator {
     
     /**
      * Return the column number where the current document event ends.
-     * This is one-based number of Java <code>char</code> values since
-     * the last line end.
      *
      * <p><strong>Warning:</strong> The return value from the method
-     * is intended only as an approximation for the sake of diagnostics;
-     * it is not intended to provide sufficient information
-     * to edit the character content of the original XML document.
-     * For example, when lines contain combining character sequences, wide
-     * characters, surrogate pairs, or bi-directional text, the value may
-     * not correspond to the column in a text editor's display. </p>
+     * is intended only as an approximation for the sake of error
+     * reporting; it is not intended to provide sufficient information
+     * to edit the character content of the original XML document.</p>
      *
      * <p>The return value is an approximation of the column number
      * in the document entity or external parsed entity where the
      * markup triggering the event appears.</p>
+     *
+     * <p>If possible, the SAX driver should provide the line position 
+     * of the first character after the text associated with the document 
+     * event.</p>
      *
      * <p>If possible, the SAX driver should provide the line position 
      * of the first character after the text associated with the document 

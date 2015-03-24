@@ -89,7 +89,7 @@ public interface EventTarget {
      *   whether any of the listeners which handled the event called 
      *   <code>preventDefault</code>. If <code>preventDefault</code> was 
      *   called the value is false, else the value is true. 
-     * @exception org.w3c.dom.events.EventException
+     * @exception EventException
      *   UNSPECIFIED_EVENT_TYPE_ERR: Raised if the <code>Event</code>'s type 
      *   was not specified by initializing the event before 
      *   <code>dispatchEvent</code> was called. Specification of the 

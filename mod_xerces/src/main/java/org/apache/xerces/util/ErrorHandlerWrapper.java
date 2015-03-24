@@ -86,7 +86,7 @@ public class ErrorHandlerWrapper
      *                  is implementation dependent.
      * @param exception Exception.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown to signal that the parser should stop
+     * @throws XNIException Thrown to signal that the parser should stop
      *                      parsing the document.
      */
     public void warning(String domain, String key, 
@@ -121,7 +121,7 @@ public class ErrorHandlerWrapper
      *                  is implementation dependent.
      * @param exception Exception.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown to signal that the parser should stop
+     * @throws XNIException Thrown to signal that the parser should stop
      *                      parsing the document.
      */
     public void error(String domain, String key, 
@@ -164,7 +164,7 @@ public class ErrorHandlerWrapper
      *                  and is implementation dependent.
      * @param exception Exception.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown to signal that the parser should stop
+     * @throws XNIException Thrown to signal that the parser should stop
      *                      parsing the document.
      */
     public void fatalError(String domain, String key, 

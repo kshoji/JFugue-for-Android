@@ -100,7 +100,7 @@ public  class XPathFactoryImpl extends XPathFactory {
 	 * @return New <code>XPath</code>
 	 */
 	public javax.xml.xpath.XPath newXPath() {
-	    return new XPathImpl(
+	    return new org.apache.xpath.jaxp.XPathImpl(
                     xPathVariableResolver, xPathFunctionResolver,
                     featureSecureProcessing );
 	}

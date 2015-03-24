@@ -412,7 +412,7 @@ public class DocumentTypeImpl
     /**
      * NON-DOM: Subclassed to flip the entities' and notations' readonly switch
      * as well.
-     * @see org.apache.xerces.dom.NodeImpl#setReadOnly
+     * @see NodeImpl#setReadOnly
      */
     public void setReadOnly(boolean readOnly, boolean deep) {
     	

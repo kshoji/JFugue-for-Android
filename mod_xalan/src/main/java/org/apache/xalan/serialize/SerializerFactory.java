@@ -114,7 +114,7 @@ public abstract class SerializerFactory
 
         /**
          * @return an old style DOMSerializer that wraps a new one.
-         * @see Serializer#asDOMSerializer()
+         * @see org.apache.xalan.serialize.Serializer#asDOMSerializer()
          */
         public DOMSerializer asDOMSerializer() throws IOException
         {
@@ -126,7 +126,7 @@ public abstract class SerializerFactory
             return m_old_DOMSerializer;
         }
         /**
-         * @see Serializer#reset()
+         * @see org.apache.xalan.serialize.Serializer#reset()
          */
         public boolean reset()
         {

@@ -53,8 +53,8 @@ import org.xml.sax.ContentHandler;
    * The non-standard property keys supported are defined in {@link OutputPropertiesFactory}.
    *
    * @see OutputPropertiesFactory
-   * @see org.apache.xml.serializer.Method
-   * @see org.apache.xml.serializer.Serializer
+   * @see Method
+   * @see Serializer
    */
 public final class SerializerFactory
 {
@@ -75,7 +75,7 @@ public final class SerializerFactory
    * is specified by the value of the property associated with the "method" key.
    * If no implementation exists that supports the specified output method
    * an exception of some type will be thrown.
-   * For a list of the output "method" key values see {@link org.apache.xml.serializer.Method}.
+   * For a list of the output "method" key values see {@link Method}.
    *
    * @param format The output format, minimally the "method" property must be set.
    * @return A suitable serializer.

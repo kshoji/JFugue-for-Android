@@ -334,7 +334,7 @@ XSLoader, DOMConfiguration {
      *
      * @param featureId The feature identifier.
      *
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown on configuration error.
+     * @throws XMLConfigurationException Thrown on configuration error.
      */
     public boolean getFeature(String featureId)
     throws XMLConfigurationException {                
@@ -347,7 +347,7 @@ XSLoader, DOMConfiguration {
      * @param featureId The feature identifier.
      * @param state     The state of the feature.
      *
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown when a feature is not
+     * @throws XMLConfigurationException Thrown when a feature is not
      *                  recognized or cannot be set.
      */
     public void setFeature(String featureId,
@@ -376,7 +376,7 @@ XSLoader, DOMConfiguration {
      *
      * @param propertyId The property identifier.
      *
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown on configuration error.
+     * @throws XMLConfigurationException Thrown on configuration error.
      */
     public Object getProperty(String propertyId)
     throws XMLConfigurationException {
@@ -389,7 +389,7 @@ XSLoader, DOMConfiguration {
      * @param propertyId The property identifier.
      * @param state     The state of the property.
      *
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown when a property is not
+     * @throws XMLConfigurationException Thrown when a property is not
      *                  recognized or cannot be set.
      */
     public void setProperty(String propertyId,
@@ -425,7 +425,7 @@ XSLoader, DOMConfiguration {
      *
      * @param locale The locale object to use for localization of messages.
      *
-     * @exception org.apache.xerces.xni.XNIException Thrown if the parser does not support the
+     * @exception XNIException Thrown if the parser does not support the
      *                         specified locale.
      */
     public void setLocale(Locale locale) {
@@ -475,7 +475,7 @@ XSLoader, DOMConfiguration {
      * @param source[]  the locations of the entity which forms 
      *                      the staring point of the grammars to be constructed
      * @throws java.io.IOException  when a problem is encounted reading the entity
-     * @throws org.apache.xerces.xni.XNIException when a condition arises (such as a FatalError) that requires parsing
+     * @throws XNIException when a condition arises (such as a FatalError) that requires parsing
      *                          of the entity be terminated
      */
     public void loadGrammar(XMLInputSource source[]) 
@@ -538,7 +538,7 @@ XSLoader, DOMConfiguration {
      * @param locationPairs
      * @return An XML Schema grammar
      * @throws java.io.IOException
-     * @throws org.apache.xerces.xni.XNIException
+     * @throws XNIException
      */
     SchemaGrammar loadSchema(XSDDescription desc,
             XMLInputSource source,

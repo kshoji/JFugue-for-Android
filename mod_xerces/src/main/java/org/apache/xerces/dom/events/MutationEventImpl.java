@@ -26,7 +26,7 @@ import org.w3c.dom.events.MutationEvent;
  */
 
 public class MutationEventImpl 
-extends EventImpl
+extends org.apache.xerces.dom.events.EventImpl 
 implements MutationEvent
 {
     Node relatedNode=null;

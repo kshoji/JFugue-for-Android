@@ -112,16 +112,16 @@ public abstract class SerializerFactory
 
 
     /**
-     * Create a new serializer based on the {@link org.apache.xml.serialize.OutputFormat}.
+     * Create a new serializer based on the {@link OutputFormat}.
      * If this method is used to create the serializer, the {@link
-     * org.apache.xml.serialize.Serializer#setOutputByteStream} or {@link org.apache.xml.serialize.Serializer#setOutputCharStream}
+     * Serializer#setOutputByteStream} or {@link Serializer#setOutputCharStream}
      * methods must be called before serializing a document.
      */
     public abstract Serializer makeSerializer(OutputFormat format);
 
 
     /**
-     * Create a new serializer, based on the {@link org.apache.xml.serialize.OutputFormat} and
+     * Create a new serializer, based on the {@link OutputFormat} and
      * using the writer as the output character stream.  If this
      * method is used, the encoding property will be ignored.
      */
@@ -130,7 +130,7 @@ public abstract class SerializerFactory
 
 
     /**
-     * Create a new serializer, based on the {@link org.apache.xml.serialize.OutputFormat} and
+     * Create a new serializer, based on the {@link OutputFormat} and
      * using the output byte stream and the encoding specified in the
      * output format.
      *

@@ -53,7 +53,7 @@ public interface ExternalSubsetResolver
      *
      * @param grammarDescription a description of the DTD
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown on general error.
+     * @throws XNIException Thrown on general error.
      * @throws java.io.IOException  Thrown if resolved entity stream cannot be
      *                      opened or some other i/o error occurs.
      */

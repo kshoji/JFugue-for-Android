@@ -78,7 +78,7 @@ public class ElemExsltFuncResult extends ElemVariable
    *
    * @return An integer representation of the element, defined in the
    *     Constants class.
-   * @see Constants
+   * @see org.apache.xalan.templates.Constants
    */
   public int getXSLToken()
   {
@@ -88,7 +88,7 @@ public class ElemExsltFuncResult extends ElemVariable
   /**
    * Return the node name, defined in the
    *     Constants class.
-   * @see Constants
+   * @see org.apache.xalan.templates.Constants
    * @return The node name
    * 
    */

@@ -351,7 +351,7 @@ public interface XMLAttributes {
      * @param attributeIndex The attribute index.
      * @return Augmentations
      */
-    public Augmentations getAugmentations(int attributeIndex);
+    public Augmentations getAugmentations (int attributeIndex);
 
     /**
      * Look up an augmentation by namespace name.
@@ -361,7 +361,7 @@ public interface XMLAttributes {
      * @param localPart
      * @return Augmentations
      */
-    public Augmentations getAugmentations(String uri, String localPart);
+    public Augmentations getAugmentations (String uri, String localPart);
 
 
     /**

@@ -45,14 +45,14 @@ public interface ExtensionsProvider
   /**
    * Execute the extension function.
    */
-  public Object extFunction(String ns, String funcName,
+  public Object extFunction(String ns, String funcName, 
                             Vector argVec, Object methodKey)
             throws javax.xml.transform.TransformerException;
 
   /**
    * Execute the extension function.
    */
-  public Object extFunction(FuncExtFunction extFunction,
+  public Object extFunction(FuncExtFunction extFunction, 
                             Vector argVec)
             throws javax.xml.transform.TransformerException;
 }

@@ -43,7 +43,7 @@ public interface FieldActivator {
      * @param initialDepth  the depth at which the selector began matching
      */
     public void startValueScopeFor(IdentityConstraint identityConstraint,
-                                   int initialDepth);
+            int initialDepth);
 
     /** 
      * Request to activate the specified field. This method returns the

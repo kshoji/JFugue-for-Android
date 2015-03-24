@@ -1,38 +1,73 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
+ * The Apache Software License, Version 1.1
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright (c) 2001 The Apache Software Foundation.  All rights 
+ * reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer. 
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in
+ *    the documentation and/or other materials provided with the
+ *    distribution.
+ *
+ * 3. The end-user documentation included with the redistribution,
+ *    if any, must include the following acknowledgment:  
+ *       "This product includes software developed by the
+ *        Apache Software Foundation (http://www.apache.org/)."
+ *    Alternately, this acknowledgment may appear in the software itself,
+ *    if and wherever such third-party acknowledgments normally appear.
+ *
+ * 4. The name "Apache Software Foundation" must not be used to endorse or
+ *    promote products derived from this software without prior written
+ *    permission. For written permission, please contact apache@apache.org.
+ *
+ * 5. Products derived from this software may not be called "Apache",
+ *    nor may "Apache" appear in their name, without prior written
+ *    permission of the Apache Software Foundation.
+ *
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+ * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ * ====================================================================
+ *
+ * This software consists of voluntary contributions made by many
+ * individuals on behalf of the Apache Software Foundation and was
+ * originally based on software copyright (c) 1999-2001, Sun Microsystems,
+ * Inc., http://www.sun.com.  For more information on the Apache Software
+ * Foundation, please see <http://www.apache.org/>.
  */
 
-// $Id: SAXParser.java 446598 2006-09-15 12:55:40Z jeremias $
 
 package jp.kshoji.javax.xml.parsers;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
+import java.io.IOException;
+import java.io.File;
 
-import javax.xml.validation.Schema;
-
-import org.xml.sax.HandlerBase;
-import org.xml.sax.InputSource;
 import org.xml.sax.Parser;
+import org.xml.sax.XMLReader;
+import org.xml.sax.HandlerBase;
+import org.xml.sax.helpers.DefaultHandler;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.DefaultHandler;
 
 
 /**
@@ -44,122 +79,89 @@ import org.xml.sax.helpers.DefaultHandler;
  * and interface as well as supporting new methods.
  *
  * An instance of this class can be obtained from the
- * {@link SAXParserFactory#newSAXParser()} method.
+ * {@link javax.xml.parsers.SAXParserFactory#newSAXParser()} method.
  * Once an instance of this class is obtained, XML can be parsed from
  * a variety of input sources. These input sources are InputStreams,
  * Files, URLs, and SAX InputSources.<p>
  *
- * This static method creates a new factory instance based
- * on a system property setting or uses the platform default
- * if no property has been defined.<p>
- *
- * The system property that controls which Factory implementation
- * to create is named <code>&quot;javax.xml.parsers.SAXParserFactory&quot;</code>.
- * This property names a class that is a concrete subclass of this
- * abstract class. If no property is defined, a platform default
- * will be used.</p>
  *
  * As the content is parsed by the underlying parser, methods of the
  * given {@link org.xml.sax.HandlerBase} or the
  * {@link org.xml.sax.helpers.DefaultHandler} are called.<p>
  *
- * Implementors of this class which wrap an underlaying implementation
+ * Implementors of this class which wrap an underlying implementation
  * can consider using the {@link org.xml.sax.helpers.ParserAdapter}
  * class to initially adapt their SAX1 impelemntation to work under
- * this revised class.
+ * this revised class.<p>
  *
- * @author <a href="mailto:Jeff.Suttor@Sun.com">Jeff Suttor</a>
- * @version $Revision: 446598 $, $Date: 2006-09-15 08:55:40 -0400 (Fri, 15 Sep 2006) $
+ * An implementation of <code>SAXParser</code> is <em>NOT</em> 
+ * guaranteed to behave as per the specification if it is used concurrently by 
+ * two or more threads. It is recommended to have one instance of the
+ * <code>SAXParser</code> per thread or it is upto the application to 
+ * make sure about the use of <code>SAXParser</code> from more than one
+ * thread.
+ *
+ * @since JAXP 1.0
+ * @version 1.0
  */
+
 public abstract class SAXParser {
-    
-    private static final boolean DEBUG = false;
-        
-    /**
-     * <p>Protected constructor to prevent instaniation.
-     * Use {@link SAXParserFactory#newSAXParser()}.</p>
-     */
+
+    private static final boolean DEBUG = false ;
     protected SAXParser () {
     
     }
 
-	/**
-	 * <p>Reset this <code>SAXParser</code> to its original configuration.</p>
-	 * 
-	 * <p><code>SAXParser</code> is reset to the same state as when it was created with
-	 * {@link javax.xml.parsers.SAXParserFactory#newSAXParser()}.
-	 * <code>reset()</code> is designed to allow the reuse of existing <code>SAXParser</code>s
-	 * thus saving resources associated with the creation of new <code>SAXParser</code>s.</p>
-	 * 
-	 * <p>The reset <code>SAXParser</code> is not guaranteed to have the same {@link javax.xml.validation.Schema}
-	 * <code>Object</code>, e.g. {@link Object#equals(Object obj)}.  It is guaranteed to have a functionally equal
-	 * <code>Schema</code>.</p>
-	 * 
-	 * @since 1.5
-	 */
-	public void reset() {
-
-		// implementors should override this method
-		throw new UnsupportedOperationException(
-			"This SAXParser, \"" + this.getClass().getName() + "\", does not support the reset functionality."
-			+ "  Specification \"" + this.getClass().getPackage().getSpecificationTitle() + "\""
-			+ " version \"" + this.getClass().getPackage().getSpecificationVersion() + "\""
-			);
-	}
-
     /**
-     * <p>Parse the content of the given {@link java.io.InputStream}
+     * Parse the content of the given {@link java.io.InputStream}
      * instance as XML using the specified {@link org.xml.sax.HandlerBase}.
      * <i> Use of the DefaultHandler version of this method is recommended as
-     * the HandlerBase class has been deprecated in SAX 2.0</i>.</p>
+     * the HandlerBase class has been deprecated in SAX 2.0</i>
      *
      * @param is InputStream containing the content to be parsed.
      * @param hb The SAX HandlerBase to use.
-     * 
-     * @throws IllegalArgumentException If the given InputStream is null.
-     * @throws org.xml.sax.SAXException If parse produces a SAX error.
-     * @throws java.io.IOException If an IO error occurs interacting with the
-     *   <code>InputStream</code>.
-     * 
+     * @exception java.io.IOException If any IO errors occur.
+     * @exception IllegalArgumentException If the given InputStream is null.
+     * @exception org.xml.sax.SAXException If the underlying parser throws a
+     * SAXException while parsing.
      * @see org.xml.sax.DocumentHandler
-     */    
+     */
+    
     public void parse(InputStream is, HandlerBase hb)
-        throws SAXException, IOException {
+        throws SAXException, IOException
+    {
         if (is == null) {
             throw new IllegalArgumentException("InputStream cannot be null");
         }
-
+        
         InputSource input = new InputSource(is);
         this.parse(input, hb);
     }
 
     /**
-     * <p>Parse the content of the given {@link java.io.InputStream}
+     * Parse the content of the given {@link java.io.InputStream}
      * instance as XML using the specified {@link org.xml.sax.HandlerBase}.
      * <i> Use of the DefaultHandler version of this method is recommended as
-     * the HandlerBase class has been deprecated in SAX 2.0</i>.</p>
+     * the HandlerBase class has been deprecated in SAX 2.0</i>
      *
      * @param is InputStream containing the content to be parsed.
      * @param hb The SAX HandlerBase to use.
      * @param systemId The systemId which is needed for resolving relative URIs.
-     * 
-     * @throws IllegalArgumentException If the given <code>InputStream</code> is
-     *   <code>null</code>.
-     * @throws java.io.IOException If any IO error occurs interacting with the
-     *   <code>InputStream</code>.
-     * @throws org.xml.sax.SAXException If any SAX errors occur during processing.
-     * 
-     * @see org.xml.sax.DocumentHandler version of this method instead.
+     * @exception java.io.IOException If any IO errors occur.
+     * @exception IllegalArgumentException If the given InputStream is null.
+     * @exception org.xml.sax.SAXException If the underlying parser throws a
+     * SAXException while parsing.
+     * @see org.xml.sax.DocumentHandler
+     * version of this method instead.
      */
-    public void parse(
-        InputStream is,
-        HandlerBase hb,
-        String systemId)
-        throws SAXException, IOException {
+    
+    public void parse(InputStream is, HandlerBase hb, String systemId)
+        throws SAXException, IOException
+    {
         if (is == null) {
             throw new IllegalArgumentException("InputStream cannot be null");
         }
-
+        
         InputSource input = new InputSource(is);
         input.setSystemId(systemId);
         this.parse(input, hb);
@@ -172,19 +174,20 @@ public abstract class SAXParser {
      *
      * @param is InputStream containing the content to be parsed.
      * @param dh The SAX DefaultHandler to use.
-     * 
-     * @throws IllegalArgumentException If the given InputStream is null.
-     * @throws java.io.IOException If any IO errors occur.
-     * @throws org.xml.sax.SAXException If any SAX errors occur during processing.
-     * 
+     * @exception java.io.IOException If any IO errors occur.
+     * @exception IllegalArgumentException If the given InputStream is null.
+     * @exception org.xml.sax.SAXException If the underlying parser throws a
+     * SAXException while parsing.
      * @see org.xml.sax.DocumentHandler
      */
+    
     public void parse(InputStream is, DefaultHandler dh)
-        throws SAXException, IOException {
+        throws SAXException, IOException
+    {
         if (is == null) {
             throw new IllegalArgumentException("InputStream cannot be null");
         }
-
+        
         InputSource input = new InputSource(is);
         this.parse(input, dh);
     }
@@ -197,22 +200,21 @@ public abstract class SAXParser {
      * @param is InputStream containing the content to be parsed.
      * @param dh The SAX DefaultHandler to use.
      * @param systemId The systemId which is needed for resolving relative URIs.
-     * 
-     * @throws IllegalArgumentException If the given InputStream is null.
-     * @throws java.io.IOException If any IO errors occur.
-     * @throws org.xml.sax.SAXException If any SAX errors occur during processing.
-     * 
-     * @see org.xml.sax.DocumentHandler version of this method instead.
+     * @exception java.io.IOException If any IO errors occur.
+     * @exception IllegalArgumentException If the given InputStream is null.
+     * @exception org.xml.sax.SAXException If the underlying parser throws a
+     * SAXException while parsing.
+     * @see org.xml.sax.DocumentHandler
+     * version of this method instead.
      */
-    public void parse(
-        InputStream is,
-        DefaultHandler dh,
-        String systemId)
-        throws SAXException, IOException {
+    
+    public void parse(InputStream is, DefaultHandler dh, String systemId)
+        throws SAXException, IOException
+    {
         if (is == null) {
             throw new IllegalArgumentException("InputStream cannot be null");
         }
-
+        
         InputSource input = new InputSource(is);
         input.setSystemId(systemId);
         this.parse(input, dh);
@@ -227,19 +229,20 @@ public abstract class SAXParser {
      *
      * @param uri The location of the content to be parsed.
      * @param hb The SAX HandlerBase to use.
-     * 
-     * @throws IllegalArgumentException If the uri is null.
-     * @throws java.io.IOException If any IO errors occur.
-     * @throws org.xml.sax.SAXException If any SAX errors occur during processing.
-     * 
+     * @exception java.io.IOException If any IO errors occur.
+     * @exception IllegalArgumentException If the uri is null.
+     * @exception org.xml.sax.SAXException If the underlying parser throws a
+     * SAXException while parsing.
      * @see org.xml.sax.DocumentHandler
      */
+    
     public void parse(String uri, HandlerBase hb)
-        throws SAXException, IOException {
+        throws SAXException, IOException
+    {
         if (uri == null) {
             throw new IllegalArgumentException("uri cannot be null");
         }
-
+        
         InputSource input = new InputSource(uri);
         this.parse(input, hb);
     }
@@ -251,19 +254,20 @@ public abstract class SAXParser {
      *
      * @param uri The location of the content to be parsed.
      * @param dh The SAX DefaultHandler to use.
-     * 
-     * @throws IllegalArgumentException If the uri is null.
-     * @throws java.io.IOException If any IO errors occur.
-     * @throws org.xml.sax.SAXException If any SAX errors occur during processing.
-     * 
+     * @exception java.io.IOException If any IO errors occur.
+     * @exception IllegalArgumentException If the uri is null.
+     * @exception org.xml.sax.SAXException If the underlying parser throws a
+     * SAXException while parsing.
      * @see org.xml.sax.DocumentHandler
-     */   
+     */
+    
     public void parse(String uri, DefaultHandler dh)
-        throws SAXException, IOException {
+        throws SAXException, IOException
+    {
         if (uri == null) {
             throw new IllegalArgumentException("uri cannot be null");
         }
-
+        
         InputSource input = new InputSource(uri);
         this.parse(input, dh);
     }
@@ -276,53 +280,54 @@ public abstract class SAXParser {
      *
      * @param f The file containing the XML to parse
      * @param hb The SAX HandlerBase to use.
-     * 
-     * @throws IllegalArgumentException If the File object is null.
-     * @throws java.io.IOException If any IO errors occur.
-     * @throws org.xml.sax.SAXException If any SAX errors occur during processing.
-     * 
+     * @exception java.io.IOException If any IO errors occur.
+     * @exception IllegalArgumentException If the File object is null.
      * @see org.xml.sax.DocumentHandler
+     * @exception org.xml.sax.SAXException If the underlying parser throws a
+     * SAXException while parsing.
      */
+
     public void parse(File f, HandlerBase hb)
-        throws SAXException, IOException {
+        throws SAXException, IOException
+    {
         if (f == null) {
             throw new IllegalArgumentException("File cannot be null");
         }
         
-        String escapedURI = FilePathToURI.filepath2URI(f.getAbsolutePath());
+        String escapedURI = FilePathToURI.filepath2URI(f.getAbsolutePath()) ;
 
-        if (DEBUG) {
-            System.out.println("Escaped URI = " + escapedURI);
-        }
+        if(DEBUG)
+        System.out.println("Escaped URI = " + escapedURI) ;
 
         InputSource input = new InputSource(escapedURI);
         this.parse(input, hb);
     }
     
+
     /**
      * Parse the content of the file specified as XML using the
      * specified {@link org.xml.sax.helpers.DefaultHandler}.
      *
      * @param f The file containing the XML to parse
      * @param dh The SAX DefaultHandler to use.
-     * 
-     * @throws IllegalArgumentException If the File object is null.
-     * @throws java.io.IOException If any IO errors occur.
-     * @throws org.xml.sax.SAXException If any SAX errors occur during processing.
-     * 
+     * @exception java.io.IOException If any IO errors occur.
+     * @exception IllegalArgumentException If the File object is null.
+     * @exception org.xml.sax.SAXException If the underlying parser throws a
+     * SAXException while parsing.
      * @see org.xml.sax.DocumentHandler
      */
+
     public void parse(File f, DefaultHandler dh)
-        throws SAXException, IOException {
+        throws SAXException, IOException
+    {
         if (f == null) {
             throw new IllegalArgumentException("File cannot be null");
         }
         
-        String escapedURI = FilePathToURI.filepath2URI(f.getAbsolutePath());
+        String escapedURI = FilePathToURI.filepath2URI(f.getAbsolutePath()) ;
 
-        if (DEBUG) {
-            System.out.println("Escaped URI = " + escapedURI);
-        }
+        if(DEBUG)
+        System.out.println("Escaped URI = " + escapedURI) ;
 
         InputSource input = new InputSource(escapedURI);
         this.parse(input, dh);
@@ -337,21 +342,22 @@ public abstract class SAXParser {
      *
      * @param is The InputSource containing the content to be parsed.
      * @param hb The SAX HandlerBase to use.
-     * 
-     * @throws IllegalArgumentException If the <code>InputSource</code> object
-     *   is <code>null</code>.
-     * @throws java.io.IOException If any IO errors occur.
-     * @throws org.xml.sax.SAXException If any SAX errors occur during processing.
-     * 
+     * @exception java.io.IOException If any IO errors occur.
+     * @exception IllegalArgumentException If the InputSource is null.
+     * @exception org.xml.sax.SAXException If the underlying parser throws a
+     * SAXException while parsing.
      * @see org.xml.sax.DocumentHandler
      */
+    
     public void parse(InputSource is, HandlerBase hb)
-        throws SAXException, IOException {
+        throws SAXException, IOException
+    {
         if (is == null) {
             throw new IllegalArgumentException("InputSource cannot be null");
         }
-
+        
         Parser parser = this.getParser();
+
         if (hb != null) {
             parser.setDocumentHandler(hb);
             parser.setEntityResolver(hb);
@@ -368,20 +374,20 @@ public abstract class SAXParser {
      *
      * @param is The InputSource containing the content to be parsed.
      * @param dh The SAX DefaultHandler to use.
-     * 
-     * @throws IllegalArgumentException If the <code>InputSource</code> object
-     *   is <code>null</code>.
-     * @throws java.io.IOException If any IO errors occur.
-     * @throws org.xml.sax.SAXException If any SAX errors occur during processing.
-     * 
+     * @exception java.io.IOException If any IO errors occur.
+     * @exception IllegalArgumentException If the InputSource is null.
+     * @exception org.xml.sax.SAXException If the underlying parser throws a
+     * SAXException while parsing.
      * @see org.xml.sax.DocumentHandler
      */
+    
     public void parse(InputSource is, DefaultHandler dh)
-        throws SAXException, IOException {
+        throws SAXException, IOException
+    {
         if (is == null) {
             throw new IllegalArgumentException("InputSource cannot be null");
         }
-
+        
         XMLReader reader = this.getXMLReader();
         if (dh != null) {
             reader.setContentHandler(dh);
@@ -398,9 +404,8 @@ public abstract class SAXParser {
      *
      * @return The SAX parser that is encapsultated by the
      *         implementation of this class.
-     * 
-     * @throws org.xml.sax.SAXException If any SAX errors occur during processing.
      */
+    
     public abstract Parser getParser() throws SAXException;
 
     /**
@@ -409,8 +414,6 @@ public abstract class SAXParser {
      *
      * @return The XMLReader that is encapsulated by the
      *         implementation of this class.
-     * 
-     * @throws org.xml.sax.SAXException If any SAX errors occur during processing.
      */
 
     public abstract XMLReader getXMLReader() throws SAXException;
@@ -436,19 +439,19 @@ public abstract class SAXParser {
     public abstract boolean isValidating();
 
     /**
-     * <p>Sets the particular property in the underlying implementation of
+     * Sets the particular property in the underlying implementation of
      * {@link org.xml.sax.XMLReader}.
      * A list of the core features and properties can be found at
-     * <a href="http://sax.sourceforge.net/?selected=get-set">
-     * http://sax.sourceforge.net/?selected=get-set</a>.</p>
+     * <a href="http://www.megginson.com/SAX/Java/features.html"> http://www.megginson.com/SAX/Java/features.html </a>
      *
      * @param name The name of the property to be set.
      * @param value The value of the property to be set.
-     * 
-     * @throws org.xml.sax.SAXNotRecognizedException When the underlying XMLReader does
-     *   not recognize the property name.
-     * @throws org.xml.sax.SAXNotSupportedException When the underlying XMLReader
-     *  recognizes the property name but doesn't support the property.
+     * @exception org.xml.sax.SAXNotRecognizedException When the underlying XMLReader does
+     *            not recognize the property name.
+     *
+     * @exception org.xml.sax.SAXNotSupportedException When the underlying XMLReader
+     *            recognizes the property name but doesn't support the
+     *            property.
      *
      * @see org.xml.sax.XMLReader#setProperty
      */
@@ -456,81 +459,22 @@ public abstract class SAXParser {
         throws SAXNotRecognizedException, SAXNotSupportedException;
 
     /**
-     * <p>Returns the particular property requested for in the underlying
-     * implementation of {@link org.xml.sax.XMLReader}.</p>
+     *
+     * Returns the particular property requested for in the underlying
+     * implementation of {@link org.xml.sax.XMLReader}.
      *
      * @param name The name of the property to be retrieved.
      * @return Value of the requested property.
      *
-     * @throws org.xml.sax.SAXNotRecognizedException When the underlying XMLReader does
-     *    not recognize the property name.
-     * @throws org.xml.sax.SAXNotSupportedException When the underlying XMLReader
-     *  recognizes the property name but doesn't support the property.
+     * @exception org.xml.sax.SAXNotRecognizedException When the underlying XMLReader does
+     *            not recognize the property name.
+     *
+     * @exception org.xml.sax.SAXNotSupportedException When the underlying XMLReader
+     *            recognizes the property name but doesn't support the
+     *            property.
      *
      * @see org.xml.sax.XMLReader#getProperty
      */
     public abstract Object getProperty(String name)
         throws SAXNotRecognizedException, SAXNotSupportedException;
-
-    /** <p>Get current state of canonicalization.</p>
-     *
-     * @return current state canonicalization control
-     */
-    /*
-    public boolean getCanonicalization() {
-        return canonicalState;
-    }    
-    */
-
-    /** <p>Get a reference to the the {@link javax.xml.validation.Schema} being used by
-     * the XML processor.</p>
-     *
-     * <p>If no schema is being used, <code>null</code> is returned.</p>
-     *
-     * @return {@link javax.xml.validation.Schema} being used or <code>null</code>
-     *  if none in use
-     * 
-     * @throws UnsupportedOperationException
-     *      For backward compatibility, when implementations for
-     *      earlier versions of JAXP is used, this exception will be
-     *      thrown.
-     * 
-     * @since 1.5
-     */
-    public Schema getSchema() {
-        throw new UnsupportedOperationException(
-            "This parser does not support specification \""
-            + this.getClass().getPackage().getSpecificationTitle()
-            + "\" version \""
-            + this.getClass().getPackage().getSpecificationVersion()
-            + "\""
-            );
-    }
-    
-    /**
-     * <p>Get the XInclude processing mode for this parser.</p>
-     * 
-     * @return
-     *      the return value of
-     *      the {@link javax.xml.parsers.SAXParserFactory#isXIncludeAware()}
-     *      when this parser was created from factory.
-     * 
-     * @throws UnsupportedOperationException
-     *      For backward compatibility, when implementations for
-     *      earlier versions of JAXP is used, this exception will be
-     *      thrown.
-     * 
-     * @since 1.5
-     * 
-     * @see javax.xml.parsers.SAXParserFactory#setXIncludeAware(boolean)
-     */
-    public boolean isXIncludeAware() {
-        throw new UnsupportedOperationException(
-            "This parser does not support specification \""
-            + this.getClass().getPackage().getSpecificationTitle()
-            + "\" version \""
-            + this.getClass().getPackage().getSpecificationVersion()
-            + "\""
-            );
-    }
 }

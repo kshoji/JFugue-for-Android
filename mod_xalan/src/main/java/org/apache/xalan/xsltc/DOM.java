@@ -59,7 +59,7 @@ public interface DOM {
     public DTMAxisIterator getNthDescendant(int node, int n, boolean includeself);
     public DTMAxisIterator getNamespaceAxisIterator(final int axis, final int ns);
     public DTMAxisIterator getNodeValueIterator(DTMAxisIterator iter, int returnType,
-                                                String value, boolean op);
+					     String value, boolean op);
     public DTMAxisIterator orderNodes(DTMAxisIterator source, int node);
     public String getNodeName(final int node);
     public String getNodeNameX(final int node);

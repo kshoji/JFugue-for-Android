@@ -48,7 +48,7 @@ class NumeratorFormatter
 
   /**
    * Table to help in converting decimals to roman numerals.
-   * @see DecimalToRoman
+   * @see org.apache.xalan.transformer.DecimalToRoman
    */
   private final static DecimalToRoman m_romanConvertTable[] = {
     new DecimalToRoman(1000, "M", 900, "CM"),
@@ -61,7 +61,7 @@ class NumeratorFormatter
 
   /**
    * Chars for converting integers into alpha counts.
-   * @see org.apache.xalan.transformer.TransformerImpl#int2alphaCount
+   * @see TransformerImpl#int2alphaCount
    */
   private final static char[] m_alphaCountTable = { 'Z',  // z for zero
                                                     'A', 'B', 'C', 'D', 'E',
@@ -92,7 +92,7 @@ class NumeratorFormatter
    * @param val Value to convert -- must be greater than zero.
    * @param table a table containing one character for each digit in the radix
    * @return String representing alpha count of number.
-   * @see DecimalToRoman
+   * @see org.apache.xalan.transformer.DecimalToRoman
    *
    * Note that the radix of the conversion is inferred from the size
    * of the table.
@@ -174,7 +174,7 @@ class NumeratorFormatter
    * @param prefixesAreOK true_ to enable prefix notation (e.g. 4 = "IV"),
    * false_ to disable prefix notation (e.g. 4 = "IIII").
    * @return Roman numeral string.
-   * @see org.apache.xalan.transformer.DecimalToRoman
+   * @see DecimalToRoman
    * @see m_romanConvertTable
    */
   String long2roman(long val, boolean prefixesAreOK)

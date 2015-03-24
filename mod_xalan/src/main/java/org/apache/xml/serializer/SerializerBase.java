@@ -503,7 +503,7 @@ public abstract class SerializerBase
     /**
      * Flush and close the underlying java.io.Writer. This method applies to
      * ToStream serializers, not ToSAXHandler serializers.
-     * @see org.apache.xml.serializer.ToStream
+     * @see ToStream
      */
     public void close()
     {
@@ -750,14 +750,14 @@ public abstract class SerializerBase
     }
 
     /**
-     * Return a {@link org.apache.xml.serializer.DOMSerializer} interface into this serializer. If the
-     * serializer does not support the {@link org.apache.xml.serializer.DOMSerializer} interface, it should
+     * Return a {@link DOMSerializer} interface into this serializer. If the
+     * serializer does not support the {@link DOMSerializer} interface, it should
      * return null.
      *
-     * @return A {@link org.apache.xml.serializer.DOMSerializer} interface into this serializer,  or null
+     * @return A {@link DOMSerializer} interface into this serializer,  or null
      * if the serializer is not DOM capable
      * @throws java.io.IOException An I/O exception occured
-     * @see org.apache.xml.serializer.Serializer#asDOMSerializer()
+     * @see Serializer#asDOMSerializer()
      */
     public DOMSerializer asDOMSerializer() throws IOException
     { 

@@ -1,11 +1,18 @@
-//SAX parser factory.
-//http://www.saxproject.org
-//No warranty; no copyright -- use this as you will.
-//$Id: ParserFactory.java 226253 2005-06-22 02:20:47Z mrglavas $
+// SAX parser factory.
+// http://www.saxproject.org
+// No warranty; no copyright -- use this as you will.
+// $Id: ParserFactory.java,v 1.6 2001/11/21 01:02:50 dbrownell Exp $
 
 package org.xml.sax.helpers;
 
+import java.lang.ClassNotFoundException;
+import java.lang.IllegalAccessException;
+import java.lang.InstantiationException;
+import java.lang.SecurityException;
+import java.lang.ClassCastException;
+
 import org.xml.sax.Parser;
+
 
 /**
  * Java-specific class for dynamically loading SAX parsers.
@@ -37,7 +44,7 @@ import org.xml.sax.Parser;
  *             interface.
  * @since SAX 1.0
  * @author David Megginson
- * @version 2.0.1 (sax2r2)
+ * @version 2.0r2pre3
  */
 public class ParserFactory {
     
@@ -72,19 +79,19 @@ public class ParserFactory {
      * @see org.xml.sax.Parser
      */
     public static Parser makeParser ()
-    throws ClassNotFoundException,
-    IllegalAccessException, 
-    InstantiationException,
-    NullPointerException,
-    ClassCastException
+	throws ClassNotFoundException,
+	IllegalAccessException, 
+	InstantiationException,
+	NullPointerException,
+	ClassCastException
     {
-        SecuritySupport ss = SecuritySupport.getInstance();
-        String className = ss.getSystemProperty("org.xml.sax.parser");
-        if (className == null) {
-            throw new NullPointerException("No value for sax.parser property");
-        } else {
-            return makeParser(className);
-        }
+    SecuritySupport ss = SecuritySupport.getInstance();
+	String className = ss.getSystemProperty("org.xml.sax.parser");
+	if (className == null) {
+	    throw new NullPointerException("No value for sax.parser property");
+	} else {
+	    return makeParser(className);
+	}
     }
     
     
@@ -110,13 +117,13 @@ public class ParserFactory {
      * @see org.xml.sax.Parser
      */
     public static Parser makeParser (String className)
-    throws ClassNotFoundException,
-    IllegalAccessException, 
-    InstantiationException,
-    ClassCastException
+	throws ClassNotFoundException,
+	IllegalAccessException, 
+	InstantiationException,
+	ClassCastException
     {
-        return (Parser) NewInstance.newInstance (
-                NewInstance.getClassLoader (), className);
+	return (Parser) NewInstance.newInstance (
+		NewInstance.getClassLoader (), className);
     }
     
 }

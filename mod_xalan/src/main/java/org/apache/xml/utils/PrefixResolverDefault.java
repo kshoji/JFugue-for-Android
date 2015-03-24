@@ -134,7 +134,7 @@ public class PrefixResolverDefault implements PrefixResolver
     return null;
   }
 	/**
-	 * @see org.apache.xml.utils.PrefixResolver#handlesNullPrefixes()
+	 * @see PrefixResolver#handlesNullPrefixes()
 	 */
 	public boolean handlesNullPrefixes() {
 		return false;

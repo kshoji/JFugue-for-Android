@@ -91,7 +91,7 @@ public abstract class DTDParser
      *                 where the entity encoding is not auto-detected (e.g.
      *                 internal parameter entities).
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startEntity(String name, String publicId, String systemId, 
                             String encoding) throws XNIException {
@@ -107,7 +107,7 @@ public abstract class DTDParser
      * @param version  The XML version, or null if not specified.
      * @param encoding The IANA encoding name of the entity.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void textDecl(String version, String encoding) throws XNIException {
     }
@@ -115,7 +115,7 @@ public abstract class DTDParser
     /**
      * The start of the DTD.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startDTD(XMLLocator locator, Augmentations augmentations) 
                          throws XNIException {
@@ -126,7 +126,7 @@ public abstract class DTDParser
      * 
      * @param text The text in the comment.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by application to signal an error.
+     * @throws XNIException Thrown by application to signal an error.
      */
     public void comment(XMLString text, Augmentations augmentations) throws XNIException {
     } // comment
@@ -145,7 +145,7 @@ public abstract class DTDParser
      * @param target The target.
      * @param data   The data or null if none specified.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void processingInstruction(String target, XMLString data, 
                                       Augmentations augmentations)
@@ -155,7 +155,7 @@ public abstract class DTDParser
     /**
      * The start of the external subset.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startExternalSubset(XMLResourceIdentifier identifier, 
                                     Augmentations augmentations)  throws XNIException {
@@ -164,7 +164,7 @@ public abstract class DTDParser
     /**
      * The end of the external subset.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endExternalSubset(Augmentations augmentations) throws XNIException {
     } // endExternalSubset
@@ -175,7 +175,7 @@ public abstract class DTDParser
      * @param name         The name of the element.
      * @param contentModel The element content model.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void elementDecl(String name, String contentModel, 
                             Augmentations augmentations)
@@ -188,7 +188,7 @@ public abstract class DTDParser
      * @param elementName The name of the element that this attribute
      *                    list is associated with.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startAttlist(String elementName,
                              Augmentations augmentations) throws XNIException {
@@ -213,7 +213,7 @@ public abstract class DTDParser
      * @param defaultValue  The attribute default value, or null if no
      *                      default value is specified.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void attributeDecl(String elementName, String attributeName, 
                               String type, String[] enumeration, 
@@ -225,7 +225,7 @@ public abstract class DTDParser
     /**
      * The end of an attribute list.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endAttlist(Augmentations augmentations) throws XNIException {
     } // endAttlist
@@ -242,7 +242,7 @@ public abstract class DTDParser
      *             the internal entity declaration, without any entity
      *             references expanded.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void internalEntityDecl(String name, XMLString text,
                                    XMLString nonNormalizedText,
@@ -261,7 +261,7 @@ public abstract class DTDParser
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void externalEntityDecl(String name, 
                                    XMLResourceIdentifier identifier,
@@ -280,7 +280,7 @@ public abstract class DTDParser
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void unparsedEntityDecl(String name, 
                                    XMLResourceIdentifier identifier, 
@@ -297,7 +297,7 @@ public abstract class DTDParser
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void notationDecl(String name, XMLResourceIdentifier identifier,
                              Augmentations augmentations)
@@ -310,10 +310,10 @@ public abstract class DTDParser
      * @param type The type of the conditional section. This value will
      *             either be CONDITIONAL_INCLUDE or CONDITIONAL_IGNORE.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
-     * @see org.apache.xerces.xni.XMLDTDHandler#CONDITIONAL_INCLUDE
-     * @see org.apache.xerces.xni.XMLDTDHandler#CONDITIONAL_IGNORE
+     * @see XMLDTDHandler#CONDITIONAL_INCLUDE
+     * @see XMLDTDHandler#CONDITIONAL_IGNORE
      */
     public void startConditional(short type, Augmentations augmentations) throws XNIException {
     } // startConditional
@@ -321,7 +321,7 @@ public abstract class DTDParser
     /**
      * The end of a conditional section.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endConditional(Augmentations augmentations) throws XNIException {
     } // endConditional
@@ -329,7 +329,7 @@ public abstract class DTDParser
     /**
      * The end of the DTD.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endDTD(Augmentations augmentations) throws XNIException {
     } // endDTD
@@ -345,7 +345,7 @@ public abstract class DTDParser
      * 
      * @param name The name of the entity.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endEntity(String name, Augmentations augmentations) throws XNIException {
     }
@@ -362,7 +362,7 @@ public abstract class DTDParser
      * @param elementName The name of the element.
      * @param type        The content model type.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see org.apache.xerces.impl.dtd.XMLElementDecl#TYPE_EMPTY
      * @see org.apache.xerces.impl.dtd.XMLElementDecl#TYPE_ANY
@@ -384,7 +384,7 @@ public abstract class DTDParser
      * 
      * @param elementName The name of the referenced element. 
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see org.apache.xerces.impl.dtd.XMLElementDecl#TYPE_MIXED
      */
@@ -400,7 +400,7 @@ public abstract class DTDParser
      * <strong>Note:</strong> Children groups can be nested and have
      * associated occurrence counts.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see org.apache.xerces.impl.dtd.XMLElementDecl#TYPE_CHILDREN
      */
@@ -412,7 +412,7 @@ public abstract class DTDParser
      * 
      * @param elementName The name of the referenced element.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see org.apache.xerces.impl.dtd.XMLElementDecl#TYPE_CHILDREN
      */
@@ -428,10 +428,10 @@ public abstract class DTDParser
      * 
      * @param separator The type of children separator.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
-     * @see org.apache.xerces.xni.XMLDTDContentModelHandler#SEPARATOR_CHOICE
-     * @see org.apache.xerces.xni.XMLDTDContentModelHandler#SEPARATOR_SEQUENCE
+     * @see XMLDTDContentModelHandler#SEPARATOR_CHOICE
+     * @see XMLDTDContentModelHandler#SEPARATOR_SEQUENCE
      * @see org.apache.xerces.impl.dtd.XMLElementDecl#TYPE_CHILDREN
      */
     public void childrenSeparator(short separator) throws XNIException {
@@ -446,11 +446,11 @@ public abstract class DTDParser
      * @param occurrence The occurrence count for the last children element
      *                   or children group.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
-     * @see org.apache.xerces.xni.XMLDTDContentModelHandler#OCCURS_ZERO_OR_ONE
-     * @see org.apache.xerces.xni.XMLDTDContentModelHandler#OCCURS_ZERO_OR_MORE
-     * @see org.apache.xerces.xni.XMLDTDContentModelHandler#OCCURS_ONE_OR_MORE
+     * @see XMLDTDContentModelHandler#OCCURS_ZERO_OR_ONE
+     * @see XMLDTDContentModelHandler#OCCURS_ZERO_OR_MORE
+     * @see XMLDTDContentModelHandler#OCCURS_ONE_OR_MORE
      * @see org.apache.xerces.impl.dtd.XMLElementDecl#TYPE_CHILDREN
      */
     public void childrenOccurrence(short occurrence) throws XNIException {
@@ -470,7 +470,7 @@ public abstract class DTDParser
     /**
      * The end of a content model.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endContentModel() throws XNIException {
     } // endContentModel

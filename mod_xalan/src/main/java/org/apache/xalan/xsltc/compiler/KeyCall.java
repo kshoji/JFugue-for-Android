@@ -102,7 +102,7 @@ final class KeyCall extends FunctionCall {
      * The index name (for key() call only) must be a string or convertable
      * to a string, and the lookup-value must be a string or a node-set.
      * @param stable The parser's symbol table
-     * @throws org.apache.xalan.xsltc.compiler.util.TypeCheckError When the parameters have illegal type
+     * @throws TypeCheckError When the parameters have illegal type
      */
     public Type typeCheck(SymbolTable stable) throws TypeCheckError {
 	final Type returnType = super.typeCheck(stable);

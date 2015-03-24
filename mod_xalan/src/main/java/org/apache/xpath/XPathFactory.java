@@ -38,8 +38,8 @@ public interface XPathFactory
    *                purposes.
    * @param prefixResolver This will be called in order to resolve prefixes 
    *        to namespace URIs.
-   * @param type One of {@link XPath#SELECT} or
-   *             {@link XPath#MATCH}.
+   * @param type One of {@link org.apache.xpath.XPath#SELECT} or 
+   *             {@link org.apache.xpath.XPath#MATCH}.
    *
    * @return an XPath ready for execution.
    */

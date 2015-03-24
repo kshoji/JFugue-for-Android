@@ -50,7 +50,7 @@ class ProcessorAttributeSet extends XSLTElementProcessor
    *        there are no attributes, it shall be an empty
    *        Attributes object.
    * 
-   * @see StylesheetHandler#startElement
+   * @see org.apache.xalan.processor.StylesheetHandler#startElement
    * @see org.xml.sax.ContentHandler#startElement
    * @see org.xml.sax.ContentHandler#endElement
    * @see org.xml.sax.Attributes

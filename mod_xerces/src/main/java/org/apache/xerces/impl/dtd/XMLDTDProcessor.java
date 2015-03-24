@@ -528,7 +528,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startExternalSubset(XMLResourceIdentifier identifier, 
                                     Augmentations augs) throws XNIException {
@@ -545,7 +545,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endExternalSubset(Augmentations augs) throws XNIException {
         if(fDTDGrammar != null) 
@@ -564,7 +564,7 @@ public class XMLDTDProcessor
      * @param tempEntityDecl    empty entity declaration to put results in
      * @param errorReporter     error reporter to send errors to
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by application to signal an error.
+     * @throws XNIException Thrown by application to signal an error.
      */
     protected static void checkStandaloneEntityRef(String name, DTDGrammar grammar,
                     XMLEntityDecl tempEntityDecl, XMLErrorReporter errorReporter) throws XNIException {
@@ -586,7 +586,7 @@ public class XMLDTDProcessor
      * @param text The text in the comment.
      * @param augs   Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by application to signal an error.
+     * @throws XNIException Thrown by application to signal an error.
      */
     public void comment(XMLString text, Augmentations augs) throws XNIException {
 
@@ -615,7 +615,7 @@ public class XMLDTDProcessor
      * @param data   The data or null if none specified.     
      * @param augs   Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void processingInstruction(String target, XMLString data, Augmentations augs)
     throws XNIException {
@@ -644,7 +644,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startDTD(XMLLocator locator, Augmentations augs) throws XNIException {
 
@@ -677,7 +677,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void ignoredCharacters(XMLString text, Augmentations augs) throws XNIException {
 
@@ -701,7 +701,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void textDecl(String version, String encoding, Augmentations augs) throws XNIException {
 
@@ -726,7 +726,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startParameterEntity(String name, 
                                      XMLResourceIdentifier identifier,
@@ -753,7 +753,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endParameterEntity(String name, Augmentations augs) throws XNIException {
 
@@ -773,7 +773,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void elementDecl(String name, String contentModel, Augmentations augs)
     throws XNIException {
@@ -808,7 +808,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startAttlist(String elementName, Augmentations augs) 
         throws XNIException {
@@ -845,7 +845,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void attributeDecl(String elementName, String attributeName, 
                               String type, String[] enumeration, 
@@ -1067,7 +1067,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endAttlist(Augmentations augs) throws XNIException {
 
@@ -1094,7 +1094,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void internalEntityDecl(String name, XMLString text,
                                    XMLString nonNormalizedText,
@@ -1135,7 +1135,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void externalEntityDecl(String name, XMLResourceIdentifier identifier,
                                    Augmentations augs) throws XNIException {
@@ -1173,7 +1173,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void unparsedEntityDecl(String name, XMLResourceIdentifier identifier,
                                    String notation, 
@@ -1202,7 +1202,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void notationDecl(String name, XMLResourceIdentifier identifier,
                              Augmentations augs) throws XNIException {
@@ -1235,7 +1235,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #CONDITIONAL_INCLUDE
      * @see #CONDITIONAL_IGNORE
@@ -1260,7 +1260,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endConditional(Augmentations augs) throws XNIException {
 
@@ -1282,7 +1282,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endDTD(Augmentations augs) throws XNIException {
 
@@ -1389,7 +1389,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startContentModel(String elementName, Augmentations augs) 
         throws XNIException {
@@ -1414,7 +1414,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #empty
      * @see #startGroup
@@ -1433,7 +1433,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #any
      * @see #startGroup
@@ -1455,7 +1455,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #any
      * @see #empty
@@ -1480,7 +1480,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *     
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #startGroup
      */
@@ -1500,7 +1500,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void element(String elementName, Augmentations augs) throws XNIException {
 
@@ -1534,7 +1534,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #SEPARATOR_CHOICE
      * @see #SEPARATOR_SEQUENCE
@@ -1560,7 +1560,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #OCCURS_ZERO_OR_ONE
      * @see #OCCURS_ZERO_OR_MORE
@@ -1584,7 +1584,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endGroup(Augmentations augs) throws XNIException {
 
@@ -1603,7 +1603,7 @@ public class XMLDTDProcessor
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endContentModel(Augmentations augs) throws XNIException {
 

@@ -186,7 +186,7 @@ public class ParserConfigurationSettings
      * @param featureId The feature identifier.
 		 * @return true if the feature is supported
      * 
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown for configuration error.
+     * @throws XMLConfigurationException Thrown for configuration error.
      *                                   In general, components should
      *                                   only throw this exception if
      *                                   it is <strong>really</strong>
@@ -211,7 +211,7 @@ public class ParserConfigurationSettings
      * @param propertyId The property identifier.
 		 * @return the value of the property
      * 
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown for configuration error.
+     * @throws XMLConfigurationException Thrown for configuration error.
      *                                   In general, components should
      *                                   only throw this exception if
      *                                   it is <strong>really</strong>

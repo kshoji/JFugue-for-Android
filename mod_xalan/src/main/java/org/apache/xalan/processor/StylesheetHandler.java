@@ -1655,7 +1655,7 @@ public class StylesheetHandler extends DefaultHandler
     return (version == -1)? Constants.XSLTVERSUPPORTED : version;
   }
     /**
-     * @see org.apache.xml.utils.PrefixResolver#handlesNullPrefixes()
+     * @see PrefixResolver#handlesNullPrefixes()
      */
     public boolean handlesNullPrefixes() {
         return false;

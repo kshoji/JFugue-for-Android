@@ -315,7 +315,7 @@ public class FunctionTable
    * Obtain a new Function object from a function ID.
    *
    * @param which  The function ID, which may correspond to one of the FUNC_XXX 
-   *    values found in {@link FunctionTable}, but may
+   *    values found in {@link org.apache.xpath.compiler.FunctionTable}, but may 
    *    be a value installed by an external module. 
    *
    * @return a a new Function instance.
@@ -343,7 +343,7 @@ public class FunctionTable
    * Obtain a function ID from a given function name
    * @param key the function name in a java.lang.String format.
    * @return a function ID, which may correspond to one of the FUNC_XXX values
-   * found in {@link FunctionTable}, but may be a
+   * found in {@link org.apache.xpath.compiler.FunctionTable}, but may be a 
    * value installed by an external module.
    */
   Object getFunctionID(String key){

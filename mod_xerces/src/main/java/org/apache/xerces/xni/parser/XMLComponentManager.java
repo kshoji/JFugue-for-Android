@@ -25,7 +25,7 @@ package org.apache.xerces.xni.parser;
  * The methods of the component manager allow components to query features
  * and properties that affect the operation of the component.
  *
- * @see org.apache.xerces.xni.parser.XMLComponent
+ * @see XMLComponent
  *
  * @author Andy Clark, IBM
  *

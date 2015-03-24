@@ -71,7 +71,7 @@ public class XalanTransformState
     }
 
     /**
-     * @see TransformState#getCurrentElement()
+     * @see org.apache.xalan.transformer.TransformState#getCurrentElement()
      */
     public ElemTemplateElement getCurrentElement() {
       if (m_elemPending)
@@ -81,7 +81,7 @@ public class XalanTransformState
     }
 
     /**
-     * @see TransformState#getCurrentNode()
+     * @see org.apache.xalan.transformer.TransformState#getCurrentNode()
      */
     public Node getCurrentNode() {
       if (m_currentNode != null) {
@@ -93,7 +93,7 @@ public class XalanTransformState
     }
     
     /**
-     * @see TransformState#getCurrentTemplate()
+     * @see org.apache.xalan.transformer.TransformState#getCurrentTemplate()
      */
     public ElemTemplate getCurrentTemplate() {
        if (m_elemPending)
@@ -103,7 +103,7 @@ public class XalanTransformState
     }
 
     /**
-     * @see TransformState#getMatchedTemplate()
+     * @see org.apache.xalan.transformer.TransformState#getMatchedTemplate()
      */
     public ElemTemplate getMatchedTemplate() {
       if (m_elemPending)
@@ -113,7 +113,7 @@ public class XalanTransformState
     }
 
     /**
-     * @see TransformState#getMatchedNode()
+     * @see org.apache.xalan.transformer.TransformState#getMatchedNode()
      */
     public Node getMatchedNode() {
  
@@ -127,7 +127,7 @@ public class XalanTransformState
     }
 
     /**
-     * @see TransformState#getContextNodeList()
+     * @see org.apache.xalan.transformer.TransformState#getContextNodeList()
      */
     public NodeIterator getContextNodeList() {
       if (m_elemPending) {
@@ -137,7 +137,7 @@ public class XalanTransformState
       }
     }
     /**
-     * @see TransformState#getTransformer()
+     * @see org.apache.xalan.transformer.TransformState#getTransformer()
      */
     public Transformer getTransformer() {
         return m_transformer;

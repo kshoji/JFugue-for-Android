@@ -84,7 +84,7 @@ public final class ResultTreeType extends Type {
      * @param classGen A BCEL class generator
      * @param methodGen A BCEL method generator
      * @param type An instance of the type to translate the result tree to
-     * @see Type#translateTo
+     * @see org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    Type type) {
@@ -120,7 +120,7 @@ public final class ResultTreeType extends Type {
      * @param classGen A BCEL class generator
      * @param methodGen A BCEL method generator
      * @param type An instance of BooleanType (any)
-     * @see Type#translateTo
+     * @see org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    BooleanType type) {
@@ -138,7 +138,7 @@ public final class ResultTreeType extends Type {
      * @param classGen A BCEL class generator
      * @param methodGen A BCEL method generator
      * @param type An instance of StringType (any)
-     * @see Type#translateTo
+     * @see org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    StringType type) {
@@ -199,7 +199,7 @@ public final class ResultTreeType extends Type {
      * @param classGen A BCEL class generator
      * @param methodGen A BCEL method generator
      * @param type An instance of RealType (any)
-     * @see Type#translateTo
+     * @see org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    RealType type) {
@@ -214,7 +214,7 @@ public final class ResultTreeType extends Type {
      * @param classGen A BCEL class generator
      * @param methodGen A BCEL method generator
      * @param type An instance of ReferenceType (any)
-     * @see Type#translateTo
+     * @see org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    ReferenceType type) {
@@ -309,7 +309,7 @@ public final class ResultTreeType extends Type {
      * @param classGen A BCEL class generator
      * @param methodGen A BCEL method generator
      * @param type An instance of NodeSetType (any)
-     * @see Type#translateTo
+     * @see org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    NodeSetType type) {
@@ -358,7 +358,7 @@ public final class ResultTreeType extends Type {
     /**
      * Subsume result tree into ObjectType.
      *
-     * @see	Type#translateTo
+     * @see	org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    ObjectType type) {
@@ -373,7 +373,7 @@ public final class ResultTreeType extends Type {
      * @param classGen A BCEL class generator
      * @param methodGen A BCEL method generator
      * @param type An instance of BooleanType (any)
-     * @see Type#translateToDesynthesized
+     * @see org.apache.xalan.xsltc.compiler.util.Type#translateToDesynthesized
      */
     public FlowList translateToDesynthesized(ClassGenerator classGen, 
 					     MethodGenerator methodGen, 
@@ -393,7 +393,7 @@ public final class ResultTreeType extends Type {
      * @param classGen A BCEL class generator
      * @param methodGen A BCEL method generator
      * @param clazz An reference to the Class to translate to
-     * @see Type#translateTo
+     * @see org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    Class clazz) {

@@ -50,7 +50,7 @@ public interface XPointerProcessor {
      * in the order (left-to-right) they appear in the XPointer expression.    
      * 
      * @param  xpointer A String representing the xpointer expression.
-     * @throws org.apache.xerces.xni.XNIException Thrown if the xpointer string does not conform to
+     * @throws XNIException Thrown if the xpointer string does not conform to 
      *         the XPointer Framework syntax or the syntax of the pointer part does
      *         not conform to its definition for its scheme.
      *   
@@ -70,11 +70,11 @@ public interface XPointerProcessor {
      *                1 - The end of an element
      *                2 - An empty element call
      * @return true if the element was resolved by the xpointer 
-     * @throws org.apache.xerces.xni.XNIException Thrown to signal an error
+     * @throws XNIException Thrown to signal an error
      *   
      */
     public boolean resolveXPointer(QName element, XMLAttributes attributes,
-                                   Augmentations augs, int event) throws XNIException;
+            Augmentations augs, int event) throws XNIException;
 
     /**
      * Returns true if the XPointer expression resolves to the current resource fragment
@@ -82,7 +82,7 @@ public interface XPointerProcessor {
      * 
      * @return True if the xpointer expression matches a node/fragment in the resource
      *         else returns false. 
-     * @throws org.apache.xerces.xni.XNIException Thrown to signal an error
+     * @throws XNIException Thrown to signal an error
      *   
      */
     public boolean isFragmentResolved() throws XNIException;
@@ -93,7 +93,7 @@ public interface XPointerProcessor {
      * 
      * @return True if the xpointer expression matches a fragment in the resource
      *         else returns false. 
-     * @throws org.apache.xerces.xni.XNIException Thrown to signal an error
+     * @throws XNIException Thrown to signal an error
      *   
      */
     public boolean isXPointerResolved() throws XNIException;

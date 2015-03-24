@@ -33,13 +33,13 @@ public interface Translet {
     public void transform(DOM document, SerializationHandler[] handlers)
 	throws TransletException;
     public void transform(DOM document, DTMAxisIterator iterator,
-                          SerializationHandler handler)
+			  SerializationHandler handler)
 	throws TransletException;
 
     public Object addParameter(String name, Object value);
 
     public void buildKeys(DOM document, DTMAxisIterator iterator,
-                          SerializationHandler handler, int root)
+			  SerializationHandler handler, int root)
 	throws TransletException;
     public void addAuxiliaryClass(Class auxClass);
     public Class getAuxiliaryClass(String className);

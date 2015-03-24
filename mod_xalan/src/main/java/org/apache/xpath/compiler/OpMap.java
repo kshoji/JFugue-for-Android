@@ -290,7 +290,7 @@ public class OpMap
     }
     else
     {
-      error(XPATHErrorResources.ER_UNKNOWN_OPCODE,
+      error(org.apache.xpath.res.XPATHErrorResources.ER_UNKNOWN_OPCODE,
             new Object[]{ String.valueOf(stepType) });  //"ERROR! Unknown op code: "+m_opMap[opPos]);
       return -1;
     }
@@ -312,7 +312,7 @@ public class OpMap
   public void error(String msg, Object[] args) throws javax.xml.transform.TransformerException
   {
 
-    String fmsg = XSLMessages.createXPATHMessage(msg, args);
+    String fmsg = org.apache.xalan.res.XSLMessages.createXPATHMessage(msg, args);
     
 
     throw new javax.xml.transform.TransformerException(fmsg);

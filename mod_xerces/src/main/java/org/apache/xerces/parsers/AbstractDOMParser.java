@@ -458,7 +458,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      *                 parsed from a java.io.Reader).
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @exception org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @exception XNIException Thrown by handler to signal an error.
      */
     public void startGeneralEntity (String name,
     XMLResourceIdentifier identifier,
@@ -548,7 +548,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param encoding The IANA encoding name of the entity.
      * @param augs       Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void textDecl (String version, String encoding, Augmentations augs) throws XNIException {
         if (fInDTD){
@@ -574,7 +574,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param text The text in the comment.
      * @param augs       Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by application to signal an error.
+     * @throws XNIException Thrown by application to signal an error.
      */
     public void comment (XMLString text, Augmentations augs) throws XNIException {
         if (fInDTD) {
@@ -647,7 +647,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param data   The data or null if none specified.
      * @param augs       Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void processingInstruction (String target, XMLString data, Augmentations augs)
     throws XNIException {
@@ -728,7 +728,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      *                 if that information is important.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startDocument (XMLLocator locator, String encoding,
     NamespaceContext namespaceContext, Augmentations augs)
@@ -835,7 +835,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param standalone The standalone value, or null if not specified.
      * @param augs       Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void xmlDecl (String version, String encoding, String standalone,
     Augmentations augs)
@@ -868,7 +868,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      *                    otherwise.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void doctypeDecl (String rootElement,
     String publicId, String systemId, Augmentations augs)
@@ -898,7 +898,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param attributes The element attributes.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startElement (QName element, XMLAttributes attributes, Augmentations augs)
     throws XNIException {
@@ -1096,7 +1096,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param attributes The element attributes.
      * @param augs   Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void emptyElement (QName element, XMLAttributes attributes, Augmentations augs)
     throws XNIException {
@@ -1112,7 +1112,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param text The content.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void characters (XMLString text, Augmentations augs) throws XNIException {
 
@@ -1211,7 +1211,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param text The ignorable whitespace.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void ignorableWhitespace (XMLString text, Augmentations augs) throws XNIException {
 
@@ -1249,7 +1249,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param element The name of the element.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endElement (QName element, Augmentations augs) throws XNIException {
         if (DEBUG_EVENTS) {
@@ -1350,7 +1350,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * The start of a CDATA section.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startCDATA (Augmentations augs) throws XNIException {
 
@@ -1369,7 +1369,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * The end of a CDATA section.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endCDATA (Augmentations augs) throws XNIException {
 
@@ -1423,7 +1423,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * The end of the document.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endDocument (Augmentations augs) throws XNIException {
 
@@ -1458,7 +1458,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param name   The name of the entity.
      * @param augs   Additional information that may include infoset augmentations
      *
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void endGeneralEntity (String name, Augmentations augs) throws XNIException {
@@ -1743,7 +1743,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startDTD (XMLLocator locator, Augmentations augs) throws XNIException {
         if (DEBUG_EVENTS) {
@@ -1770,7 +1770,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endDTD (Augmentations augs) throws XNIException {
         if (DEBUG_EVENTS) {
@@ -1802,7 +1802,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #CONDITIONAL_INCLUDE
      * @see #CONDITIONAL_IGNORE
@@ -1816,7 +1816,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endConditional (Augmentations augs) throws XNIException {
     } // endConditional()
@@ -1828,7 +1828,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startExternalSubset (XMLResourceIdentifier identifier,
     Augmentations augs) throws XNIException {
@@ -1849,7 +1849,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endExternalSubset (Augmentations augs) throws XNIException {
         fInDTDExternalSubset = false;
@@ -1870,7 +1870,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void internalEntityDecl (String name, XMLString text,
     XMLString nonNormalizedText,
@@ -1954,7 +1954,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void externalEntityDecl (String name, XMLResourceIdentifier identifier,
     Augmentations augs) throws XNIException {
@@ -2050,7 +2050,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startParameterEntity (String name,
     XMLResourceIdentifier identifier,
@@ -2075,7 +2075,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endParameterEntity (String name, Augmentations augs) throws XNIException {
 
@@ -2095,7 +2095,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void unparsedEntityDecl (String name, XMLResourceIdentifier identifier,
     String notation, Augmentations augs)
@@ -2183,7 +2183,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void notationDecl (String name, XMLResourceIdentifier identifier,
     Augmentations augs) throws XNIException {
@@ -2256,7 +2256,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void ignoredCharacters (XMLString text, Augmentations augs) throws XNIException {
     } // ignoredCharacters(XMLString, Augmentations)
@@ -2270,7 +2270,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void elementDecl (String name, String contentModel, Augmentations augs)
     throws XNIException {
@@ -2309,7 +2309,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void attributeDecl (String elementName, String attributeName,
     String type, String[] enumeration,
@@ -2445,7 +2445,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startAttlist (String elementName, Augmentations augs) throws XNIException {
     } // startAttlist(String)
@@ -2457,7 +2457,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endAttlist (Augmentations augs) throws XNIException {
     } // endAttlist()

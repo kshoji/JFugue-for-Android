@@ -18,8 +18,6 @@
  */
 package org.apache.xpath.operations;
 
-import javax.xml.transform.TransformerException;
-
 import org.apache.xalan.res.XSLMessages;
 import org.apache.xml.utils.QName;
 import org.apache.xpath.Expression;
@@ -32,6 +30,8 @@ import org.apache.xpath.axes.WalkerFactory;
 import org.apache.xpath.objects.XNodeSet;
 import org.apache.xpath.objects.XObject;
 import org.apache.xpath.res.XPATHErrorResources;
+
+import javax.xml.transform.TransformerException;
 
 
 /**
@@ -138,7 +138,7 @@ public class Variable extends Expression implements PathComponent
       }
     }
     
-    java.lang.String msg = XSLMessages.createXPATHMessage(XPATHErrorResources.ER_COULD_NOT_FIND_VAR, 
+    java.lang.String msg = XSLMessages.createXPATHMessage(XPATHErrorResources.ER_COULD_NOT_FIND_VAR,
                                              new Object[]{m_qname.toString()});
                                              
     TransformerException te = new TransformerException(msg, this);

@@ -107,7 +107,7 @@ class ProcessorOutputElem extends XSLTElementProcessor
    * @see javax.xml.transform.OutputKeys#METHOD
    * @param newValue non-null reference to processed attribute value.
    */
-  public void setMethod(QName newValue)
+  public void setMethod(org.apache.xml.utils.QName newValue)
   {
     m_outputProperties.setQNameProperty(OutputKeys.METHOD, newValue);
   }

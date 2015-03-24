@@ -406,7 +406,7 @@ public class DTDConfiguration
      *
      * @param locale The locale object to use for localization of messages.
      *
-     * @exception org.apache.xerces.xni.XNIException Thrown if the parser does not support the
+     * @exception XNIException Thrown if the parser does not support the
      *                         specified locale.
      */
     public void setLocale(Locale locale) throws XNIException {
@@ -425,7 +425,7 @@ public class DTDConfiguration
      *
      * @param inputSource The document's input source.
      *
-     * @exception org.apache.xerces.xni.parser.XMLConfigurationException Thrown if there is a
+     * @exception XMLConfigurationException Thrown if there is a 
      *                        configuration error when initializing the
      *                        parser.
      * @exception java.io.IOException Thrown on I/O error.
@@ -452,7 +452,7 @@ public class DTDConfiguration
      *
      * @return True if there is more document to parse.
      *
-     * @exception org.apache.xerces.xni.XNIException Any XNI exception, possibly wrapping
+     * @exception XNIException Any XNI exception, possibly wrapping 
      *                         another exception.
      * @exception java.io.IOException  An IO exception from the parser, possibly
      *                         from a byte stream or character stream
@@ -536,7 +536,7 @@ public class DTDConfiguration
      *
      * @param source The input source.
      *
-     * @exception org.apache.xerces.xni.XNIException Throws exception on XNI error.
+     * @exception XNIException Throws exception on XNI error.
      * @exception java.io.IOException Throws exception on i/o error.
      */
     public void parse(XMLInputSource source) throws XNIException, IOException {
@@ -586,7 +586,7 @@ public class DTDConfiguration
     /** 
      * Reset all components before parsing. 
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown if an error occurs during initialization.
+     * @throws XNIException Thrown if an error occurs during initialization.
      */
     protected void reset() throws XNIException {
 
@@ -685,7 +685,7 @@ public class DTDConfiguration
      *
      * @param featureId The unique identifier (URI) of the feature.
      *
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown for configuration error.
+     * @throws XMLConfigurationException Thrown for configuration error.
      *                                   In general, components should
      *                                   only throw this exception if
      *                                   it is <strong>really</strong>
@@ -770,7 +770,7 @@ public class DTDConfiguration
      * @param propertyId The unique identifier (URI) of the property
      *                   being set.
      *
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown for configuration error.
+     * @throws XMLConfigurationException Thrown for configuration error.
      *                                   In general, components should
      *                                   only throw this exception if
      *                                   it is <strong>really</strong>

@@ -197,7 +197,7 @@ final class Text extends Instruction {
     /**
      * Check whether this Text node can be stored in a char[] in the translet.
      * Calling this is precondition to calling loadAsArrayOffsetLength.
-     * @see #loadAsArrayOffsetLength(org.apache.xalan.xsltc.compiler.util.ClassGenerator, org.apache.xalan.xsltc.compiler.util.MethodGenerator)
+     * @see #loadAsArrayOffsetLength(ClassGenerator,MethodGenerator)
      * @return true if this Text node can be
      */
     public boolean canLoadAsArrayOffsetLength() {

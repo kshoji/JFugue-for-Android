@@ -44,7 +44,7 @@ import org.w3c.dom.Node;
  * dser.serialize(doc);
  * </pre>
  * 
- * @see org.apache.xml.serializer.Serializer
+ * @see Serializer
  * 
  * @xsl.usage general
  *

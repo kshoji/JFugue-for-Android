@@ -22,7 +22,7 @@ import org.w3c.dom.html.HTMLAppletElement;
  * @version $Revision: 329271 $ $Date: 2005-10-28 15:25:05 -0400 (Fri, 28 Oct 2005) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
  * @see org.w3c.dom.html.HTMLAppletElement
- * @see org.apache.html.dom.HTMLElementImpl
+ * @see HTMLElementImpl
  */
 public class HTMLAppletElementImpl
     extends HTMLElementImpl

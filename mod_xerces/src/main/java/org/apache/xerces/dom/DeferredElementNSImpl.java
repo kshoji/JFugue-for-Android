@@ -34,7 +34,7 @@ import org.w3c.dom.NamedNodeMap;
  * 
  * @xerces.internal
  * 
- * @see org.apache.xerces.dom.DeferredElementImpl
+ * @see DeferredElementImpl
  */
 public class DeferredElementNSImpl
     extends ElementNSImpl

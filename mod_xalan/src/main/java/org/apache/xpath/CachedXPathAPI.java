@@ -60,7 +60,7 @@ public class CachedXPathAPI
   protected XPathContext xpathSupport;
 
   /**
-   * <p>Default constructor. Establishes its own {@link org.apache.xpath.XPathContext}, and hence
+   * <p>Default constructor. Establishes its own {@link XPathContext}, and hence
    * its own {@link org.apache.xml.dtm.DTMManager}.
    * Good choice for simple uses.</p>
    * <p>Note that any particular instance of {@link org.apache.xpath.CachedXPathAPI} must not be
@@ -74,7 +74,7 @@ public class CachedXPathAPI
   }
   
   /**
-   * <p>This constructor shares its {@link org.apache.xpath.XPathContext} with a pre-existing
+   * <p>This constructor shares its {@link XPathContext} with a pre-existing
    * {@link org.apache.xpath.CachedXPathAPI}.  That allows sharing document models
    * ({@link org.apache.xml.dtm.DTM}) and previously established location
    * state.</p>

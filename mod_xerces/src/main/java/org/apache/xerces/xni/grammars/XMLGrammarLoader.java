@@ -50,7 +50,7 @@ public interface XMLGrammarLoader {
      * 
      * @param featureId The feature identifier.
      * 
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown on configuration error.
+     * @throws XMLConfigurationException Thrown on configuration error.
      */
     public boolean getFeature(String featureId) 
             throws XMLConfigurationException;
@@ -61,7 +61,7 @@ public interface XMLGrammarLoader {
      * @param featureId The feature identifier.
      * @param state     The state of the feature.
      *
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown when a feature is not
+     * @throws XMLConfigurationException Thrown when a feature is not
      *                  recognized or cannot be set.
      */
     public void setFeature(String featureId,
@@ -79,7 +79,7 @@ public interface XMLGrammarLoader {
      * 
      * @param propertyId The property identifier.
      * 
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown on configuration error.
+     * @throws XMLConfigurationException Thrown on configuration error.
      */
     public Object getProperty(String propertyId) 
             throws XMLConfigurationException;
@@ -90,7 +90,7 @@ public interface XMLGrammarLoader {
      * @param propertyId The property identifier.
      * @param state     The state of the property.
      *
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown when a property is not
+     * @throws XMLConfigurationException Thrown when a property is not
      *                  recognized or cannot be set.
      */
     public void setProperty(String propertyId,

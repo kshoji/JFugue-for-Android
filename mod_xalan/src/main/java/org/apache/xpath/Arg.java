@@ -67,7 +67,7 @@ public class Arg
    * Get the value for this argument.
    *
    * @return the argument's stored XObject value.
-   * @see #setVal(org.apache.xpath.objects.XObject)
+   * @see #setVal(XObject)
    */
   public final XObject getVal()
   {

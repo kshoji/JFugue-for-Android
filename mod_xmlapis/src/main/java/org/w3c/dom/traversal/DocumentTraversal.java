@@ -41,8 +41,7 @@ public interface DocumentTraversal {
      *   <code>NodeFilter</code> for the set of possible <code>SHOW_</code> 
      *   values.These flags can be combined using <code>OR</code>.
      * @param filter The <code>NodeFilter</code> to be used with this 
-     *   <code>NodeIterator</code>, or <code>null</code> to indicate no 
-     *   filter.
+     *   <code>TreeWalker</code>, or <code>null</code> to indicate no filter.
      * @param entityReferenceExpansion The value of this flag determines 
      *   whether entity reference nodes are expanded.
      * @return The newly created <code>NodeIterator</code>.

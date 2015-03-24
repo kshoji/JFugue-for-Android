@@ -477,7 +477,7 @@ public class ElementNSImpl
 
     /**
      * NON-DOM: setting type used by the DOM parser
-     * @see org.apache.xerces.dom.NodeImpl#setReadOnly
+     * @see NodeImpl#setReadOnly
      */
     public void setType(XSTypeDefinition type) {
         this.type = type;

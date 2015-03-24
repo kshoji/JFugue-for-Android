@@ -35,7 +35,7 @@ import org.xml.sax.SAXException;
 
 /**
  * Implements a text serializer supporting both DOM and SAX
- * serializing. For usage instructions see {@link org.apache.xml.serialize.Serializer}.
+ * serializing. For usage instructions see {@link Serializer}.
  * <p>
  * If an output stream is used, the encoding is taken from the
  * output format (defaults to <tt>UTF-8</tt>). If a writer is
@@ -54,7 +54,7 @@ import org.xml.sax.SAXException;
  *
  * @version $Revision: 319808 $ $Date: 2004-02-24 18:34:05 -0500 (Tue, 24 Feb 2004) $
  * @author <a href="mailto:arkin@intalio.com">Assaf Arkin</a>
- * @see org.apache.xml.serialize.Serializer
+ * @see Serializer
  */
 public class TextSerializer
     extends BaseMarkupSerializer

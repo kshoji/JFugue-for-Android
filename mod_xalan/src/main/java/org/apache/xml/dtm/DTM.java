@@ -815,7 +815,7 @@ public interface DTM
    * @throws org.xml.sax.SAXException
    */
   public void dispatchCharactersEvents(
-          int nodeHandle, org.xml.sax.ContentHandler ch, boolean normalize)
+    int nodeHandle, org.xml.sax.ContentHandler ch, boolean normalize)
       throws org.xml.sax.SAXException;
 
   /**
