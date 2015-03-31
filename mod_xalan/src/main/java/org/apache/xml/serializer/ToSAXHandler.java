@@ -400,7 +400,7 @@ public abstract class ToSAXHandler extends SerializerBase
      * (mostly for performance reasons).
      * 
      * @return true if the class was successfuly reset.
-     * @see org.apache.xml.serializer.Serializer#reset()
+     * @see Serializer#reset()
      */
     public boolean reset()
     {

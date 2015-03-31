@@ -47,7 +47,7 @@ public interface XPointerPart {
      * the PointerPart or ShortHandPointer.  
      * 
      * @param  xpointer A String representing the PointerPart or ShortHandPointer.
-     * @throws org.apache.xerces.xni.XNIException Thrown if the PointerPart string does not conform to
+     * @throws XNIException Thrown if the PointerPart string does not conform to 
      *         the syntax defined by its scheme.
      *   
      */
@@ -65,11 +65,11 @@ public interface XPointerPart {
      *                0 - The start of an element
      *                1 - The end of an element
      *                2 - An empty element call 
-     * @throws org.apache.xerces.xni.XNIException Thrown to signal an error
+     * @throws XNIException Thrown to signal an error
      *   
      */
     public boolean resolveXPointer(QName element, XMLAttributes attributes,
-                                   Augmentations augs, int event) throws XNIException;
+            Augmentations augs, int event) throws XNIException;
 
     /**
      * Returns true if the XPointer expression resolves to a resource fragment
@@ -77,7 +77,7 @@ public interface XPointerPart {
      * 
      * @return True if the xpointer expression matches a fragment in the resource
      *         else returns false. 
-     * @throws org.apache.xerces.xni.XNIException Thrown to signal an error
+     * @throws XNIException Thrown to signal an error
      *   
      */
     public boolean isFragmentResolved() throws XNIException;
@@ -88,7 +88,7 @@ public interface XPointerPart {
      * 
      * @return True if the XPointer expression resolves to a non-element child
      *         of the current resource fragment. 
-     * @throws org.apache.xerces.xni.XNIException Thrown to signal an error
+     * @throws XNIException Thrown to signal an error
      *   
      */
     public boolean isChildFragmentResolved() throws XNIException;

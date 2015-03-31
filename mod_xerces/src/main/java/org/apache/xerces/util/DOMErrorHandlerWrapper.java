@@ -119,7 +119,7 @@ public class DOMErrorHandlerWrapper
      *                  is implementation dependent.
      * @param exception Exception.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown to signal that the parser should stop
+     * @throws XNIException Thrown to signal that the parser should stop
      *                      parsing the document.
      */
 
@@ -156,7 +156,7 @@ public class DOMErrorHandlerWrapper
      *                  is implementation dependent.
      * @param exception Exception.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown to signal that the parser should stop
+     * @throws XNIException Thrown to signal that the parser should stop
      *                      parsing the document.
      */
     public void error(String domain, String key, 
@@ -200,7 +200,7 @@ public class DOMErrorHandlerWrapper
      *                  and is implementation dependent.
      * @param exception Exception.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown to signal that the parser should stop
+     * @throws XNIException Thrown to signal that the parser should stop
      *                      parsing the document.
      */
     public void fatalError(String domain, String key, 

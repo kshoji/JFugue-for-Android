@@ -19,13 +19,13 @@
 package org.apache.xml.dtm;
 
 
+import org.apache.xml.res.XMLErrorResources;
+import org.apache.xml.res.XMLMessages;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import javax.xml.transform.SourceLocator;
-
-import org.apache.xml.res.XMLErrorResources;
-import org.apache.xml.res.XMLMessages;
 
 
 /**
@@ -321,7 +321,7 @@ public class DTMException extends RuntimeException {
 
         boolean isJdk14OrHigher = false;
         try {
-            Throwable.class.getMethod("getCause",(Class<?>)null);
+            Throwable.class.getMethod("getCause");
             isJdk14OrHigher = true;
         } catch (NoSuchMethodException nsme) {
             // do nothing
@@ -354,13 +354,12 @@ public class DTMException extends RuntimeException {
     
                 try {
                     Method meth =
-                        ((Object) exception).getClass().getMethod("getException",
-                                (Class<?>)null);
+                        ((Object) exception).getClass().getMethod("getException");
     
                     if (null != meth) {
                         Throwable prev = exception;
     
-                        exception = (Throwable) meth.invoke(exception, (Class<?>)null);
+                        exception = (Throwable) meth.invoke(exception);
     
                         if (prev == exception) {
                             break;

@@ -25,7 +25,7 @@ import java.io.Writer;
 /**
  * Implements an XHTML serializer supporting both DOM and SAX
  * pretty serializing. For usage instructions see either {@link
- * org.apache.xml.serialize.Serializer} or {@link BaseMarkupSerializer}.
+ * Serializer} or {@link BaseMarkupSerializer}.
  *
  * @deprecated This class was deprecated in Xerces 2.6.2. It is
  * recommended that new applications use JAXP's Transformation API 
@@ -33,7 +33,7 @@ import java.io.Writer;
  * for more information.
  * @version $Revision: 320042 $ $Date: 2004-09-06 18:57:13 -0400 (Mon, 06 Sep 2004) $
  * @author <a href="mailto:arkin@intalio.com">Assaf Arkin</a>
- * @see org.apache.xml.serialize.Serializer
+ * @see Serializer
  */
 public class XHTMLSerializer
     extends HTMLSerializer

@@ -39,18 +39,18 @@ public interface ValidationContext {
     public boolean useNamespaces();
 
     // entity
-    public boolean isEntityDeclared(String name);
-    public boolean isEntityUnparsed(String name);
+    public boolean isEntityDeclared (String name);
+    public boolean isEntityUnparsed (String name);
 
     // id
-    public boolean isIdDeclared(String name);
+    public boolean isIdDeclared (String name);
     public void    addId(String name);
 
     // idref
     public void addIdRef(String name);
 
     // get symbol from symbol table
-    public String getSymbol(String symbol);
+    public String getSymbol (String symbol);
 
     // qname
     public String getURI(String prefix);

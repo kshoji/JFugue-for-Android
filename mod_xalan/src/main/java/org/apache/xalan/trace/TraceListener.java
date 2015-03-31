@@ -23,8 +23,8 @@ package org.apache.xalan.trace;
  * Interface the XSL processor calls when it matches a source node, selects a set of source nodes,
  * or generates a result node.
  * If you want an object instance to be called when a trace event occurs, use the TransformerImpl setTraceListener method.
- * @see TracerEvent
- * @see TraceManager#addTraceListener
+ * @see org.apache.xalan.trace.TracerEvent
+ * @see org.apache.xalan.trace.TraceManager#addTraceListener
  * @xsl.usage advanced
  */
 public interface TraceListener extends java.util.EventListener

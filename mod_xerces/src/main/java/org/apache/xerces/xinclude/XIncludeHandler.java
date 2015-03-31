@@ -1491,7 +1491,7 @@ public class XIncludeHandler
                 reportFatalError("HrefFragmentIdentifierIllegal", new Object[] {href});
             }
         }
-        catch (MalformedURIException exc) {
+        catch (URI.MalformedURIException exc) {
             String newHref = escapeHref(href);
             if (href != newHref) {
                 href = newHref;
@@ -1501,7 +1501,7 @@ public class XIncludeHandler
                         reportFatalError("HrefFragmentIdentifierIllegal", new Object[] {href});
                     }
                 }
-                catch (MalformedURIException exc2) {
+                catch (URI.MalformedURIException exc2) {
                     reportFatalError("HrefSyntacticallyInvalid", new Object[] {href});
                 }
             }
@@ -1816,7 +1816,7 @@ public class XIncludeHandler
      *
      * @param element the element to check
      * @return true if the element is an &lt;include&gt; element
-     * @see #hasXIncludeNamespace(org.apache.xerces.xni.QName)
+     * @see #hasXIncludeNamespace(QName)
      */
     protected boolean isIncludeElement(QName element) {
         return element.localpart.equals(XINCLUDE_INCLUDE) && 
@@ -1829,7 +1829,7 @@ public class XIncludeHandler
      *
      * @param element the element to check
      * @return true if the element is an &lt;fallback; element
-     * @see #hasXIncludeNamespace(org.apache.xerces.xni.QName)
+     * @see #hasXIncludeNamespace(QName)
      */
     protected boolean isFallbackElement(QName element) {
         return element.localpart.equals(XINCLUDE_FALLBACK) &&

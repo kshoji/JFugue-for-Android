@@ -37,7 +37,7 @@ public interface XSImplementation {
      *   <code>null</code> to permit XML Schema documents of any recognized 
      *   version to be loaded by the XSLoader. 
      * @return  An XML Schema loader. 
-     * @exception org.apache.xerces.xs.XSException
+     * @exception XSException
      *   NOT_SUPPORTED_ERR: Raised if the implementation does not support one 
      *   of the specified versions.
      */

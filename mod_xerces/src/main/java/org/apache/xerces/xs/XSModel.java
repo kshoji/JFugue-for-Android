@@ -65,7 +65,7 @@ public interface XSModel {
      *   <code>objectType</code> and defined in the specified 
      *   <code>namespace</code> or an empty <code>XSNamedMap</code>. 
      */
-    public XSNamedMap getComponentsByNamespace(short objectType,
+    public XSNamedMap getComponentsByNamespace(short objectType, 
                                                String namespace);
 
     /**
@@ -82,7 +82,7 @@ public interface XSModel {
      * @return A top-level element declaration or <code>null</code> if such a 
      *   declaration does not exist. 
      */
-    public XSElementDeclaration getElementDeclaration(String name,
+    public XSElementDeclaration getElementDeclaration(String name, 
                                                       String namespace);
 
     /**
@@ -93,7 +93,7 @@ public interface XSModel {
      * @return A top-level attribute declaration or <code>null</code> if such 
      *   a declaration does not exist. 
      */
-    public XSAttributeDeclaration getAttributeDeclaration(String name,
+    public XSAttributeDeclaration getAttributeDeclaration(String name, 
                                                           String namespace);
 
     /**
@@ -105,7 +105,7 @@ public interface XSModel {
      * @return An <code>XSTypeDefinition</code> or <code>null</code> if such 
      *   a definition does not exist. 
      */
-    public XSTypeDefinition getTypeDefinition(String name,
+    public XSTypeDefinition getTypeDefinition(String name, 
                                               String namespace);
 
     /**
@@ -116,7 +116,7 @@ public interface XSModel {
      * @return A top-level attribute group definition or <code>null</code> if 
      *   such a definition does not exist. 
      */
-    public XSAttributeGroupDefinition getAttributeGroup(String name,
+    public XSAttributeGroupDefinition getAttributeGroup(String name, 
                                                         String namespace);
 
     /**
@@ -127,7 +127,7 @@ public interface XSModel {
      * @return A top-level model group definition or <code>null</code> if 
      *   such a definition does not exist. 
      */
-    public XSModelGroupDefinition getModelGroupDefinition(String name,
+    public XSModelGroupDefinition getModelGroupDefinition(String name, 
                                                           String namespace);
 
     /**
@@ -138,7 +138,7 @@ public interface XSModel {
      * @return A top-level notation declaration or <code>null</code> if such 
      *   a declaration does not exist. 
      */
-    public XSNotationDeclaration getNotationDeclaration(String name,
+    public XSNotationDeclaration getNotationDeclaration(String name, 
                                                         String namespace);
 
 }

@@ -629,7 +629,7 @@ public class XMLEntityManager
      *         This method will never return null.
      *
      * @throws java.io.IOException  Thrown on i/o error.
-     * @throws org.apache.xerces.xni.XNIException Thrown by entity resolver to signal an error.
+     * @throws XNIException Thrown by entity resolver to signal an error.
      */
     public XMLInputSource resolveEntity(XMLResourceIdentifier resourceIdentifier)
             throws IOException, XNIException {
@@ -693,7 +693,7 @@ public class XMLEntityManager
      *                   value.
      *
      * @throws java.io.IOException  Thrown on i/o error.
-     * @throws org.apache.xerces.xni.XNIException Thrown by entity handler to signal an error.
+     * @throws XNIException Thrown by entity handler to signal an error.
      */
     public void startEntity(String entityName, boolean literal)
         throws IOException, XNIException {
@@ -817,7 +817,7 @@ public class XMLEntityManager
      * @param xmlInputSource The input source of the document entity.
      *
      * @throws java.io.IOException  Thrown on i/o error.
-     * @throws org.apache.xerces.xni.XNIException Thrown by entity handler to signal an error.
+     * @throws XNIException Thrown by entity handler to signal an error.
      */
     public void startDocumentEntity(XMLInputSource xmlInputSource)
         throws IOException, XNIException {
@@ -831,7 +831,7 @@ public class XMLEntityManager
      * @param xmlInputSource The input source of the DTD entity.
      *
      * @throws java.io.IOException  Thrown on i/o error.
-     * @throws org.apache.xerces.xni.XNIException Thrown by entity handler to signal an error.
+     * @throws XNIException Thrown by entity handler to signal an error.
      */
     public void startDTDEntity(XMLInputSource xmlInputSource)
         throws IOException, XNIException {
@@ -861,7 +861,7 @@ public class XMLEntityManager
      * @param isExternal    whether this entity should be treated as an internal or external entity.
      *
      * @throws java.io.IOException  Thrown on i/o error.
-     * @throws org.apache.xerces.xni.XNIException Thrown by entity handler to signal an error.
+     * @throws XNIException Thrown by entity handler to signal an error.
      */
     public void startEntity(String name,
                             XMLInputSource xmlInputSource,
@@ -1841,7 +1841,7 @@ public class XMLEntityManager
     /**
      * Ends an entity.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by entity handler to signal an error.
+     * @throws XNIException Thrown by entity handler to signal an error.
      */
     void endEntity() throws XNIException {
 

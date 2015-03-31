@@ -1269,7 +1269,7 @@ public class StylesheetRoot extends StylesheetComposed
                                        qname.getLocalName(),
                                        // The type doesn't matter for our 
                                        // purposes. 
-                                       DTM.ELEMENT_NODE);
+                                       org.apache.xml.dtm.DTM.ELEMENT_NODE);
       }
       
       /**
@@ -1284,7 +1284,7 @@ public class StylesheetRoot extends StylesheetComposed
        * @param qname A qualified name of a param or variable, should be non-null.
        * @return the index where the variable was added.
        */
-      int addVariableName(final QName qname)
+      int addVariableName(final org.apache.xml.utils.QName qname)
       {
         int pos = m_variableNames.size();
         m_variableNames.addElement(qname);

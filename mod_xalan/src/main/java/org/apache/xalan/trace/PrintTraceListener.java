@@ -37,7 +37,7 @@ import org.w3c.dom.Node;
  * Implementation of the TraceListener interface that
  * prints each event to standard out as it occurs.
  *
- * @see TracerEvent
+ * @see org.apache.xalan.trace.TracerEvent
  * @xsl.usage advanced
  */
 public class PrintTraceListener implements TraceListenerEx3

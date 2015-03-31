@@ -79,7 +79,7 @@ public interface XSTypeDefinition extends XSObject {
      *   using only derivation methods from the <code>derivationMethod</code>
      *   . 
      */
-    public boolean derivedFromType(XSTypeDefinition ancestorType,
+    public boolean derivedFromType(XSTypeDefinition ancestorType, 
                                    short derivationMethod);
 
     /**
@@ -94,8 +94,8 @@ public interface XSTypeDefinition extends XSObject {
      *   using only derivation methods from the <code>derivationMethod</code>
      *   . 
      */
-    public boolean derivedFrom(String namespace,
-                               String name,
+    public boolean derivedFrom(String namespace, 
+                               String name, 
                                short derivationMethod);
 
 }

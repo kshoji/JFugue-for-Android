@@ -4,7 +4,7 @@ JFugue-for-Android
 [![Build Status](https://travis-ci.org/kshoji/JFugue-for-Android.svg?branch=master)](https://travis-ci.org/kshoji/JFugue-for-Android)
 
 Music library [JFugue](http://www.jfugue.org/) porting for Android<br />
-Based on the version 4.0.3.
+Based on the version 5.0.1.
 
 Usage
 =====
@@ -14,5 +14,6 @@ About the JFugue features, see [the original documents](http://www.jfugue.org/ex
 
 License
 =======
-- JFugue for Android's license is same as the original, [LGPL](https://www.gnu.org/licenses/lgpl.html).
+- JFugue 4.x for Android's license is same as the original, [LGPL](https://www.gnu.org/licenses/lgpl.html).
+- JFugue 5.x for Android's license is same as the original, [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).
 - Other modified referential library's license is also same as original. See each directories' license file for more information.

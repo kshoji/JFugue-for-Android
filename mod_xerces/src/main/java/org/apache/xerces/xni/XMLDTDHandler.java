@@ -66,7 +66,7 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startDTD(XMLLocator locator, Augmentations augmentations) 
         throws XNIException;
@@ -84,9 +84,9 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
-    public void startParameterEntity(String name,
+    public void startParameterEntity(String name, 
                                      XMLResourceIdentifier identifier,
                                      String encoding,
                                      Augmentations augmentations) throws XNIException;
@@ -103,7 +103,7 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void textDecl(String version, String encoding,
                          Augmentations augmentations) throws XNIException;
@@ -116,7 +116,7 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endParameterEntity(String name, Augmentations augmentations) 
         throws XNIException;
@@ -128,10 +128,10 @@ public interface XMLDTDHandler {
      * @param augmentations
      *                   Additional information that may include infoset
      *                   augmentations.
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
-    public void startExternalSubset(XMLResourceIdentifier identifier,
+    public void startExternalSubset(XMLResourceIdentifier identifier, 
                                     Augmentations augmentations) 
         throws XNIException;
 
@@ -141,7 +141,7 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endExternalSubset(Augmentations augmentations) 
         throws XNIException;
@@ -153,7 +153,7 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by application to signal an error.
+     * @throws XNIException Thrown by application to signal an error.
      */
     public void comment(XMLString text, Augmentations augmentations) 
         throws XNIException;
@@ -174,7 +174,7 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void processingInstruction(String target, XMLString data,
                                       Augmentations augmentations)
@@ -188,7 +188,7 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void elementDecl(String name, String contentModel,
                             Augmentations augmentations)
@@ -202,7 +202,7 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startAttlist(String elementName,
                              Augmentations augmentations) throws XNIException;
@@ -230,10 +230,10 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
-    public void attributeDecl(String elementName, String attributeName,
-                              String type, String[] enumeration,
+    public void attributeDecl(String elementName, String attributeName, 
+                              String type, String[] enumeration, 
                               String defaultType, XMLString defaultValue,
                               XMLString nonNormalizedDefaultValue, Augmentations augmentations)
         throws XNIException;
@@ -244,7 +244,7 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endAttlist(Augmentations augmentations) throws XNIException;
 
@@ -262,9 +262,9 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
-    public void internalEntityDecl(String name, XMLString text,
+    public void internalEntityDecl(String name, XMLString text, 
                                    XMLString nonNormalizedText,
                                    Augmentations augmentations) 
         throws XNIException;
@@ -280,9 +280,9 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
-    public void externalEntityDecl(String name,
+    public void externalEntityDecl(String name, 
                                    XMLResourceIdentifier identifier,
                                    Augmentations augmentations) 
         throws XNIException;
@@ -297,10 +297,10 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
-    public void unparsedEntityDecl(String name,
-                                   XMLResourceIdentifier identifier,
+    public void unparsedEntityDecl(String name, 
+                                   XMLResourceIdentifier identifier, 
                                    String notation, Augmentations augmentations) 
         throws XNIException;
 
@@ -313,7 +313,7 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void notationDecl(String name, XMLResourceIdentifier identifier,
                              Augmentations augmentations) throws XNIException;
@@ -326,7 +326,7 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #CONDITIONAL_INCLUDE
      * @see #CONDITIONAL_IGNORE
@@ -341,7 +341,7 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void ignoredCharacters(XMLString text, Augmentations augmentations) 
         throws XNIException;
@@ -352,7 +352,7 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endConditional(Augmentations augmentations) throws XNIException;
 
@@ -362,7 +362,7 @@ public interface XMLDTDHandler {
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endDTD(Augmentations augmentations) throws XNIException;
 

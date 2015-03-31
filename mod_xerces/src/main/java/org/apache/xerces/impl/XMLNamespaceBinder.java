@@ -355,7 +355,7 @@ public class XMLNamespaceBinder
      *                 parsed from a java.io.Reader).
      * @param augs     Additional information that may include infoset augmentations
      *                 
-     * @exception org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @exception XNIException Thrown by handler to signal an error.
      */
     public void startGeneralEntity(String name,
                                    XMLResourceIdentifier identifier,
@@ -381,7 +381,7 @@ public class XMLNamespaceBinder
      * @param encoding The IANA encoding name of the entity.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void textDecl(String version, String encoding, Augmentations augs)
         throws XNIException {
@@ -410,7 +410,7 @@ public class XMLNamespaceBinder
      *                 if that information is important.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
 	public void startDocument(XMLLocator locator, String encoding,
                                 NamespaceContext namespaceContext, Augmentations augs)
@@ -433,7 +433,7 @@ public class XMLNamespaceBinder
      * @param standalone The standalone value, or null if not specified.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void xmlDecl(String version, String encoding, String standalone, Augmentations augs)
         throws XNIException {
@@ -452,7 +452,7 @@ public class XMLNamespaceBinder
      *                    otherwise.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void doctypeDecl(String rootElement,
                             String publicId, String systemId, Augmentations augs)
@@ -468,7 +468,7 @@ public class XMLNamespaceBinder
      * @param text The text in the comment.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by application to signal an error.
+     * @throws XNIException Thrown by application to signal an error.
      */
     public void comment(XMLString text, Augmentations augs) throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
@@ -491,7 +491,7 @@ public class XMLNamespaceBinder
      * @param data   The data or null if none specified.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void processingInstruction(String target, XMLString data, Augmentations augs)
         throws XNIException {
@@ -514,7 +514,7 @@ public class XMLNamespaceBinder
      * @param attributes The element attributes.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startElement(QName element, XMLAttributes attributes, Augmentations augs)
         throws XNIException {
@@ -536,7 +536,7 @@ public class XMLNamespaceBinder
      * @param attributes The element attributes.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void emptyElement(QName element, XMLAttributes attributes, Augmentations augs)
         throws XNIException {
@@ -557,7 +557,7 @@ public class XMLNamespaceBinder
      * @param text The content.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void characters(XMLString text, Augmentations augs) throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
@@ -576,7 +576,7 @@ public class XMLNamespaceBinder
      * @param text The ignorable whitespace.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void ignorableWhitespace(XMLString text, Augmentations augs) throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
@@ -590,7 +590,7 @@ public class XMLNamespaceBinder
      * @param element The name of the element.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endElement(QName element, Augmentations augs) throws XNIException {
 
@@ -607,7 +607,7 @@ public class XMLNamespaceBinder
      * The start of a CDATA section.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startCDATA(Augmentations augs) throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
@@ -619,7 +619,7 @@ public class XMLNamespaceBinder
      * The end of a CDATA section.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endCDATA(Augmentations augs) throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
@@ -631,7 +631,7 @@ public class XMLNamespaceBinder
      * The end of the document.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endDocument(Augmentations augs) throws XNIException {
         if (fDocumentHandler != null && !fOnlyPassPrefixMappingEvents) {
@@ -648,7 +648,7 @@ public class XMLNamespaceBinder
      * @param name   The name of the entity.
      * @param augs   Additional information that may include infoset augmentations
      *               
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void endGeneralEntity(String name, Augmentations augs) throws XNIException {

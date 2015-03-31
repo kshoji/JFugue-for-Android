@@ -38,7 +38,7 @@ import org.apache.xalan.xsltc.compiler.Constants;
 public final class ObjectType extends Type {
     
     private String _javaClassName = "java.lang.Object";
-    private Class  _clazz = java.lang.Object.class;
+    private Class  _clazz = Object.class;
 
     /**
      * Used to represent a Java Class type such is required to support 
@@ -67,7 +67,7 @@ public final class ObjectType extends Type {
      * needed in CastExpr to ensure the mapping table is used correctly.
      */
     public int hashCode() {
-        return java.lang.Object.class.hashCode();
+        return Object.class.hashCode();
     }
     
     public boolean equals(Object obj) {
@@ -105,7 +105,7 @@ public final class ObjectType extends Type {
      * This translation is needed when calling external functions
      * that return void.
      *
-     * @see	Type#translateTo
+     * @see	org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    Type type) {
@@ -123,7 +123,7 @@ public final class ObjectType extends Type {
      * Expects an integer on the stack and pushes its string value by calling
      * <code>Integer.toString(int i)</code>.
      *
-     * @see	Type#translateTo
+     * @see	org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    StringType type) {

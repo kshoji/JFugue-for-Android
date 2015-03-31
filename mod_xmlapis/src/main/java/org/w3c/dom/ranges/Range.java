@@ -81,7 +81,7 @@ public interface Range {
      * @param refNode The <code>refNode</code> value. This parameter must be 
      *   different from <code>null</code>.
      * @param offset The <code>startOffset</code> value. 
-     * @exception org.w3c.dom.ranges.RangeException
+     * @exception RangeException
      *   INVALID_NODE_TYPE_ERR: Raised if <code>refNode</code> or an ancestor 
      *   of <code>refNode</code> is an Entity, Notation, or DocumentType 
      *   node.
@@ -105,7 +105,7 @@ public interface Range {
      * @param refNode The <code>refNode</code> value. This parameter must be 
      *   different from <code>null</code>.
      * @param offset The <code>endOffset</code> value. 
-     * @exception org.w3c.dom.ranges.RangeException
+     * @exception RangeException
      *   INVALID_NODE_TYPE_ERR: Raised if <code>refNode</code> or an ancestor 
      *   of <code>refNode</code> is an Entity, Notation, or DocumentType 
      *   node.
@@ -127,7 +127,7 @@ public interface Range {
     /**
      * Sets the start position to be before a node
      * @param refNode Range starts before <code>refNode</code> 
-     * @exception org.w3c.dom.ranges.RangeException
+     * @exception RangeException
      *   INVALID_NODE_TYPE_ERR: Raised if the root container of 
      *   <code>refNode</code> is not an Attr, Document, or DocumentFragment 
      *   node or if <code>refNode</code> is a Document, DocumentFragment, 
@@ -144,7 +144,7 @@ public interface Range {
     /**
      * Sets the start position to be after a node
      * @param refNode Range starts after <code>refNode</code> 
-     * @exception org.w3c.dom.ranges.RangeException
+     * @exception RangeException
      *   INVALID_NODE_TYPE_ERR: Raised if the root container of 
      *   <code>refNode</code> is not an Attr, Document, or DocumentFragment 
      *   node or if <code>refNode</code> is a Document, DocumentFragment, 
@@ -161,7 +161,7 @@ public interface Range {
     /**
      * Sets the end position to be before a node. 
      * @param refNode Range ends before <code>refNode</code> 
-     * @exception org.w3c.dom.ranges.RangeException
+     * @exception RangeException
      *   INVALID_NODE_TYPE_ERR: Raised if the root container of 
      *   <code>refNode</code> is not an Attr, Document, or DocumentFragment 
      *   node or if <code>refNode</code> is a Document, DocumentFragment, 
@@ -178,7 +178,7 @@ public interface Range {
     /**
      * Sets the end of a Range to be after a node 
      * @param refNode Range ends after <code>refNode</code>. 
-     * @exception org.w3c.dom.ranges.RangeException
+     * @exception RangeException
      *   INVALID_NODE_TYPE_ERR: Raised if the root container of 
      *   <code>refNode</code> is not an Attr, Document or DocumentFragment 
      *   node or if <code>refNode</code> is a Document, DocumentFragment, 
@@ -206,7 +206,7 @@ public interface Range {
     /**
      * Select a node and its contents 
      * @param refNode The node to select. 
-     * @exception org.w3c.dom.ranges.RangeException
+     * @exception RangeException
      *   INVALID_NODE_TYPE_ERR: Raised if an ancestor of <code>refNode</code> 
      *   is an Entity, Notation or DocumentType node or if 
      *   <code>refNode</code> is a Document, DocumentFragment, Attr, Entity, 
@@ -223,7 +223,7 @@ public interface Range {
     /**
      * Select the contents within a node 
      * @param refNode Node to select from 
-     * @exception org.w3c.dom.ranges.RangeException
+     * @exception RangeException
      *   INVALID_NODE_TYPE_ERR: Raised if <code>refNode</code> or an ancestor 
      *   of <code>refNode</code> is an Entity, Notation or DocumentType node.
      * @exception org.w3c.dom.DOMException
@@ -345,7 +345,7 @@ public interface Range {
      *   the container.
      *   <br>INVALID_STATE_ERR: Raised if <code>detach()</code> has already 
      *   been invoked on this object.
-     * @exception org.w3c.dom.ranges.RangeException
+     * @exception RangeException
      *   INVALID_NODE_TYPE_ERR: Raised if <code>newNode</code> is an Attr, 
      *   Entity, Notation, or Document node.
      */
@@ -369,7 +369,7 @@ public interface Range {
      *   node of a type not allowed by the type of <code>node</code>.
      *   <br>INVALID_STATE_ERR: Raised if <code>detach()</code> has already 
      *   been invoked on this object.
-     * @exception org.w3c.dom.ranges.RangeException
+     * @exception RangeException
      *   BAD_BOUNDARYPOINTS_ERR: Raised if the Range partially selects a 
      *   non-text node.
      *   <br>INVALID_NODE_TYPE_ERR: Raised if <code> node</code> is an Attr, 

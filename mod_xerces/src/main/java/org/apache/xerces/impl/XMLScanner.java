@@ -1192,7 +1192,7 @@ public abstract class XMLScanner
      *                 parsed from a java.io.Reader).
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startEntity(String name, 
                             XMLResourceIdentifier identifier,
@@ -1214,7 +1214,7 @@ public abstract class XMLScanner
      * @param name The name of the entity.
      * @param augs Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endEntity(String name, Augmentations augs) throws XNIException {
 

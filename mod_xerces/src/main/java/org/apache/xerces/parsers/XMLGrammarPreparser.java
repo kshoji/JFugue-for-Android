@@ -178,7 +178,7 @@ public class XMLGrammarPreparser {
      * <strong>If a URI is included in the systemId field, the parser will not expand this URI or make it
      * available to the EntityResolver</strong>
      * @return The newly created <code>Grammar</code>.
-     * @exception org.apache.xerces.xni.XNIException thrown on an error in grammar
+     * @exception XNIException thrown on an error in grammar
      * construction
      * @exception java.io.IOException thrown if an error is encountered
      * in reading the file
@@ -209,7 +209,7 @@ public class XMLGrammarPreparser {
      *
      * @param locale The locale object to use for localization of messages.
      *
-     * @exception org.apache.xerces.xni.XNIException Thrown if the parser does not support the
+     * @exception XNIException Thrown if the parser does not support the
      *                         specified locale.
      */
     public void setLocale(Locale locale) {

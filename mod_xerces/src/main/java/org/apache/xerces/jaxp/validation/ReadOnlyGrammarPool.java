@@ -21,7 +21,7 @@ import org.apache.xerces.xni.grammars.XMLGrammarDescription;
 import org.apache.xerces.xni.grammars.XMLGrammarPool;
 
 /**
- * <p>Filter {@link org.apache.xerces.xni.grammars.XMLGrammarPool} that exposes a
+ * <p>Filter {@link XMLGrammarPool} that exposes a 
  * read-only view of the underlying pool.</p>
  * 
  * @author Kohsuke Kawaguchi (kohsuke.kawaguchi@sun.com)

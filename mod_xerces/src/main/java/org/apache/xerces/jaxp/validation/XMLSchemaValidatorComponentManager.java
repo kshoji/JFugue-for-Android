@@ -245,7 +245,7 @@ final class XMLSchemaValidatorComponentManager extends ParserConfigurationSettin
      * @param featureId The feature identifier.
      * @return true if the feature is supported
      * 
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown for configuration error.
+     * @throws XMLConfigurationException Thrown for configuration error.
      *                                   In general, components should
      *                                   only throw this exception if
      *                                   it is <strong>really</strong>
@@ -274,7 +274,7 @@ final class XMLSchemaValidatorComponentManager extends ParserConfigurationSettin
      * @param featureId The unique identifier (URI) of the feature.
      * @param state The requested state of the feature (true or false).
      *
-     * @exception org.apache.xerces.xni.parser.XMLConfigurationException If the requested feature is not known.
+     * @exception XMLConfigurationException If the requested feature is not known.
      */
     public void setFeature(String featureId, boolean value) throws XMLConfigurationException {
         if (PARSER_SETTINGS.equals(featureId)) {
@@ -307,7 +307,7 @@ final class XMLSchemaValidatorComponentManager extends ParserConfigurationSettin
      * @param propertyId The property identifier.
      * @return the value of the property
      * 
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown for configuration error.
+     * @throws XMLConfigurationException Thrown for configuration error.
      *                                   In general, components should
      *                                   only throw this exception if
      *                                   it is <strong>really</strong>
@@ -331,7 +331,7 @@ final class XMLSchemaValidatorComponentManager extends ParserConfigurationSettin
      * @param propertyId The unique identifier (URI) of the property.
      * @param value The requested state of the property.
      * 
-     * @exception org.apache.xerces.xni.parser.XMLConfigurationException If the requested property is not known.
+     * @exception XMLConfigurationException If the requested property is not known.
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
         if ( ENTITY_MANAGER.equals(propertyId) || ERROR_REPORTER.equals(propertyId) ||

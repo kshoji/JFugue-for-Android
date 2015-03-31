@@ -15,7 +15,6 @@
  */
 package org.apache.html.dom;
 
-import org.w3c.dom.Document;
 import org.w3c.dom.html.HTMLIFrameElement;
 
 /**
@@ -150,7 +149,7 @@ public class HTMLIFrameElementImpl
         setAttribute( "width", width );
     }
 
-
+    
     /**
      * Constructor requires owner document.
      * 

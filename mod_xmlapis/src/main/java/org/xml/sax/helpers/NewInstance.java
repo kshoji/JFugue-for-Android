@@ -3,9 +3,12 @@
 // Written by Edwin Goei, edwingo@apache.org
 // and by David Brownell, dbrownell@users.sourceforge.net
 // NO WARRANTY!  This class is in the Public Domain.
-// $Id: NewInstance.java 226252 2005-06-22 02:13:56Z mrglavas $
+// $Id: NewInstance.java,v 1.2 2002/08/26 23:55:45 neilg Exp $
 
 package org.xml.sax.helpers;
+
+import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Create a new instance of a class by name.
@@ -23,17 +26,14 @@ package org.xml.sax.helpers;
  * Class.forName(String).  It also takes into account JDK 1.2+'s
  * AccessController mechanism for performing its actions.  </p>
  *
- * <p>This code is designed to compile and run on JDK version 1.1 and later
- * including versions of Java 2.</p>
+ * <p>This code is designed to run on JDK version 1.1 and later and compile
+ * on versions of Java 2 and later.</p>
  *
- * <p>This is <strong>not</strong> the NewInstance accompanying SAX 2.0.2; it
- * represents many fixes to that code.
- * 
- * @author Edwin Goei, David Brownell
- * @version 2.0.1 (sax2r2)
+ * @author Edwin Goei, David Brownell, Neil Graham
+ * @version $Id: NewInstance.java,v 1.2 2002/08/26 23:55:45 neilg Exp $
  */
 class NewInstance {
-    
+
     // constants
 
     // governs whether, if we fail in finding a class even
@@ -46,12 +46,13 @@ class NewInstance {
      *
      * Package private so this code is not exposed at the API level.
      */
-    static Object newInstance (ClassLoader classLoader, String className)
+    static Object newInstance (ClassLoader cl, String className)
         throws ClassNotFoundException, IllegalAccessException,
             InstantiationException
     {
-        Class driverClass;
-        if (classLoader == null) {
+
+        Class providerClass;
+        if (cl == null) {
             // XXX Use the bootstrap ClassLoader.  There is no way to
             // load a class using the bootstrap ClassLoader that works
             // in both JDK 1.1 and Java 2.  However, this should still
@@ -61,26 +62,21 @@ class NewInstance {
             //
             // Thus Class.forName(String) will use the current
             // ClassLoader which will be the bootstrap ClassLoader.
-            driverClass = Class.forName(className);
+            providerClass = Class.forName(className);
         } else {
             try {
-                driverClass = classLoader.loadClass(className);
+                providerClass = cl.loadClass(className);
             } catch (ClassNotFoundException x) {
                 if (DO_FALLBACK) {
                     // Fall back to current classloader
-                    classLoader = NewInstance.class.getClassLoader();
-                    if (classLoader != null) {
-                        driverClass = classLoader.loadClass(className);
-                    }
-                    else {
-                        driverClass = Class.forName(className);
-                    }
+                    cl = NewInstance.class.getClassLoader();
+                    providerClass = cl.loadClass(className);
                 } else {
                     throw x;
                 }
             }
         }
-        Object instance = driverClass.newInstance();
+        Object instance = providerClass.newInstance();
         return instance;
     }
 
@@ -90,6 +86,7 @@ class NewInstance {
      */           
     static ClassLoader getClassLoader ()
     {
+
         SecuritySupport ss = SecuritySupport.getInstance();
 
         // Figure out which ClassLoader to use for loading the provider
@@ -101,5 +98,6 @@ class NewInstance {
             cl = NewInstance.class.getClassLoader();
         }
         return cl;
+
     }
 }

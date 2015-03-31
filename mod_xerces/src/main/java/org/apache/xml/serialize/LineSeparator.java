@@ -21,7 +21,7 @@ package org.apache.xml.serialize;
 /**
  * @version $Revision: 319808 $ $Date: 2004-02-24 18:34:05 -0500 (Tue, 24 Feb 2004) $
  * @author <a href="mailto:arkin@intalio..com">Assaf Arkin</a>
- * @see org.apache.xml.serialize.OutputFormat
+ * @see OutputFormat
  */
 public final class LineSeparator
 {

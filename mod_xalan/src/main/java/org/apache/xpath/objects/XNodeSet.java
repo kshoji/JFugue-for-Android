@@ -211,7 +211,7 @@ public class XNodeSet extends NodeSequence
     }
     else
     {
-      return XString.EMPTYSTRING;
+      return org.apache.xpath.objects.XString.EMPTYSTRING;
     }
   }
   

@@ -305,7 +305,7 @@ public abstract class BasicParserConfiguration
      * @param inputSource The input source for the top-level of the
      *               XML document.
      *
-     * @exception org.apache.xerces.xni.XNIException Any XNI exception, possibly wrapping
+     * @exception XNIException Any XNI exception, possibly wrapping 
      *                         another exception.
      * @exception java.io.IOException  An IO exception from the parser, possibly
      *                         from a byte stream or character stream
@@ -475,7 +475,7 @@ public abstract class BasicParserConfiguration
      *
      * @param locale The locale object to use for localization of messages.
      *
-     * @exception org.apache.xerces.xni.XNIException Thrown if the parser does not support the
+     * @exception XNIException Thrown if the parser does not support the
      *                         specified locale.
      */
     public void setLocale(Locale locale) throws XNIException {
@@ -553,7 +553,7 @@ public abstract class BasicParserConfiguration
      *
      * @param featureId The unique identifier (URI) of the feature.
      *
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown for configuration error.
+     * @throws XMLConfigurationException Thrown for configuration error.
      *                                   In general, components should
      *                                   only throw this exception if
      *                                   it is <strong>really</strong>

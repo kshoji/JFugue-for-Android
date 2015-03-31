@@ -35,7 +35,7 @@ public class KeyManager
 
   /**
    * Table of tables of element keys.
-   * @see KeyTable
+   * @see org.apache.xalan.transformer.KeyTable
    */
   private transient Vector m_key_tables = null;
 

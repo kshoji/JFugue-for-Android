@@ -1793,7 +1793,7 @@ public class XPathParser
    * Basis    ::=    AxisName '::' NodeTest
    * | AbbreviatedBasis
    *
-   * @return FROM_XXX axes type, found in {@link Keywords}.
+   * @return FROM_XXX axes type, found in {@link org.apache.xpath.compiler.Keywords}.
    *
    * @throws javax.xml.transform.TransformerException
    */
@@ -1821,7 +1821,7 @@ public class XPathParser
    * | NodeType '(' ')'
    * | 'processing-instruction' '(' Literal ')'
    *
-   * @param axesType FROM_XXX axes type, found in {@link Keywords}.
+   * @param axesType FROM_XXX axes type, found in {@link org.apache.xpath.compiler.Keywords}.
    *
    * @throws javax.xml.transform.TransformerException
    */

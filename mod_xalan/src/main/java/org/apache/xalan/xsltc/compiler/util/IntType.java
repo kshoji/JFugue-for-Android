@@ -69,7 +69,7 @@ public final class IntType extends NumberType {
     }
 
     /**
-     * @see	Type#distanceTo
+     * @see	org.apache.xalan.xsltc.compiler.util.Type#distanceTo
      */
     public int distanceTo(Type type) {
 	if (type == this) {
@@ -85,7 +85,7 @@ public final class IntType extends NumberType {
     /**
      * Translates an integer into an object of internal type <code>type</code>.
      *
-     * @see	Type#translateTo
+     * @see	org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    final Type type) {
@@ -111,7 +111,7 @@ public final class IntType extends NumberType {
     /**
      * Expects an integer on the stack and pushes a real.
      *
-     * @see	Type#translateTo
+     * @see	org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    RealType type) {
@@ -122,7 +122,7 @@ public final class IntType extends NumberType {
      * Expects an integer on the stack and pushes its string value by calling
      * <code>Integer.toString(int i)</code>.
      *
-     * @see	Type#translateTo
+     * @see	org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    StringType type) {
@@ -137,7 +137,7 @@ public final class IntType extends NumberType {
      * Expects an integer on the stack and pushes a 0 if its value is 0 and
      * a 1 otherwise.
      *
-     * @see	Type#translateTo
+     * @see	org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    BooleanType type) {
@@ -154,7 +154,7 @@ public final class IntType extends NumberType {
      * boolean. It does not push a 0 or a 1 but instead returns branchhandle 
      * list to be appended to the false list.
      *
-     * @see	Type#translateToDesynthesized
+     * @see	org.apache.xalan.xsltc.compiler.util.Type#translateToDesynthesized
      */
     public FlowList translateToDesynthesized(ClassGenerator classGen, 
 					     MethodGenerator methodGen, 
@@ -168,7 +168,7 @@ public final class IntType extends NumberType {
      * Boxed integers are represented by an instance of
      * <code>java.lang.Integer</code>.
      *
-     * @see	Type#translateTo
+     * @see	org.apache.xalan.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, 
 			    ReferenceType type) {

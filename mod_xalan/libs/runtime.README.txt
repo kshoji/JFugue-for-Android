@@ -1,0 +1,6 @@
+Runtime Jar - Component of JavaCup: LALR Parser Generator for Java(TM) 
+
+Sourced From:	http://www.cs.princeton.edu/~appel/modern/java/CUP
+Used By: 	XSLTC component of xml-xalan/java
+
+See licenses/runtime.LICENSE.txt and web site for further information.

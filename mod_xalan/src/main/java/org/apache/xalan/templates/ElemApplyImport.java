@@ -38,7 +38,7 @@ public class ElemApplyImport extends ElemTemplateElement
 
   /**
    * Get an int constant identifying the type of element.
-   * @see Constants
+   * @see org.apache.xalan.templates.Constants
    *
    * @return Token ID for xsl:apply-imports element types
    */

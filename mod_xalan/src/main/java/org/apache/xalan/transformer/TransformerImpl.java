@@ -1138,11 +1138,11 @@ public class TransformerImpl extends Transformer
             
         String encoding = format.getProperty(OutputKeys.ENCODING); 
         String method = format.getProperty(OutputKeys.METHOD);
-        if (Method.HTML.equals(method))
+        if (org.apache.xml.serializer.Method.HTML.equals(method))
         {
             xoh = new ToHTMLSAXHandler(handler, lexHandler, encoding);
         }
-        else if (Method.TEXT.equals(method))
+        else if (org.apache.xml.serializer.Method.TEXT.equals(method))
         {
             xoh = new ToTextSAXHandler(handler, lexHandler, encoding);
         } 
@@ -2076,7 +2076,7 @@ public class TransformerImpl extends Transformer
         // if we didn't get one from the pool, go make a new one
 
         
-        Serializer serializer = SerializerFactory.getSerializer(
+        Serializer serializer = org.apache.xml.serializer.SerializerFactory.getSerializer(
             m_textformat.getProperties());
         m_serializationHandler = (SerializationHandler) serializer;
       } 

@@ -33,7 +33,7 @@ import org.xml.sax.SAXParseException;
 final class Util {
     
     /**
-     * Creates a proper {@link org.apache.xerces.xni.parser.XMLInputSource} from a {@link javax.xml.transform.stream.StreamSource}.
+     * Creates a proper {@link XMLInputSource} from a {@link javax.xml.transform.stream.StreamSource}.
      *
      * @return always return non-null valid object.
      */

@@ -1,7 +1,6 @@
 // DeclHandler.java - Optional handler for DTD declaration events.
-// http://www.saxproject.org
 // Public Domain: no warranty.
-// $Id: DeclHandler.java 226184 2005-04-08 10:53:24Z neeraj $
+// $Id: DeclHandler.java,v 1.3 2000/10/04 14:40:03 david Exp $
 
 package org.xml.sax.ext;
 
@@ -14,14 +13,12 @@ import org.xml.sax.SAXException;
  * <blockquote>
  * <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em>
- * See <a href='http://www.saxproject.org'>http://www.saxproject.org</a>
- * for further information.
  * </blockquote>
  *
- * <p>This is an optional extension handler for SAX2 to provide more
- * complete information about DTD declarations in an XML document.
- * XML readers are not required to recognize this handler, and it
- * is not part of core-only SAX2 distributions.</p>
+ * <p>This is an optional extension handler for SAX2 to provide
+ * information about DTD declarations in an XML document.  XML
+ * readers are not required to support this handler, and this
+ * handler is not included in the core SAX2 distribution.</p>
  *
  * <p>Note that data-related DTD declarations (unparsed entities and
  * notations) are already reported through the {@link
@@ -34,16 +31,18 @@ import org.xml.sax.SAXException;
  *
  * <p>To set the DeclHandler for an XML reader, use the
  * {@link org.xml.sax.XMLReader#setProperty setProperty} method
- * with the property name
- * <code>http://xml.org/sax/properties/declaration-handler</code>
- * and an object implementing this interface (or null) as the value.
- * If the reader does not report declaration events, it will throw a
+ * with the propertyId "http://xml.org/sax/properties/declaration-handler".
+ * If the reader does not support declaration events, it will throw a
  * {@link org.xml.sax.SAXNotRecognizedException SAXNotRecognizedException}
+ * or a
+ * {@link org.xml.sax.SAXNotSupportedException SAXNotSupportedException}
  * when you attempt to register the handler.</p>
  *
- * @since SAX 2.0 (extensions 1.0)
- * @author David Megginson
- * @version 2.0.1 (sax2r2)
+ * @since 1.0
+ * @author David Megginson, 
+ *         <a href="mailto:sax@megginson.com">sax@megginson.com</a>
+ * @version 1.0
+ * @see org.xml.sax.XMLReader
  */
 public interface DeclHandler
 {
@@ -79,14 +78,13 @@ public interface DeclHandler
      * "NOTATION" followed by a space followed by a parenthesized
      * token group with all whitespace removed.</p>
      *
-     * <p>The value will be the value as reported to applications,
-     * appropriately normalized and with entity and character
-     * references expanded.  </p>
+     * <p>Any parameter entities in the attribute value will be
+     * expanded, but general entities will not.</p>
      *
      * @param eName The name of the associated element.
      * @param aName The name of the attribute.
      * @param type A string representing the attribute type.
-     * @param mode A string representing the attribute defaulting mode
+     * @param valueDefault A string representing the attribute default
      *        ("#IMPLIED", "#REQUIRED", or "#FIXED") or null if
      *        none of these applies.
      * @param value A string representing the attribute's default value,
@@ -96,7 +94,7 @@ public interface DeclHandler
     public abstract void attributeDecl(String eName,
                                        String aName,
                                        String type,
-                                       String mode,
+                                       String valueDefault,
                                        String value)
 	throws SAXException;
 
@@ -125,14 +123,11 @@ public interface DeclHandler
      * <p>Only the effective (first) declaration for each entity
      * will be reported.</p>
      *
-     * <p>If the system identifier is a URL, the parser must resolve it
-     * fully before passing it to the application.</p>
-     *
      * @param name The name of the entity.  If it is a parameter
      *        entity, the name will begin with '%'.
-     * @param publicId The entity's public identifier, or null if none
-     *        was given.
-     * @param systemId The entity's system identifier.
+     * @param publicId The declared public identifier of the entity, or
+     *        null if none was declared.
+     * @param systemId The declared system identifier of the entity.
      * @exception org.xml.sax.SAXException The application may raise an exception.
      * @see #internalEntityDecl
      * @see org.xml.sax.DTDHandler#unparsedEntityDecl

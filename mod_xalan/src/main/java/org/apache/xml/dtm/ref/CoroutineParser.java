@@ -112,7 +112,7 @@ public interface CoroutineParser {
    * for further parsing. Boolean.FALSE if parsing ran to completion.
    * Exception if the parser objected for some reason.
    * */
-  public Object doMore(boolean parsemore, int appCoroutine);
+  public Object doMore (boolean parsemore, int appCoroutine);
 
   /** doTerminate() is a simple API which tells the coroutine
    * parser to terminate itself.  This is intended to be called from
@@ -133,6 +133,6 @@ public interface CoroutineParser {
    * in a non-default constructor, or by using using context ClassLoader
    * and newInstance and then calling init()
    */
-  public void init(CoroutineManager co, int appCoroutineID, XMLReader parser);
+  public void init( CoroutineManager co, int appCoroutineID, XMLReader parser );
 
 } // class CoroutineParser

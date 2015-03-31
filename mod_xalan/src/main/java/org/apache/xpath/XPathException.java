@@ -18,9 +18,9 @@
  */
 package org.apache.xpath;
 
-import javax.xml.transform.TransformerException;
-
 import org.w3c.dom.Node;
+
+import javax.xml.transform.TransformerException;
 
 /**
  * This class implements an exception object that all
@@ -265,7 +265,7 @@ public class XPathException extends TransformerException
     
     boolean isJdk14OrHigher = false;
     try {
-        Throwable.class.getMethod("getCause",(Class<?>)null);
+        Throwable.class.getMethod("getCause");
         isJdk14OrHigher = true;
     } catch (NoSuchMethodException nsme) {
         // do nothing

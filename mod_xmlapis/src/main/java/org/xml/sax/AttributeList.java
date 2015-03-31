@@ -1,7 +1,6 @@
 // SAX Attribute List Interface.
-// http://www.saxproject.org
 // No warranty; no copyright -- use this as you will.
-// $Id: AttributeList.java 226184 2005-04-08 10:53:24Z neeraj $
+// $Id: AttributeList.java,v 1.4 2000/05/05 17:44:56 david Exp $
 
 package org.xml.sax;
 
@@ -11,8 +10,6 @@ package org.xml.sax;
  * <blockquote>
  * <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em>
- * See <a href='http://www.saxproject.org'>http://www.saxproject.org</a>
- * for further information.
  * </blockquote>
  *
  * <p>This is the original SAX1 interface for reporting an element's
@@ -64,8 +61,9 @@ package org.xml.sax;
  *             {@link Attributes Attributes}
  *             interface, which includes Namespace support.
  * @since SAX 1.0
- * @author David Megginson
- * @version 2.0.1 (sax2r2)
+ * @author David Megginson, 
+ *         <a href="mailto:sax@megginson.com">sax@megginson.com</a>
+ * @version 2.0
  * @see DocumentHandler#startElement startElement
  * @see org.xml.sax.helpers.AttributeListImpl AttributeListImpl
  */
@@ -181,7 +179,7 @@ public interface AttributeList {
      * <p>If the attribute name has a namespace prefix in the document,
      * the application must include the prefix here.</p>
      *
-     * @param name the name of the attribute to return
+     * @param i The index of the attribute in the list.
      * @return The attribute value as a string, or null if
      *         no such attribute exists.
      * @see #getValue(int)

@@ -477,7 +477,7 @@ public class XMLDTDScannerImpl
      *                 parsed from a java.io.Reader).
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startEntity(String name, 
                             XMLResourceIdentifier identifier,
@@ -519,7 +519,7 @@ public class XMLDTDScannerImpl
      * @param name The name of the entity.
      * @param augs Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endEntity(String name, Augmentations augs) 
         throws XNIException {
@@ -655,7 +655,7 @@ public class XMLDTDScannerImpl
      * @return True if a TextDecl was scanned.
      *
      * @throws java.io.IOException  Thrown on i/o error.
-     * @throws org.apache.xerces.xni.XNIException Thrown on parse error.
+     * @throws XNIException Thrown on parse error.
      *
      */
     protected final boolean scanTextDecl() 
@@ -1894,7 +1894,7 @@ public class XMLDTDScannerImpl
      * @return True if there is more to scan.
      *
      * @throws java.io.IOException  Thrown on i/o error.
-     * @throws org.apache.xerces.xni.XNIException Thrown on parse error.
+     * @throws XNIException Thrown on parse error.
      *
      */
     protected final boolean scanDecls(boolean complete)

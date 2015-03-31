@@ -987,7 +987,7 @@ public class XPathContext extends DTMManager // implements ExpressionContext
    * @xsl.usage internal
    */
 
-  public SubContextList getCurrentNodeList()
+  public org.apache.xpath.axes.SubContextList getCurrentNodeList()
   {
     return m_axesIteratorStack.isEmpty()
            ? null : (SubContextList) m_axesIteratorStack.elementAt(0);

@@ -83,7 +83,7 @@ public interface PSVIProvider {
      * @param localname The local name of an attribute. 
      * @return The post schema validation properties of the attribute.
      */
-    public AttributePSVI getAttributePSVIByName(String uri,
+    public AttributePSVI getAttributePSVIByName(String uri, 
                                                 String localname);
 
 }

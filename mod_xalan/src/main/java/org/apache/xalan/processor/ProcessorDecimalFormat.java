@@ -49,8 +49,8 @@ class ProcessorDecimalFormat extends XSLTElementProcessor
    * @param attributes The attributes attached to the element.  If
    *        there are no attributes, it shall be an empty
    *        Attributes object.
-   * @see StylesheetHandler#startElement
-   * @see StylesheetHandler#endElement
+   * @see org.apache.xalan.processor.StylesheetHandler#startElement
+   * @see org.apache.xalan.processor.StylesheetHandler#endElement
    * @see org.xml.sax.ContentHandler#startElement
    * @see org.xml.sax.ContentHandler#endElement
    * @see org.xml.sax.Attributes

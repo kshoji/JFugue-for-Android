@@ -2,7 +2,9 @@
 // http://www.saxproject.org
 // Written by David Megginson
 // NO WARRANTY!  This class is in the public domain.
-// $Id: AttributesImpl.java 226184 2005-04-08 10:53:24Z neeraj $
+
+// $Id: AttributesImpl.java,v 1.3 2002/02/27 16:04:18 dims Exp $
+
 
 package org.xml.sax.helpers;
 

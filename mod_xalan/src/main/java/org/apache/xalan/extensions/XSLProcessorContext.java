@@ -99,7 +99,7 @@ public class XSLProcessorContext
   }
 
   /**  The root of the source tree being executed.        */
-  private DTM sourceTree;
+  private org.apache.xml.dtm.DTM sourceTree;
 
   /**
    * Get the root of the source tree being executed.

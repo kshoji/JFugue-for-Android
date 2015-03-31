@@ -22,7 +22,7 @@ import org.xml.sax.AttributeList;
 import org.xml.sax.ext.Attributes2;
 
 /**
- * Wraps {@link org.apache.xerces.xni.XMLAttributes} and makes it look like
+ * Wraps {@link XMLAttributes} and makes it look like
  * {@link org.xml.sax.AttributeList} and {@link Attributes}.
  *
  * @author Arnaud Le Hors, IBM

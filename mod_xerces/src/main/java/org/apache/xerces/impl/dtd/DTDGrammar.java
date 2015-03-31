@@ -368,7 +368,7 @@ public class DTDGrammar
      *
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startDTD(XMLLocator locator, Augmentations augs) throws XNIException {
         //Initialize stack
@@ -395,7 +395,7 @@ public class DTDGrammar
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startParameterEntity(String name,
                                      XMLResourceIdentifier identifier,
@@ -419,7 +419,7 @@ public class DTDGrammar
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startExternalSubset(XMLResourceIdentifier identifier,
                                     Augmentations augs) throws XNIException {
@@ -438,7 +438,7 @@ public class DTDGrammar
      * @param name The name of the entity.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endParameterEntity(String name, Augmentations augs) throws XNIException {
 
@@ -453,7 +453,7 @@ public class DTDGrammar
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endExternalSubset(Augmentations augs) throws XNIException {
         fReadingExternalDTD = false;
@@ -466,7 +466,7 @@ public class DTDGrammar
      * @param contentModel The element content model.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void elementDecl(String name, String contentModel, Augmentations augs)
         throws XNIException {
@@ -554,7 +554,7 @@ public class DTDGrammar
      *
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void attributeDecl(String elementName, String attributeName,
                               String type, String[] enumeration,
@@ -674,7 +674,7 @@ public class DTDGrammar
      *             references expanded.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void internalEntityDecl(String name, XMLString text,
                                    XMLString nonNormalizedText,
@@ -704,7 +704,7 @@ public class DTDGrammar
      *                      pertinent to this external entity declaration.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void externalEntityDecl(String name,
                                    XMLResourceIdentifier identifier,
@@ -734,7 +734,7 @@ public class DTDGrammar
      * @param notation The name of the notation.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void unparsedEntityDecl(String name, XMLResourceIdentifier identifier,
                                    String notation,
@@ -763,7 +763,7 @@ public class DTDGrammar
      *                      pertinent to this notation.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void notationDecl(String name, XMLResourceIdentifier identifier,
                              Augmentations augs) throws XNIException {
@@ -784,7 +784,7 @@ public class DTDGrammar
      *
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endDTD(Augmentations augs) throws XNIException {
         fIsImmutable = true;
@@ -828,7 +828,7 @@ public class DTDGrammar
      *
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void textDecl(String version, String encoding, Augmentations augs)
         throws XNIException {}
@@ -839,7 +839,7 @@ public class DTDGrammar
      * @param text The text in the comment.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by application to signal an error.
+     * @throws XNIException Thrown by application to signal an error.
      */
     public void comment(XMLString text, Augmentations augs) throws XNIException {}
 
@@ -858,7 +858,7 @@ public class DTDGrammar
      * @param data   The data or null if none specified.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void processingInstruction(String target, XMLString data,
                                       Augmentations augs) throws XNIException {}
@@ -870,7 +870,7 @@ public class DTDGrammar
      *                    list is associated with.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startAttlist(String elementName, Augmentations augs)
         throws XNIException {}
@@ -879,7 +879,7 @@ public class DTDGrammar
      * The end of an attribute list.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endAttlist(Augmentations augs) throws XNIException {}
 
@@ -890,10 +890,10 @@ public class DTDGrammar
      *             either be CONDITIONAL_INCLUDE or CONDITIONAL_IGNORE.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
-     * @see org.apache.xerces.xni.XMLDTDHandler#CONDITIONAL_INCLUDE
-     * @see org.apache.xerces.xni.XMLDTDHandler#CONDITIONAL_IGNORE
+     * @see XMLDTDHandler#CONDITIONAL_INCLUDE
+     * @see XMLDTDHandler#CONDITIONAL_IGNORE
      */
     public void startConditional(short type, Augmentations augs)
         throws XNIException {}
@@ -912,7 +912,7 @@ public class DTDGrammar
      * The end of a conditional section.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endConditional(Augmentations augs) throws XNIException {}
 
@@ -938,7 +938,7 @@ public class DTDGrammar
      * @param elementName The name of the element.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startContentModel(String elementName, Augmentations augs)
         throws XNIException {
@@ -960,7 +960,7 @@ public class DTDGrammar
      *
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #any
      * @see #empty
@@ -979,7 +979,7 @@ public class DTDGrammar
      *@param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #startGroup
      */
@@ -994,7 +994,7 @@ public class DTDGrammar
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void element(String elementName, Augmentations augs) throws XNIException {
         if (fMixed) {
@@ -1019,7 +1019,7 @@ public class DTDGrammar
      * @param separator The type of children separator.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see org.apache.xerces.xni.XMLDTDContentModelHandler#SEPARATOR_CHOICE
      * @see org.apache.xerces.xni.XMLDTDContentModelHandler#SEPARATOR_SEQUENCE
@@ -1052,7 +1052,7 @@ public class DTDGrammar
      *                   or group.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see org.apache.xerces.xni.XMLDTDContentModelHandler#OCCURS_ZERO_OR_ONE
      * @see org.apache.xerces.xni.XMLDTDContentModelHandler#OCCURS_ZERO_OR_MORE
@@ -1077,7 +1077,7 @@ public class DTDGrammar
      *
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endGroup(Augmentations augs) throws XNIException {
 
@@ -1098,7 +1098,7 @@ public class DTDGrammar
      *
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #empty
      * @see #startGroup
@@ -1110,7 +1110,7 @@ public class DTDGrammar
      *
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #any
      * @see #startGroup
@@ -1122,7 +1122,7 @@ public class DTDGrammar
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endContentModel(Augmentations augs) throws XNIException {}
 

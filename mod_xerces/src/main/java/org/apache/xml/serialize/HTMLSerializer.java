@@ -52,7 +52,7 @@ import org.xml.sax.SAXException;
 /**
  * Implements an HTML/XHTML serializer supporting both DOM and SAX
  * pretty serializing. HTML/XHTML mode is determined in the
- * constructor.  For usage instructions see {@link org.apache.xml.serialize.Serializer}.
+ * constructor.  For usage instructions see {@link Serializer}.
  * <p>
  * If an output stream is used, the encoding is taken from the
  * output format (defaults to <tt>UTF-8</tt>). If a writer is
@@ -88,7 +88,7 @@ import org.xml.sax.SAXException;
  * for more information.
  * @version $Revision: 320042 $ $Date: 2004-09-06 18:57:13 -0400 (Mon, 06 Sep 2004) $
  * @author <a href="mailto:arkin@intalio.com">Assaf Arkin</a>
- * @see org.apache.xml.serialize.Serializer
+ * @see Serializer
  */
 public class HTMLSerializer
     extends BaseMarkupSerializer

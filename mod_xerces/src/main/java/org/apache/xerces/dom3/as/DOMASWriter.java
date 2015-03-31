@@ -42,7 +42,7 @@ public interface DOMASWriter extends LSSerializer {
      *   error that occurs while writing to the destination. It may wrap an 
      *   underlying system exception.
      */
-    public void writeASModel(java.io.OutputStream destination,
+    public void writeASModel(java.io.OutputStream destination, 
                              ASModel model)
                              throws Exception;
 

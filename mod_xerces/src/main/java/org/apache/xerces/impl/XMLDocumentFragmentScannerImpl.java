@@ -555,7 +555,7 @@ public class XMLDocumentFragmentScannerImpl
      *                 parsed from a java.io.Reader).
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startEntity(String name, 
                             XMLResourceIdentifier identifier,
@@ -594,7 +594,7 @@ public class XMLDocumentFragmentScannerImpl
      * @param name The name of the entity.
      * @param augs Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endEntity(String name, Augmentations augs) throws XNIException {
 
@@ -1240,7 +1240,7 @@ public class XMLDocumentFragmentScannerImpl
      * Scans an entity reference.
      *
      * @throws java.io.IOException  Thrown if i/o error occurs.
-     * @throws org.apache.xerces.xni.XNIException Thrown if handler throws exception upon
+     * @throws XNIException Thrown if handler throws exception upon
      *                      notification.
      */
     protected void scanEntityReference() throws IOException, XNIException {
@@ -1332,7 +1332,7 @@ public class XMLDocumentFragmentScannerImpl
      *
      * @return The element depth.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown if the handler throws a SAX exception
+     * @throws XNIException Thrown if the handler throws a SAX exception
      *                      upon notification.
      *
      */
@@ -1556,7 +1556,7 @@ public class XMLDocumentFragmentScannerImpl
          *          or a another dispatcher.
          *
          * @throws java.io.IOException  Thrown on i/o error.
-         * @throws org.apache.xerces.xni.XNIException Thrown on parse error.
+         * @throws XNIException Thrown on parse error.
          */
         public boolean dispatch(boolean complete) 
             throws IOException, XNIException;
@@ -1586,7 +1586,7 @@ public class XMLDocumentFragmentScannerImpl
          *          or a another dispatcher.
          *
          * @throws java.io.IOException  Thrown on i/o error.
-         * @throws org.apache.xerces.xni.XNIException Thrown on parse error.
+         * @throws XNIException Thrown on parse error.
          */
         public boolean dispatch(boolean complete) 
             throws IOException, XNIException {

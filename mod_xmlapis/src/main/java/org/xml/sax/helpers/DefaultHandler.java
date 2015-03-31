@@ -1,12 +1,10 @@
 // DefaultHandler.java - default implementation of the core handlers.
-// http://www.saxproject.org
-// Written by David Megginson
+// Written by David Megginson, sax@megginson.com
 // NO WARRANTY!  This class is in the public domain.
-// $Id: DefaultHandler.java 226184 2005-04-08 10:53:24Z neeraj $
+
+// $Id: DefaultHandler.java,v 1.3 2000/05/05 17:49:33 david Exp $
 
 package org.xml.sax.helpers;
-
-import java.io.IOException;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.Locator;
@@ -25,8 +23,6 @@ import org.xml.sax.SAXParseException;
  * <blockquote>
  * <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em>
- * See <a href='http://www.saxproject.org'>http://www.saxproject.org</a>
- * for further information.
  * </blockquote>
  *
  * <p>This class is available as a convenience base class for SAX2
@@ -49,8 +45,9 @@ import org.xml.sax.SAXParseException;
  * {@link org.xml.sax.HandlerBase HandlerBase} class.</p>
  *
  * @since SAX 2.0
- * @author David Megginson,
- * @version 2.0.1 (sax2r2)
+ * @author David Megginson, 
+ *         <a href="mailto:sax@megginson.com">sax@megginson.com</a>
+ * @version 2.0
  * @see org.xml.sax.EntityResolver
  * @see org.xml.sax.DTDHandler
  * @see org.xml.sax.ContentHandler
@@ -80,14 +77,12 @@ public class DefaultHandler
      *                 document.
      * @return The new input source, or null to require the
      *         default behaviour.
-     * @exception java.io.IOException If there is an error setting
-     *            up the new input source.
      * @exception org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
      * @see org.xml.sax.EntityResolver#resolveEntity
      */
     public InputSource resolveEntity (String publicId, String systemId)
-	throws IOException, SAXException
+	throws SAXException
     {
 	return null;
     }
@@ -253,17 +248,8 @@ public class DefaultHandler
      * each element (such as allocating a new tree node or writing
      * output to a file).</p>
      *
-     * @param uri The Namespace URI, or the empty string if the
-     *        element has no Namespace URI or if Namespace
-     *        processing is not being performed.
-     * @param localName The local name (without prefix), or the
-     *        empty string if Namespace processing is not being
-     *        performed.
-     * @param qName The qualified name (with prefix), or the
-     *        empty string if qualified names are not available.
-     * @param attributes The attributes attached to the element.  If
-     *        there are no attributes, it shall be an empty
-     *        Attributes object.
+     * @param name The element type name.
+     * @param attributes The specified or defaulted attributes.
      * @exception org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
      * @see org.xml.sax.ContentHandler#startElement
@@ -284,14 +270,8 @@ public class DefaultHandler
      * each element (such as finalising a tree node or writing
      * output to a file).</p>
      *
-     * @param uri The Namespace URI, or the empty string if the
-     *        element has no Namespace URI or if Namespace
-     *        processing is not being performed.
-     * @param localName The local name (without prefix), or the
-     *        empty string if Namespace processing is not being
-     *        performed.
-     * @param qName The qualified name (with prefix), or the
-     *        empty string if qualified names are not available.
+     * @param name The element type name.
+     * @param attributes The specified or defaulted attributes.
      * @exception org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
      * @see org.xml.sax.ContentHandler#endElement

@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2004 World Wide Web Consortium,
- *
- * (Massachusetts Institute of Technology, European Research Consortium for
- * Informatics and Mathematics, Keio University). All Rights Reserved. This
- * work is distributed under the W3C(r) Software License [1] in the hope that
- * it will be useful, but WITHOUT ANY WARRANTY; without even the implied
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
+ * Copyright (c) 2002 World Wide Web Consortium,
+ * (Massachusetts Institute of Technology, Institut National de
+ * Recherche en Informatique et en Automatique, Keio University). All
+ * Rights Reserved. This program is distributed under the W3C's Software
+ * Intellectual Property License. This program is distributed in the
+ * hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ * See W3C License http://www.w3.org/Consortium/Legal/ for more details.
  */
 
 package org.w3c.dom.xpath;
@@ -16,9 +16,18 @@ import org.w3c.dom.Node;
 import org.w3c.dom.DOMException;
 
 /**
+ *  <meta name="usage" content="experimental"/>
+ * <strong>DOM Level 3 WD Experimental:
+ * The DOM Level 3 specification is at the stage 
+ * of Working Draft, which represents work in 
+ * progress and thus may be updated, replaced, 
+ * or obsoleted by other documents at any time.</strong> <p>
  * The <code>XPathExpression</code> interface represents a parsed and resolved 
- * XPath expression.
- * <p>See also the <a href='http://www.w3.org/TR/2004/NOTE-DOM-Level-3-XPath-20040226'>Document Object Model (DOM) Level 3 XPath Specification</a>.
+ * XPath expression.The evaluateExpression method should be moved to the 
+ * XPathExpression interface so you do not have to use / pass two interfaces 
+ * just to use it.Done.XPathExpression should have a public reference to the 
+ * XPathEvaluator that created it.No change.Lacks justification.
+ * <p>See also the <a href='http://www.w3.org/TR/2002/WD-DOM-Level-3-XPath-20020328'>Document Object Model (DOM) Level 3 XPath Specification</a>.
  */
 public interface XPathExpression {
     /**
@@ -38,28 +47,25 @@ public interface XPathExpression {
      *   result will be coerced to return the specified type relying on 
      *   XPath conversions and fail if the desired coercion is not possible. 
      *   This must be one of the type codes of <code>XPathResult</code>.
-     * @param result The <code>result</code> specifies a specific result 
-     *   object which may be reused and returned by this method. If this is 
-     *   specified as <code>null</code>or the implementation does not reuse 
-     *   the specified result, a new result object will be constructed and 
-     *   returned.For XPath 1.0 results, this object will be of type 
-     *   <code>XPathResult</code>.
-     * @return The result of the evaluation of the XPath expression.For XPath 
-     *   1.0 results, this object will be of type <code>XPathResult</code>.
+     * @param result The <code>result</code> specifies a specific 
+     *   <code>XPathResult</code> which may be reused and returned by this 
+     *   method. If this is specified as <code>null</code>or the 
+     *   implementation cannot reuse the specified result, a new 
+     *   <code>XPathResult</code> will be constructed and returned.
+     * @return The result of the evaluation of the XPath expression.
      * @exception org.w3c.dom.xpath.XPathException
      *   TYPE_ERR: Raised if the result cannot be converted to return the 
      *   specified type.
      * @exception org.w3c.dom.DOMException
      *   WRONG_DOCUMENT_ERR: The Node is from a document that is not supported 
-     *   by the XPathEvaluator that created this <code>XPathExpression</code>
-     *   .
-     *   <br>NOT_SUPPORTED_ERR: The Node is not a type permitted as an XPath 
-     *   context node or the request type is not permitted by this 
+     *   by the XPathExpression that created this 
      *   <code>XPathExpression</code>.
+     *   <br>NOT_SUPPORTED_ERR: The Node is not a type permitted as an XPath 
+     *   context node.
      */
     public Object evaluate(Node contextNode,
                            short type,
                            Object result)
-                           throws XPathException, DOMException;
+                                throws XPathException, DOMException;
 
 }

@@ -1086,7 +1086,7 @@ extends AbstractDOMParser implements LSParser, DOMConfiguration {
      * @param attributes The element attributes.
      * @param augs     Additional information that may include infoset augmentations
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startElement (QName element, XMLAttributes attributes, Augmentations augs) {
         // namespace declarations parameter has no effect if namespaces is false.

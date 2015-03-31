@@ -1,36 +1,89 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
+ * The Apache Software License, Version 1.1
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright (c) 2001 The Apache Software Foundation.  All rights 
+ * reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer. 
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in
+ *    the documentation and/or other materials provided with the
+ *    distribution.
+ *
+ * 3. The end-user documentation included with the redistribution,
+ *    if any, must include the following acknowledgment:  
+ *       "This product includes software developed by the
+ *        Apache Software Foundation (http://www.apache.org/)."
+ *    Alternately, this acknowledgment may appear in the software itself,
+ *    if and wherever such third-party acknowledgments normally appear.
+ *
+ * 4. The name "Apache Software Foundation" must not be used to endorse or
+ *    promote products derived from this software without prior written
+ *    permission. For written permission, please contact apache@apache.org.
+ *
+ * 5. Products derived from this software may not be called "Apache",
+ *    nor may "Apache" appear in their name, without prior written
+ *    permission of the Apache Software Foundation.
+ *
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+ * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ * ====================================================================
+ *
+ * This software consists of voluntary contributions made by many
+ * individuals on behalf of the Apache Software Foundation and was
+ * originally based on software copyright (c) 1999-2001, Sun Microsystems,
+ * Inc., http://www.sun.com.  For more information on the Apache Software
+ * Foundation, please see <http://www.apache.org/>.
  */
-
-// $Id: DocumentBuilderFactory.java 446598 2006-09-15 12:55:40Z jeremias $
 
 package jp.kshoji.javax.xml.parsers;
 
-import jp.kshoji.javax.xml.validation.Schema;
+import java.io.InputStream;
+import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
+
+import java.util.Properties;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+import javax.xml.parsers.*;
 
 /**
  * Defines a factory API that enables applications to obtain a
  * parser that produces DOM object trees from XML documents.
  *
- * @author <a href="Jeff.Suttor@Sun.com">Jeff Suttor</a>
- * @version $Revision: 446598 $, $Date: 2006-09-15 08:55:40 -0400 (Fri, 15 Sep 2006) $
+ * An implementation of the <code>DocumentBuilderFactory</code> class is
+ * <em>NOT</em> guaranteed to be thread safe. It is up to the user application 
+ * to make sure about the use of the <code>DocumentBuilderFactory</code> from 
+ * more than one thread. Alternatively the application can have one instance 
+ * of the <code>DocumentBuilderFactory</code> per thread.
+ * An application can use the same instance of the factory to obtain one or 
+ * more instances of the <code>DocumentBuilder</code> provided the instance
+ * of the factory isn't being used in more than one thread at a time.
+ *
+ * @since JAXP 1.0
+ * @version 1.0
  */
 
 public abstract class DocumentBuilderFactory {
-
     private boolean validating = false;
     private boolean namespaceAware = false;
     private boolean whitespace = false;
@@ -39,6 +92,7 @@ public abstract class DocumentBuilderFactory {
     private boolean coalescing = false;
     
     protected DocumentBuilderFactory () {
+    
     }
 
     /**
@@ -59,12 +113,6 @@ public abstract class DocumentBuilderFactory {
      * </code> format and contains the fully qualified name of the
      * implementation class with the key being the system property defined
      * above.
-     * 
-     * The jaxp.properties file is read only once by the JAXP implementation
-     * and it's values are then cached for future use.  If the file does not exist
-     * when the first attempt is made to read from it, no further attempts are
-     * made to check for its existence.  It is not possible to change the value
-     * of any property in jaxp.properties after it has been read for the first time.
      * </li>
      * <li>
      * Use the Services API (as detailed in the JAR specification), if
@@ -81,24 +129,14 @@ public abstract class DocumentBuilderFactory {
      * Once an application has obtained a reference to a
      * <code>DocumentBuilderFactory</code> it can use the factory to
      * configure and obtain parser instances.
-     * 
-     * 
-     * <h2>Tip for Trouble-shooting</h2>
-     * <p>Setting the <code>jaxp.debug</code> system property will cause
-     * this method to print a lot of debug messages
-     * to <tt>System.err</tt> about what it is doing and where it is looking at.</p>
-     * 
-     * <p> If you have problems loading {@link javax.xml.parsers.DocumentBuilder}s, try:</p>
-     * <pre>
-     * java -Djaxp.debug=1 YourProgram ....
-     * </pre>
-     * 
-     * @return New instance of a <code>DocumentBuilderFactory</code>
      *
      * @exception javax.xml.parsers.FactoryConfigurationError if the implementation is not
      * available or cannot be instantiated.
      */
-    public static DocumentBuilderFactory newInstance() {
+    
+    public static DocumentBuilderFactory newInstance()
+        throws FactoryConfigurationError
+    {
         try {
             return (DocumentBuilderFactory) FactoryFinder.find(
                 /* The default property name according to the JAXP spec */
@@ -109,11 +147,10 @@ public abstract class DocumentBuilderFactory {
             throw new FactoryConfigurationError(e.getException(),
                                                 e.getMessage());
         }
-
     }
-
+    
     /**
-     * Creates a new instance of a {@link DocumentBuilder}
+     * Creates a new instance of a {@link javax.xml.parsers.DocumentBuilder}
      * using the currently configured parameters.
      *
      * @exception javax.xml.parsers.ParserConfigurationException if a DocumentBuilder
@@ -121,7 +158,7 @@ public abstract class DocumentBuilderFactory {
      * @return A new instance of a DocumentBuilder.
      */
     
-    public abstract DocumentBuilder newDocumentBuilder()
+    public abstract javax.xml.parsers.DocumentBuilder newDocumentBuilder()
         throws ParserConfigurationException;
     
     
@@ -142,24 +179,7 @@ public abstract class DocumentBuilderFactory {
      * Specifies that the parser produced by this code will
      * validate documents as they are parsed. By default the value of this
      * is set to <code>false</code>.
-     * 
-     * <p>
-     * Note that "the validation" here means
-     * <a href="http://www.w3.org/TR/REC-xml#proc-types">a validating
-     * parser</a> as defined in the XML recommendation.
-     * In other words, it essentially just controls the DTD validation.
-     * (except the legacy two properties defined in JAXP 1.2.
-     * See <a href="#validationCompatibility">here</a> for more details.)
-     * </p>
-     * 
-     * <p>
-     * To use modern schema languages such as W3C XML Schema or
-     * RELAX NG instead of DTD, you can configure your parser to be
-     * a non-validating parser by leaving the {@link #setValidating(boolean)}
-     * method <tt>false</tt>, then use the {@link #setSchema(javax.xml.validation.Schema)}
-     * method to associate a schema to a parser.
-     * </p>
-     * 
+     *
      * @param validating true if the parser produced will validate documents
      *                   as they are parsed; false otherwise.
      */
@@ -201,11 +221,9 @@ public abstract class DocumentBuilderFactory {
     }
 
     /**
-     * <p>Specifies that the parser produced by this code will
+     * Specifies that the parser produced by this code will
      * ignore comments. By default the value of this is set to <code>false
-     * </code>.</p>
-     * 
-     * @param ignoreComments <code>boolean</code> value to ignore comments during processing
+     * </code>
      */
     
     public void setIgnoringComments(boolean ignoreComments) {
@@ -323,208 +341,4 @@ public abstract class DocumentBuilderFactory {
      */
     public abstract Object getAttribute(String name)
                 throws IllegalArgumentException;
-                
-	/**
-	 * <p>Set a feature for this <code>DocumentBuilderFactory</code> and <code>DocumentBuilder</code>s created by this factory.</p>
-	 * 
-	 * <p>
-	 * Feature names are fully qualified {@link java.net.URI}s.
-	 * Implementations may define their own features.
-	 * An {@link javax.xml.parsers.ParserConfigurationException} is thrown if this <code>DocumentBuilderFactory</code> or the
-	 * <code>DocumentBuilder</code>s it creates cannot support the feature.
-	 * It is possible for an <code>DocumentBuilderFactory</code> to expose a feature value but be unable to change its state.
-	 * </p>
-	 * 
-	 * <p>
-	 * All implementations are required to support the {@link javax.xml.XMLConstants#FEATURE_SECURE_PROCESSING} feature.
-	 * When the feature is:</p>
-	 * <ul>
-	 *   <li>
-	 *     <code>true</code>: the implementation will limit XML processing to conform to implementation limits.
-	 *     Examples include enity expansion limits and XML Schema constructs that would consume large amounts of resources.
-	 *     If XML processing is limited for security reasons, it will be reported via a call to the registered
-	 *    {@link org.xml.sax.ErrorHandler#fatalError(SAXParseException exception)}.
-	 *     See {@link  javax.xml.parsers.DocumentBuilder#setErrorHandler(org.xml.sax.ErrorHandler errorHandler)}.
-	 *   </li>
-	 *   <li>
-	 *     <code>false</code>: the implementation will processing XML according to the XML specifications without
-	 *     regard to possible implementation limits.
-	 *   </li>
-	 * </ul>
-	 * 
-	 * @param name Feature name.
-	 * @param value Is feature state <code>true</code> or <code>false</code>.
-	 *  
-	 * @throws javax.xml.parsers.ParserConfigurationException if this <code>DocumentBuilderFactory</code> or the <code>DocumentBuilder</code>s
-	 *   it creates cannot support this feature.
-     * @throws NullPointerException If the <code>name</code> parameter is null.
-	 */
-	public abstract void setFeature(String name, boolean value)
-		throws ParserConfigurationException;
-
-	/**
-	 * <p>Get the state of the named feature.</p>
-	 * 
-	 * <p>
-	 * Feature names are fully qualified {@link java.net.URI}s.
-	 * Implementations may define their own features.
-	 * An {@link javax.xml.parsers.ParserConfigurationException} is thrown if this <code>DocumentBuilderFactory</code> or the
-	 * <code>DocumentBuilder</code>s it creates cannot support the feature.
-	 * It is possible for an <code>DocumentBuilderFactory</code> to expose a feature value but be unable to change its state.
-	 * </p>
-	 * 
-	 * @param name Feature name.
-	 * 
-	 * @return State of the named feature.
-	 * 
-	 * @throws javax.xml.parsers.ParserConfigurationException if this <code>DocumentBuilderFactory</code>
-	 *   or the <code>DocumentBuilder</code>s it creates cannot support this feature.
-	 */
-	public abstract boolean getFeature(String name)
-		throws ParserConfigurationException;
-    
-    /**
-     * Gets the {@link javax.xml.validation.Schema} object specified through
-     * the {@link #setSchema(javax.xml.validation.Schema schema)} method.
-     * 
-     * 
-     * @throws UnsupportedOperationException
-     *      For backward compatibility, when implementations for
-     *      earlier versions of JAXP is used, this exception will be
-     *      thrown.
-     * 
-     * @return
-     *      the {@link javax.xml.validation.Schema} object that was last set through
-     *      the {@link #setSchema(javax.xml.validation.Schema)} method, or null
-     *      if the method was not invoked since a {@link javax.xml.parsers.SAXParserFactory}
-     *      is created.
-     * 
-     * @since 1.5
-     */
-    public Schema getSchema() {
-        throw new UnsupportedOperationException(
-            "This parser does not support specification \""
-            + this.getClass().getPackage().getSpecificationTitle()
-            + "\" version \""
-            + this.getClass().getPackage().getSpecificationVersion()
-            + "\""
-            );
-
-    }
-    
-    /**
-     * <p>Set the {@link javax.xml.validation.Schema} to be used by parsers created
-     * from this factory.
-     * 
-     * <p>
-     * When a {@link javax.xml.validation.Schema} is non-null, a parser will use a validator
-     * created from it to validate documents before it passes information
-     * down to the application.
-     * 
-     * <p>When errors are found by the validator, the parser is responsible
-     * to report them to the user-specified {@link org.w3c.dom.DOMErrorHandler}
-     * (or if the error handler is not set, ignore them or throw them), just
-     * like any other errors found by the parser itself.
-     * In other words, if the user-specified {@link org.w3c.dom.DOMErrorHandler}
-     * is set, it must receive those errors, and if not, they must be
-     * treated according to the implementation specific
-     * default error handling rules.
-     * 
-     * <p>
-     * A validator may modify the outcome of a parse (for example by
-     * adding default values that were missing in documents), and a parser
-     * is responsible to make sure that the application will receive
-     * modified DOM trees.  
-     * 
-     * <p>
-     * Initialy, null is set as the {@link javax.xml.validation.Schema}.
-     * 
-     * <p>
-     * This processing will take effect even if
-     * the {@link #isValidating()} method returns <tt>false</tt>.
-     * 
-     * <p>It is an error to use
-     * the <code>http://java.sun.com/xml/jaxp/properties/schemaSource</code>
-     * property and/or the <code>http://java.sun.com/xml/jaxp/properties/schemaLanguage</code>
-     * property in conjunction with a {@link javax.xml.validation.Schema} object.
-     * Such configuration will cause a {@link javax.xml.parsers.ParserConfigurationException}
-     * exception when the {@link #newDocumentBuilder()} is invoked.</p>
-     *
-     *  
-     * <h4>Note for implmentors</h4>
-     * <p>
-     * A parser must be able to work with any {@link javax.xml.validation.Schema}
-     * implementation. However, parsers and schemas are allowed
-     * to use implementation-specific custom mechanisms
-     * as long as they yield the result described in the specification.
-     * 
-     * @param schema <code>Schema</code> to use or <code>null</code> to remove a schema.
-     * 
-     * @throws UnsupportedOperationException
-     *      For backward compatibility, when implementations for
-     *      earlier versions of JAXP is used, this exception will be
-     *      thrown.
-     * 
-     * @since 1.5
-     */
-    public void setSchema(Schema schema) {
-        throw new UnsupportedOperationException(
-            "This parser does not support specification \""
-            + this.getClass().getPackage().getSpecificationTitle()
-            + "\" version \""
-            + this.getClass().getPackage().getSpecificationVersion()
-            + "\""
-            );
-    }
-    
-    /**
-     * <p>Set state of XInclude processing.</p>
-     * 
-     * <p>If XInclude markup is found in the document instance, should it be
-     * processed as specified in <a href="http://www.w3.org/TR/xinclude/">
-     * XML Inclusions (XInclude) Version 1.0</a>.</p>
-     * 
-     * <p>XInclude processing defaults to <code>false</code>.</p>
-     * 
-     * @param state Set XInclude processing to <code>true</code> or
-     *   <code>false</code>
-     * 
-     * @throws UnsupportedOperationException
-     *      For backward compatibility, when implementations for
-     *      earlier versions of JAXP is used, this exception will be
-     *      thrown.
-     * 
-     * @since 1.5
-     */
-    public void setXIncludeAware(final boolean state) {
-        throw new UnsupportedOperationException(
-            "This parser does not support specification \""
-            + this.getClass().getPackage().getSpecificationTitle()
-            + "\" version \""
-            + this.getClass().getPackage().getSpecificationVersion()
-            + "\""
-            );
-    }
-
-    /**
-     * <p>Get state of XInclude processing.</p>
-     * 
-     * @return current state of XInclude processing
-     * 
-     * @throws UnsupportedOperationException
-     *      For backward compatibility, when implementations for
-     *      earlier versions of JAXP is used, this exception will be
-     *      thrown.
-     * 
-     * @since 1.5
-     */
-    public boolean isXIncludeAware() {
-        throw new UnsupportedOperationException(
-            "This parser does not support specification \""
-            + this.getClass().getPackage().getSpecificationTitle()
-            + "\" version \""
-            + this.getClass().getPackage().getSpecificationVersion()
-            + "\""
-            );
-    }
 }

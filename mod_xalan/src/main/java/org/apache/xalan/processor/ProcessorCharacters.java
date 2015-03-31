@@ -131,8 +131,8 @@ public class ProcessorCharacters extends XSLTElementProcessor
    *        performed.
    * @param rawName The raw XML 1.0 name (with prefix), or the
    *        empty string if raw names are not available.
-   * @see StylesheetHandler#startElement
-   * @see StylesheetHandler#endElement
+   * @see org.apache.xalan.processor.StylesheetHandler#startElement
+   * @see org.apache.xalan.processor.StylesheetHandler#endElement
    * @see org.xml.sax.ContentHandler#startElement
    * @see org.xml.sax.ContentHandler#endElement
    * @see org.xml.sax.Attributes

@@ -48,7 +48,7 @@ public class ElemAttribute extends ElemElement
 
   /**
    * Get an int constant identifying the type of element.
-   * @see Constants
+   * @see org.apache.xalan.templates.Constants
    *
    * @return The token ID for this element
    */
@@ -258,7 +258,7 @@ public class ElemAttribute extends ElemElement
     return super.appendChild(newChild);
   }
 	/**
-	 * @see org.apache.xalan.templates.ElemElement#setName(org.apache.xalan.templates.AVT)
+	 * @see ElemElement#setName(AVT)
 	 */
 	public void setName(AVT v) {
         if (v.isSimple())

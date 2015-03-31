@@ -67,7 +67,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      *                 internal entities or a document entity that is
      *                 parsed from a java.io.Reader).
      * @param augs     Additional information that may include infoset augmentations
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void startDocument(XMLLocator locator, String encoding,
@@ -86,7 +86,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param standalone The standalone value, or null if not specified.
      * @param augs       Additional information that may include infoset augmentations
      *                   
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void xmlDecl(String version, String encoding, String standalone, Augmentations augs)
@@ -104,7 +104,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      *                 otherwise.
      * @param augs     Additional information that may include infoset augmentations
      *                 
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void doctypeDecl(String rootElement, String publicId, String systemId, Augmentations augs)
@@ -117,7 +117,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param text   The text in the comment.
      * @param augs   Additional information that may include infoset augmentations
      *               
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by application to signal an error.
      */
     public void comment(XMLString text, Augmentations augs) throws XNIException {
@@ -138,7 +138,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param data   The data or null if none specified.
      * @param augs   Additional information that may include infoset augmentations
      *               
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void processingInstruction(String target, XMLString data, Augmentations augs)
@@ -153,7 +153,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param uri    The URI bound to the prefix.
      * @param augs   Additional information that may include infoset augmentations
      *               
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void startPrefixMapping(String prefix, String uri, Augmentations augs)
@@ -167,7 +167,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param attributes The element attributes.
      * @param augs       Additional information that may include infoset augmentations
      *                   
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void startElement(QName element, XMLAttributes attributes, Augmentations augs)
@@ -181,7 +181,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param attributes The element attributes.
      * @param augs       Additional information that may include infoset augmentations
      *                   
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void emptyElement(QName element, XMLAttributes attributes, Augmentations augs)
@@ -203,7 +203,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      *                 parsed from a java.io.Reader).
      * @param augs     Additional information that may include infoset augmentations
      *                 
-     * @exception org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @exception XNIException Thrown by handler to signal an error.
      */
     public void startGeneralEntity(String name, 
                                    XMLResourceIdentifier identifier,
@@ -226,7 +226,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param encoding The IANA encoding name of the entity.
      * @param augs     Additional information that may include infoset augmentations
      *                 
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void textDecl(String version, String encoding, Augmentations augs) throws XNIException {
@@ -241,7 +241,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param name   The name of the entity.
      * @param augs   Additional information that may include infoset augmentations
      *               
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void endGeneralEntity(String name, Augmentations augs) throws XNIException {
@@ -253,7 +253,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param text   The content.
      * @param augs   Additional information that may include infoset augmentations
      *               
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void characters(XMLString text, Augmentations augs) throws XNIException {
@@ -270,7 +270,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param text   The ignorable whitespace.
      * @param augs   Additional information that may include infoset augmentations
      *               
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void ignorableWhitespace(XMLString text, Augmentations augs) throws XNIException {
@@ -282,7 +282,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param element The name of the element.
      * @param augs    Additional information that may include infoset augmentations
      *                
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void endElement(QName element, Augmentations augs) throws XNIException {
@@ -295,7 +295,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param prefix The namespace prefix.
      * @param augs   Additional information that may include infoset augmentations
      *               
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void endPrefixMapping(String prefix, Augmentations augs) throws XNIException {
@@ -306,7 +306,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * 
      * @param augs   Additional information that may include infoset augmentations
      *               
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void startCDATA(Augmentations augs) throws XNIException {
@@ -317,7 +317,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * 
      * @param augs   Additional information that may include infoset augmentations
      *               
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void endCDATA(Augmentations augs) throws XNIException {
@@ -328,7 +328,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * 
      * @param augs   Additional information that may include infoset augmentations
      *               
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void endDocument(Augmentations augs) throws XNIException {
@@ -351,7 +351,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startDTD(XMLLocator locator, Augmentations augmentations) 
         throws XNIException {
@@ -370,7 +370,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startParameterEntity(String name, 
                                      XMLResourceIdentifier identifier,
@@ -390,7 +390,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
 /*
     public void textDecl(String version, String encoding,
@@ -406,7 +406,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endParameterEntity(String name, Augmentations augmentations) 
         throws XNIException {
@@ -419,7 +419,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations
      *                   Additional information that may include infoset
      *                   augmentations.
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void startExternalSubset(XMLResourceIdentifier identifier,
@@ -433,7 +433,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endExternalSubset(Augmentations augmentations) 
         throws XNIException {
@@ -446,7 +446,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by application to signal an error.
+     * @throws XNIException Thrown by application to signal an error.
      */
 /*
     public void comment(XMLString text, Augmentations augmentations) 
@@ -470,7 +470,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
 /*
     public void processingInstruction(String target, XMLString data,
@@ -488,7 +488,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void elementDecl(String name, String contentModel,
                             Augmentations augmentations)
@@ -503,7 +503,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startAttlist(String elementName,
                              Augmentations augmentations) throws XNIException {
@@ -532,7 +532,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void attributeDecl(String elementName, String attributeName, 
                               String type, String[] enumeration, 
@@ -547,7 +547,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endAttlist(Augmentations augmentations) throws XNIException {
     }
@@ -566,7 +566,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void internalEntityDecl(String name, XMLString text, 
                                    XMLString nonNormalizedText,
@@ -585,7 +585,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void externalEntityDecl(String name, 
                                    XMLResourceIdentifier identifier,
@@ -603,7 +603,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void unparsedEntityDecl(String name, 
                                    XMLResourceIdentifier identifier, 
@@ -620,7 +620,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void notationDecl(String name, XMLResourceIdentifier identifier,
                              Augmentations augmentations) throws XNIException {
@@ -634,7 +634,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #CONDITIONAL_INCLUDE
      * @see #CONDITIONAL_IGNORE
@@ -650,7 +650,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void ignoredCharacters(XMLString text, Augmentations augmentations) 
         throws XNIException {
@@ -662,7 +662,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endConditional(Augmentations augmentations) throws XNIException {
     }
@@ -673,7 +673,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endDTD(Augmentations augmentations) throws XNIException {
     }
@@ -692,7 +692,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startContentModel(String elementName, Augmentations augmentations)
         throws XNIException {
@@ -704,7 +704,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #empty
      * @see #startGroup
@@ -715,7 +715,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
     /**
      * A content model of EMPTY.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
@@ -735,7 +735,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #any
      * @see #empty
@@ -751,7 +751,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *     
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #startGroup
      */
@@ -765,7 +765,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void element(String elementName, Augmentations augmentations) 
         throws XNIException {
@@ -779,7 +779,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #SEPARATOR_CHOICE
      * @see #SEPARATOR_SEQUENCE
@@ -797,7 +797,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #OCCURS_ZERO_OR_ONE
      * @see #OCCURS_ZERO_OR_MORE
@@ -813,7 +813,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endGroup(Augmentations augmentations) throws XNIException {
     }
@@ -824,7 +824,7 @@ public class DefaultXMLDocumentHandler implements XMLDocumentHandler,
      * @param augmentations Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endContentModel(Augmentations augmentations) throws XNIException {
     }

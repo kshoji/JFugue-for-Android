@@ -57,7 +57,7 @@ import org.xml.sax.helpers.AttributesImpl;
 
 /**
  * Implements an XML serializer supporting both DOM and SAX pretty
- * serializing. For usage instructions see {@link org.apache.xml.serialize.Serializer}.
+ * serializing. For usage instructions see {@link Serializer}.
  * <p>
  * If an output stream is used, the encoding is taken from the
  * output format (defaults to <tt>UTF-8</tt>). If a writer is
@@ -85,7 +85,7 @@ import org.xml.sax.helpers.AttributesImpl;
  * @author <a href="mailto:rahul.srivastava@sun.com">Rahul Srivastava</a>
  * @author Elena Litani IBM
  * @version $Revision: 320302 $ $Date: 2005-05-03 07:12:21 -0400 (Tue, 03 May 2005) $
- * @see org.apache.xml.serialize.Serializer
+ * @see Serializer
  */
 public class XMLSerializer
 extends BaseMarkupSerializer {

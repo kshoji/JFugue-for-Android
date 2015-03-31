@@ -139,7 +139,7 @@ public class AVTPartXPath extends AVTPart
   }
   
   /**
-   * @see XSLTVisitable#callVisitors(org.apache.xalan.templates.XSLTVisitor)
+   * @see XSLTVisitable#callVisitors(XSLTVisitor)
    */
   public void callVisitors(XSLTVisitor visitor)
   {

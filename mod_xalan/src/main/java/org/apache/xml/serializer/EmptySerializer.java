@@ -670,7 +670,7 @@ public class EmptySerializer implements SerializationHandler
         couldThrowSAXException();
     }
     /**
-     * @see org.apache.xml.serializer.Serializer#asDOMSerializer()
+     * @see Serializer#asDOMSerializer()
      */
     public DOMSerializer asDOMSerializer() throws IOException
     {

@@ -485,7 +485,7 @@ public class XMLDocumentScannerImpl
      *                 internal entities or a document entity that is
      *                 parsed from a java.io.Reader).
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void startEntity(String name,
                             XMLResourceIdentifier identifier,
@@ -512,7 +512,7 @@ public class XMLDocumentScannerImpl
      *
      * @param name The name of the entity.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public void endEntity(String name, Augmentations augs) throws XNIException {
 
@@ -646,7 +646,7 @@ public class XMLDocumentScannerImpl
          *          or a another dispatcher.
          *
          * @throws java.io.IOException  Thrown on i/o error.
-         * @throws org.apache.xerces.xni.XNIException Thrown on parse error.
+         * @throws XNIException Thrown on parse error.
          */
         public boolean dispatch(boolean complete)
             throws IOException, XNIException {
@@ -733,7 +733,7 @@ public class XMLDocumentScannerImpl
          *          or a another dispatcher.
          *
          * @throws java.io.IOException  Thrown on i/o error.
-         * @throws org.apache.xerces.xni.XNIException Thrown on parse error.
+         * @throws XNIException Thrown on parse error.
          */
         public boolean dispatch(boolean complete)
             throws IOException, XNIException {
@@ -921,7 +921,7 @@ public class XMLDocumentScannerImpl
          *          or a another dispatcher.
          *
          * @throws java.io.IOException  Thrown on i/o error.
-         * @throws org.apache.xerces.xni.XNIException Thrown on parse error.
+         * @throws XNIException Thrown on parse error.
          */
         public boolean dispatch(boolean complete)
             throws IOException, XNIException {
@@ -1204,7 +1204,7 @@ public class XMLDocumentScannerImpl
          *          or a another dispatcher.
          *
          * @throws java.io.IOException  Thrown on i/o error.
-         * @throws org.apache.xerces.xni.XNIException Thrown on parse error.
+         * @throws XNIException Thrown on parse error.
          */
         public boolean dispatch(boolean complete)
             throws IOException, XNIException {

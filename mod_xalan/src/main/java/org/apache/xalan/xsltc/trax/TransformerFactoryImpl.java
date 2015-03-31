@@ -194,7 +194,7 @@ public class TransformerFactoryImpl
      * The provider of the XSLTC DTM Manager service.  This is fixed for any
      * instance of this class.  In order to change service providers, a new
      * XSLTC <code>TransformerFactory</code> must be instantiated.
-     * @see org.apache.xalan.xsltc.dom.XSLTCDTMManager#getDTMManagerClass()
+     * @see XSLTCDTMManager#getDTMManagerClass()
      */
     private Class m_DTMManagerClass;
 
@@ -951,7 +951,7 @@ public class TransformerFactoryImpl
 	throws TransformerConfigurationException 
     {
 	try {
-      	    return new TrAXFilter(templates);
+      	    return new org.apache.xalan.xsltc.trax.TrAXFilter(templates);
     	}
 	catch (TransformerConfigurationException e1) {
       	    if (_errorListener != null) {

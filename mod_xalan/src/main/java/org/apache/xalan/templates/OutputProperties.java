@@ -682,6 +682,6 @@ public class OutputProperties extends ElemTemplateElement
      */
     static public Properties getDefaultMethodProperties(String method)
     {
-        return OutputPropertiesFactory.getDefaultMethodProperties(method);
+        return org.apache.xml.serializer.OutputPropertiesFactory.getDefaultMethodProperties(method);
     }
 }

@@ -58,7 +58,7 @@ import org.apache.xerces.xni.parser.XMLInputSource;
  *
  * @version $Id: XIncludeTextReader.java 320577 2005-09-13 20:45:04Z mrglavas $
  *
- * @see org.apache.xerces.xinclude.XIncludeHandler
+ * @see XIncludeHandler
  */
 public class XIncludeTextReader {
 

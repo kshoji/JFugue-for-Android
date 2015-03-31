@@ -341,8 +341,8 @@ implements EntityReference {
      * When we get around to adding multitasking support, this whole method
      * should probably be an atomic operation.
      * 
-     * @see org.apache.xerces.dom.DocumentTypeImpl
-     * @see org.apache.xerces.dom.EntityImpl
+     * @see DocumentTypeImpl
+     * @see EntityImpl
      */
     // The Xerces parser invokes callbacks for startEnityReference
     // the parsed value of the entity EACH TIME, so it is actually 

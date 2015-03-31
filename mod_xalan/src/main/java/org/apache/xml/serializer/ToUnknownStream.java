@@ -140,7 +140,7 @@ public final class ToUnknownStream extends SerializerBase
     }
 
     /**
-     * @see org.apache.xml.serializer.Serializer#asContentHandler()
+     * @see Serializer#asContentHandler()
      * @return the wrapped XML or HTML handler
      */
     public ContentHandler asContentHandler() throws IOException
@@ -162,7 +162,7 @@ public final class ToUnknownStream extends SerializerBase
     }
 
     /**
-     * @see org.apache.xml.serializer.Serializer#getOutputFormat()
+     * @see Serializer#getOutputFormat()
      * @return the properties of the underlying handler
      */
     public Properties getOutputFormat()
@@ -171,7 +171,7 @@ public final class ToUnknownStream extends SerializerBase
     }
 
     /**
-     * @see org.apache.xml.serializer.Serializer#getOutputStream()
+     * @see Serializer#getOutputStream()
      * @return the OutputStream of the underlying XML or HTML handler
      */
     public OutputStream getOutputStream()
@@ -180,7 +180,7 @@ public final class ToUnknownStream extends SerializerBase
     }
 
     /**
-     * @see org.apache.xml.serializer.Serializer#getWriter()
+     * @see Serializer#getWriter()
      * @return the Writer of the underlying XML or HTML handler
      */
     public Writer getWriter()
@@ -190,7 +190,7 @@ public final class ToUnknownStream extends SerializerBase
 
     /**
      * passes the call on to the underlying HTML or XML handler
-     * @see org.apache.xml.serializer.Serializer#reset()
+     * @see Serializer#reset()
      * @return ???
      */
     public boolean reset()
@@ -201,7 +201,7 @@ public final class ToUnknownStream extends SerializerBase
     /**
      * Converts the DOM node to output
      * @param node the DOM node to transform to output
-     * @see org.apache.xml.serializer.DOMSerializer#serialize(org.w3c.dom.Node)
+     * @see DOMSerializer#serialize(org.w3c.dom.Node)
      *
      */
     public void serialize(Node node) throws IOException
@@ -224,7 +224,7 @@ public final class ToUnknownStream extends SerializerBase
     /**
      * Set the properties of the handler
      * @param format the output properties to set
-     * @see org.apache.xml.serializer.Serializer#setOutputFormat(java.util.Properties)
+     * @see Serializer#setOutputFormat(java.util.Properties)
      */
     public void setOutputFormat(Properties format)
     {
@@ -234,7 +234,7 @@ public final class ToUnknownStream extends SerializerBase
     /**
      * Sets the output stream to write to
      * @param output the OutputStream to write to
-     * @see org.apache.xml.serializer.Serializer#setOutputStream(java.io.OutputStream)
+     * @see Serializer#setOutputStream(java.io.OutputStream)
      */
     public void setOutputStream(OutputStream output)
     {
@@ -244,7 +244,7 @@ public final class ToUnknownStream extends SerializerBase
     /**
      * Sets the writer to write to
      * @param writer the writer to write to
-     * @see org.apache.xml.serializer.Serializer#setWriter(java.io.Writer)
+     * @see Serializer#setWriter(java.io.Writer)
      */
     public void setWriter(Writer writer)
     {
@@ -1150,7 +1150,7 @@ public final class ToUnknownStream extends SerializerBase
         return isHTML;
     }
     /**
-     * @see org.apache.xml.serializer.Serializer#asDOMSerializer()
+     * @see Serializer#asDOMSerializer()
      */
     public DOMSerializer asDOMSerializer() throws IOException
     {

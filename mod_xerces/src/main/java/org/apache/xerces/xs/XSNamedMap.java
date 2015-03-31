@@ -57,7 +57,7 @@ public interface XSNamedMap {
      *   name and namespace URI, or <code>null</code> if they do not 
      *   identify any object in this map.
      */
-    public XSObject itemByName(String namespace,
+    public XSObject itemByName(String namespace, 
                                String localName);
 
 }

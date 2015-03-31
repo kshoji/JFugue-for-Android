@@ -70,7 +70,7 @@ public class ByteListImpl implements ByteList {
      * @param index  index into the collection. 
      * @return  The <code>byte</code> at the <code>index</code>th 
      *   position in the <code>ByteList</code>. 
-     * @exception org.apache.xerces.xs.XSException
+     * @exception XSException
      *   INDEX_SIZE_ERR: if <code>index</code> is greater than or equal to the 
      *   number of objects in the list.
      */

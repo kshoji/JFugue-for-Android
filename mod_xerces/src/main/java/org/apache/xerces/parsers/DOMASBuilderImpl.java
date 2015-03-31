@@ -166,7 +166,7 @@ public class DOMASBuilderImpl
      *
      * @param uri The location of the Abstract Schema to be read.
      * @return The newly created <code>Abstract Schema</code>.
-     * @exception org.apache.xerces.dom3.as.DOMASException
+     * @exception DOMASException
      *   Exceptions raised by <code>parseASURI()</code> originate with the
      *   installed ErrorHandler, and thus depend on the implementation of
      *   the <code>DOMErrorHandler</code> interfaces. The default error
@@ -197,7 +197,7 @@ public class DOMASBuilderImpl
      * @param is The <code>LSInput</code> from which the source
      *   Abstract Schema is to be read.
      * @return The newly created <code>ASModel</code>.
-     * @exception org.apache.xerces.dom3.as.DOMASException
+     * @exception DOMASException
      *   Exceptions raised by <code>parseASURI()</code> originate with the
      *   installed ErrorHandler, and thus depend on the implementation of
      *   the <code>DOMErrorHandler</code> interfaces. The default error

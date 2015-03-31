@@ -60,7 +60,7 @@ public class DTMDocument extends DTMDefaultBaseIterators
      *
      * @throws org.xml.sax.SAXException
      */
-    public void characters(Node node)throws org.xml.sax.SAXException ;
+    public void characters( Node node )throws org.xml.sax.SAXException ;
   }
 
   /**

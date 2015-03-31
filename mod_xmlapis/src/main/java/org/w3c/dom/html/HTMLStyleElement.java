@@ -1,36 +1,41 @@
 /*
- * Copyright (c) 1998 World Wide Web Consortium, (Massachusetts Institute of
- * Technology, Institut National de Recherche en Informatique et en
- * Automatique, Keio University).
- * All Rights Reserved. http://www.w3.org/Consortium/Legal/
+ * Copyright (c) 2000 World Wide Web Consortium,
+ * (Massachusetts Institute of Technology, Institut National de
+ * Recherche en Informatique et en Automatique, Keio University). All
+ * Rights Reserved. This program is distributed under the W3C's Software
+ * Intellectual Property License. This program is distributed in the
+ * hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ * PURPOSE. See W3C License http://www.w3.org/Consortium/Legal/ for more
+ * details.
  */
 
 package org.w3c.dom.html;
 
-import org.w3c.dom.*;
-
 /**
- * Style information. A more detailed style sheet object model is planned to be
- * defined in a separate document. See the STYLE element definition in HTML 
- * 4.0.
+ *  Style information. See the  STYLE element definition in HTML 4.0, the  
+ * module and the <code>LinkStyle</code> interface in the  module. 
  */
 public interface HTMLStyleElement extends HTMLElement {
-  /**
-   * Enables/disables the style sheet. 
-   */
-  public boolean            getDisabled();
-  public void               setDisabled(boolean disabled);
-  /**
-   * Designed for use with one or more target media. See the media attribute 
-   * definition in HTML 4.0.
-   */
-  public String             getMedia();
-  public void               setMedia(String media);
-  /**
-   * The style sheet language (Internet media type). See the type attribute 
-   * definition in HTML 4.0.
-   */
-  public String             getType();
-  public void               setType(String type);
+    /**
+     *  Enables/disables the style sheet. 
+     */
+    public boolean getDisabled();
+    public void setDisabled(boolean disabled);
+
+    /**
+     *  Designed for use with one or more target media. See the  media 
+     * attribute definition in HTML 4.0.
+     */
+    public String getMedia();
+    public void setMedia(String media);
+
+    /**
+     *  The content type pf the style sheet language. See the  type attribute 
+     * definition in HTML 4.0.
+     */
+    public String getType();
+    public void setType(String type);
+
 }
 

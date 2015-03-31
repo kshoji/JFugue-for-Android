@@ -491,8 +491,8 @@ public class DTMManagerDefault extends DTMManager
     if(null == node)
       throw new IllegalArgumentException(XMLMessages.createXMLMessage(XMLErrorResources.ER_NODE_NON_NULL, null)); //"node must be non-null for getDTMHandleFromNode!");
 
-    if (node instanceof DTMNodeProxy)
-      return ((DTMNodeProxy) node).getDTMNodeNumber();
+    if (node instanceof org.apache.xml.dtm.ref.DTMNodeProxy)
+      return ((org.apache.xml.dtm.ref.DTMNodeProxy) node).getDTMNodeNumber();
 		
     else
     {

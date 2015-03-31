@@ -48,7 +48,7 @@ public interface XSAnnotation extends XSObject {
      * @return  True if the <code>target</code> is a recognized type and 
      *   supported by this implementation, otherwise false. 
      */
-    public boolean writeAnnotation(Object target,
+    public boolean writeAnnotation(Object target, 
                                    short targetType);
 
     /**

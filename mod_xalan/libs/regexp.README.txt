@@ -1,0 +1,7 @@
+jakarta-regexp-1.2.jar - 
+
+Sourced From:	http://jakarta.apache.org/regexp
+Used By: 	BCEL.jar which is used by XSLTC component of xml-xalan/java
+
+See licenses/BCEL.LICENSE.txt and web site for further information.
+See licenses/regexp.LICENSE.txt and web site for further information.

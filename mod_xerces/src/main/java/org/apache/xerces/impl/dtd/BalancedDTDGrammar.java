@@ -71,7 +71,7 @@ final class BalancedDTDGrammar extends DTDGrammar {
      * @param elementName The name of the element.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public final void startContentModel(String elementName, Augmentations augs)
         throws XNIException {
@@ -88,7 +88,7 @@ final class BalancedDTDGrammar extends DTDGrammar {
      *
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #any
      * @see #empty
@@ -107,7 +107,7 @@ final class BalancedDTDGrammar extends DTDGrammar {
      *@param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see #startGroup
      */
@@ -122,7 +122,7 @@ final class BalancedDTDGrammar extends DTDGrammar {
      * @param augs Additional information that may include infoset
      *                      augmentations.
      *
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public final void element(String elementName, Augmentations augs) throws XNIException {
         addToCurrentGroup(addUniqueLeafNode(elementName));
@@ -135,7 +135,7 @@ final class BalancedDTDGrammar extends DTDGrammar {
      * @param separator The type of children separator.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see org.apache.xerces.xni.XMLDTDContentModelHandler#SEPARATOR_CHOICE
      * @see org.apache.xerces.xni.XMLDTDContentModelHandler#SEPARATOR_SEQUENCE
@@ -157,7 +157,7 @@ final class BalancedDTDGrammar extends DTDGrammar {
      *                   or group.
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      *
      * @see org.apache.xerces.xni.XMLDTDContentModelHandler#OCCURS_ZERO_OR_ONE
      * @see org.apache.xerces.xni.XMLDTDContentModelHandler#OCCURS_ZERO_OR_MORE
@@ -183,7 +183,7 @@ final class BalancedDTDGrammar extends DTDGrammar {
      *
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public final void endGroup(Augmentations augs) throws XNIException {
         final int length = fGroupIndexStackSizes[fDepth];
@@ -197,7 +197,7 @@ final class BalancedDTDGrammar extends DTDGrammar {
      *
      * @param augs Additional information that may include infoset
      *                      augmentations.
-     * @throws org.apache.xerces.xni.XNIException Thrown by handler to signal an error.
+     * @throws XNIException Thrown by handler to signal an error.
      */
     public final void endDTD(Augmentations augs) throws XNIException {
         super.endDTD(augs);

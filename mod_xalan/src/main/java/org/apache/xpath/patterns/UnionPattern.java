@@ -104,11 +104,11 @@ public class UnionPattern extends Expression
    *
    * @param xctxt XPath runtime context.
    *
-   * @return {@link NodeTest#SCORE_NODETEST},
-   *         {@link NodeTest#SCORE_NONE},
-   *         {@link NodeTest#SCORE_NSWILD},
-   *         {@link NodeTest#SCORE_QNAME}, or
-   *         {@link NodeTest#SCORE_OTHER}.
+   * @return {@link org.apache.xpath.patterns.NodeTest#SCORE_NODETEST},
+   *         {@link org.apache.xpath.patterns.NodeTest#SCORE_NONE},
+   *         {@link org.apache.xpath.patterns.NodeTest#SCORE_NSWILD},
+   *         {@link org.apache.xpath.patterns.NodeTest#SCORE_QNAME}, or
+   *         {@link org.apache.xpath.patterns.NodeTest#SCORE_OTHER}.
    *
    * @throws javax.xml.transform.TransformerException
    */

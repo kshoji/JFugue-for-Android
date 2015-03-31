@@ -53,8 +53,8 @@ import org.w3c.dom.html.HTMLDocument;
  * @version $Revision: 319808 $ $Date: 2004-02-24 18:34:05 -0500 (Tue, 24 Feb 2004) $
  * @author <a href="mailto:arkin@intalio.com">Assaf Arkin</a>
  *         <a href="mailto:visco@intalio.com">Keith Visco</a>
- * @see org.apache.xml.serialize.Serializer
- * @see org.apache.xml.serialize.Method
+ * @see Serializer
+ * @see Method
  * @see LineSeparator
  */
 public class OutputFormat

@@ -21,7 +21,7 @@ import org.xml.sax.Locator;
 import org.xml.sax.ext.Locator2;
 
 /**
- * Wraps {@link org.apache.xerces.xni.XMLLocator} and make it look like a SAX {@link org.xml.sax.Locator}.
+ * Wraps {@link XMLLocator} and make it look like a SAX {@link org.xml.sax.Locator}.
  * 
  * @author Arnaud Le Hors, IBM
  * @author Andy Clark, IBM

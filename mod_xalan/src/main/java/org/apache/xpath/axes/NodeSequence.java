@@ -163,7 +163,7 @@ public class NodeSequence extends XObject
 
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#getDTM(int)
+   * @see DTMIterator#getDTM(int)
    */
   public DTM getDTM(int nodeHandle)
   {
@@ -178,7 +178,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#getDTMManager()
+   * @see DTMIterator#getDTMManager()
    */
   public DTMManager getDTMManager()
   {
@@ -186,7 +186,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#getRoot()
+   * @see DTMIterator#getRoot()
    */
   public int getRoot()
   {
@@ -202,7 +202,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#setRoot(int, Object)
+   * @see DTMIterator#setRoot(int, Object)
    */
   public void setRoot(int nodeHandle, Object environment)
   {
@@ -224,7 +224,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#reset()
+   * @see DTMIterator#reset()
    */
   public void reset()
   {
@@ -233,7 +233,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#getWhatToShow()
+   * @see DTMIterator#getWhatToShow()
    */
   public int getWhatToShow()
   {
@@ -242,7 +242,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#getExpandEntityReferences()
+   * @see DTMIterator#getExpandEntityReferences()
    */
   public boolean getExpandEntityReferences()
   {
@@ -253,7 +253,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#nextNode()
+   * @see DTMIterator#nextNode()
    */
   public int nextNode()
   {
@@ -308,7 +308,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#previousNode()
+   * @see DTMIterator#previousNode()
    */
   public int previousNode()
   {
@@ -331,7 +331,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#detach()
+   * @see DTMIterator#detach()
    */
   public void detach()
   {
@@ -343,7 +343,7 @@ public class NodeSequence extends XObject
   /**
    * Calling this with a value of false will cause the nodeset 
    * to be cached.
-   * @see org.apache.xml.dtm.DTMIterator#allowDetachToRelease(boolean)
+   * @see DTMIterator#allowDetachToRelease(boolean)
    */
   public void allowDetachToRelease(boolean allowRelease)
   {
@@ -358,7 +358,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#getCurrentNode()
+   * @see DTMIterator#getCurrentNode()
    */
   public int getCurrentNode()
   {
@@ -381,7 +381,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#isFresh()
+   * @see DTMIterator#isFresh()
    */
   public boolean isFresh()
   {
@@ -389,7 +389,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#setShouldCacheNodes(boolean)
+   * @see DTMIterator#setShouldCacheNodes(boolean)
    */
   public void setShouldCacheNodes(boolean b)
   {
@@ -407,7 +407,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#isMutable()
+   * @see DTMIterator#isMutable()
    */
   public boolean isMutable()
   {
@@ -415,7 +415,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#getCurrentPos()
+   * @see DTMIterator#getCurrentPos()
    */
   public int getCurrentPos()
   {
@@ -423,7 +423,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#runTo(int)
+   * @see DTMIterator#runTo(int)
    */
   public void runTo(int index)
   {
@@ -455,7 +455,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#setCurrentPos(int)
+   * @see DTMIterator#setCurrentPos(int)
    */
   public void setCurrentPos(int i)
   {
@@ -463,7 +463,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#item(int)
+   * @see DTMIterator#item(int)
    */
   public int item(int index)
   {
@@ -474,7 +474,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#setItem(int, int)
+   * @see DTMIterator#setItem(int, int)
    */
   public void setItem(int node, int index)
   {
@@ -489,7 +489,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#getLength()
+   * @see DTMIterator#getLength()
    */
   public int getLength()
   {
@@ -519,7 +519,7 @@ public class NodeSequence extends XObject
 
   /**
    * Note: Not a deep clone.
-   * @see org.apache.xml.dtm.DTMIterator#cloneWithReset()
+   * @see DTMIterator#cloneWithReset()
    */
   public DTMIterator cloneWithReset() throws CloneNotSupportedException
   {
@@ -546,7 +546,7 @@ public class NodeSequence extends XObject
 
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#isDocOrdered()
+   * @see DTMIterator#isDocOrdered()
    */
   public boolean isDocOrdered()
   {
@@ -557,7 +557,7 @@ public class NodeSequence extends XObject
   }
 
   /**
-   * @see org.apache.xml.dtm.DTMIterator#getAxis()
+   * @see DTMIterator#getAxis()
    */
   public int getAxis()
   {

@@ -344,7 +344,7 @@ public final class XPointerHandler extends XIncludeHandler implements
      * Returns true if the XPointer expression resolves to a non-element child
      * of the current resource fragment.       
      * 
-     * @see XPointerPart#isChildFragmentResolved()
+     * @see org.apache.xerces.xpointer.XPointerPart#isChildFragmentResolved()
      *   
      */
     public boolean isChildFragmentResolved() throws XNIException {
@@ -990,7 +990,7 @@ public final class XPointerHandler extends XIncludeHandler implements
      * @param text   The text in the comment.
      * @param augs   Additional information that may include infoset augmentations
      *               
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by application to signal an error.
      */
     public void comment(XMLString text, Augmentations augs) throws XNIException {
@@ -1015,7 +1015,7 @@ public final class XPointerHandler extends XIncludeHandler implements
      * @param data   The data or null if none specified.
      * @param augs   Additional information that may include infoset augmentations
      *               
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void processingInstruction(String target, XMLString data,
@@ -1033,7 +1033,7 @@ public final class XPointerHandler extends XIncludeHandler implements
      * @param attributes The element attributes.
      * @param augs       Additional information that may include infoset augmentations
      *                   
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void startElement(QName element, XMLAttributes attributes,
@@ -1064,7 +1064,7 @@ public final class XPointerHandler extends XIncludeHandler implements
      * @param attributes The element attributes.
      * @param augs       Additional information that may include infoset augmentations
      *                   
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void emptyElement(QName element, XMLAttributes attributes,
@@ -1093,7 +1093,7 @@ public final class XPointerHandler extends XIncludeHandler implements
      * @param text   The content.
      * @param augs   Additional information that may include infoset augmentations
      *               
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void characters(XMLString text, Augmentations augs)
@@ -1115,7 +1115,7 @@ public final class XPointerHandler extends XIncludeHandler implements
      * @param text   The ignorable whitespace.
      * @param augs   Additional information that may include infoset augmentations
      *               
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void ignorableWhitespace(XMLString text, Augmentations augs)
@@ -1132,7 +1132,7 @@ public final class XPointerHandler extends XIncludeHandler implements
      * @param element The name of the element.
      * @param augs    Additional information that may include infoset augmentations
      *                
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void endElement(QName element, Augmentations augs)
@@ -1151,7 +1151,7 @@ public final class XPointerHandler extends XIncludeHandler implements
      * 
      * @param augs   Additional information that may include infoset augmentations
      *               
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void startCDATA(Augmentations augs) throws XNIException {
@@ -1166,7 +1166,7 @@ public final class XPointerHandler extends XIncludeHandler implements
      * 
      * @param augs   Additional information that may include infoset augmentations
      *               
-     * @exception org.apache.xerces.xni.XNIException
+     * @exception XNIException
      *                   Thrown by handler to signal an error.
      */
     public void endCDATA(Augmentations augs) throws XNIException {
@@ -1190,7 +1190,7 @@ public final class XPointerHandler extends XIncludeHandler implements
      * @param propertyId The property identifier.
      * @param value      The value of the property.
      *
-     * @throws org.apache.xerces.xni.parser.XMLConfigurationException Thrown for configuration error.
+     * @throws XMLConfigurationException Thrown for configuration error.
      *                                  In general, components should
      *                                  only throw this exception if
      *                                  it is <strong>really</strong>

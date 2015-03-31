@@ -312,7 +312,7 @@ public class StylesheetPIHandler extends DefaultHandler
    * @param qName The qualified name (with prefix).
    * @param atts  The specified or defaulted attributes.
    *
-   * @throws org.apache.xml.utils.StopParseException since there can be no valid xml-stylesheet processing
+   * @throws StopParseException since there can be no valid xml-stylesheet processing 
    *                            instructions past the first element.
    */
   public void startElement(

@@ -120,7 +120,7 @@ public class ElemWithParam extends ElemTemplateElement
    *
    * @return An integer representation of the element, defined in the
    *     Constants class.
-   * @see Constants
+   * @see org.apache.xalan.templates.Constants
    */
   public int getXSLToken()
   {

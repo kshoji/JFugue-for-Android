@@ -1,52 +1,91 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
+ * The Apache Software License, Version 1.1
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright (c) 2001 The Apache Software Foundation.  All rights 
+ * reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer. 
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in
+ *    the documentation and/or other materials provided with the
+ *    distribution.
+ *
+ * 3. The end-user documentation included with the redistribution,
+ *    if any, must include the following acknowledgment:  
+ *       "This product includes software developed by the
+ *        Apache Software Foundation (http://www.apache.org/)."
+ *    Alternately, this acknowledgment may appear in the software itself,
+ *    if and wherever such third-party acknowledgments normally appear.
+ *
+ * 4. The name "Apache Software Foundation" must not be used to endorse or
+ *    promote products derived from this software without prior written
+ *    permission. For written permission, please contact apache@apache.org.
+ *
+ * 5. Products derived from this software may not be called "Apache",
+ *    nor may "Apache" appear in their name, without prior written
+ *    permission of the Apache Software Foundation.
+ *
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+ * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ * ====================================================================
+ *
+ * This software consists of voluntary contributions made by many
+ * individuals on behalf of the Apache Software Foundation and was
+ * originally based on software copyright (c) 1999-2001, Sun Microsystems,
+ * Inc., http://www.sun.com.  For more information on the Apache Software
+ * Foundation, please see <http://www.apache.org/>.
  */
-
-// $Id: SAXParserFactory.java 446598 2006-09-15 12:55:40Z jeremias $
 
 package jp.kshoji.javax.xml.parsers;
 
-import javax.xml.validation.Schema;
-
+import org.xml.sax.Parser;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 
+import javax.xml.parsers.*;
+
 /**
  * Defines a factory API that enables applications to configure and
- * obtain a SAX based parser to parse XML documents.
+ * obtain a SAX based parser to parse XML documents.<p>
+ * An implementation of the <code>SAXParserFactory</code> class is
+ * <em>NOT</em> guaranteed to be thread safe. It is up to the user application 
+ * to make sure about the use of the <code>SAXParserFactory</code> from 
+ * more than one thread. Alternatively the application can have one instance 
+ * of the <code>SAXParserFactory</code> per thread.
+ * An application can use the same instance of the factory to obtain one or 
+ * more instances of the <code>SAXParser</code> provided the instance
+ * of the factory isn't being used in more than one thread at a time.
+ * <p>
  *
- * @author <a href="Jeff.Suttor@Sun.com">Jeff Suttor</a>
- * @version $Revision: 446598 $, $Date: 2006-09-15 08:55:40 -0400 (Fri, 15 Sep 2006) $
+ * The static <code>newInstance</code> method returns a new concrete 
+ * implementation of this class.
+ *
+ * @since JAXP 1.0
+ * @version 1.0
  */
-public abstract class SAXParserFactory {
 
-    /**
-     * <p>Should Parsers be validating?</p>
-     */
+public abstract class SAXParserFactory {
     private boolean validating = false;
+    private boolean namespaceAware= false;
     
-    /**
-     * <p>Should Parsers be namespace aware?</p>
-     */
-    private boolean namespaceAware = false;
-    
-    /**
-     * <p>Protected constructor to force use of {@link #newInstance()}.</p>
-     */
     protected SAXParserFactory () {
     
     }
@@ -68,12 +107,6 @@ public abstract class SAXParserFactory {
      * </code> format and contains the fully qualified name of the
      * implementation class with the key being the system property defined
      * above.
-     * 
-     * The jaxp.properties file is read only once by the JAXP implementation
-     * and it's values are then cached for future use.  If the file does not exist
-     * when the first attempt is made to read from it, no further attempts are
-     * made to check for its existence.  It is not possible to change the value
-     * of any property in jaxp.properties after it has been read for the first time.
      * </li>
      * <li>
      * Use the Services API (as detailed in the JAR specification), if
@@ -90,27 +123,16 @@ public abstract class SAXParserFactory {
      * Once an application has obtained a reference to a
      * <code>SAXParserFactory</code> it can use the factory to
      * configure and obtain parser instances.
-     * 
-     * 
-     * 
-     * <h2>Tip for Trouble-shooting</h2>
-     * <p>Setting the <code>jaxp.debug</code> system property will cause
-     * this method to print a lot of debug messages
-     * to <tt>System.err</tt> about what it is doing and where it is looking at.</p>
-     * 
-     * <p> If you have problems loading {@link javax.xml.parsers.DocumentBuilder}s, try:</p>
-     * <pre>
-     * java -Djaxp.debug=1 YourProgram ....
-     * </pre>
-     * 
-     * 
+     *
      * @return A new instance of a SAXParserFactory.
      *
      * @exception javax.xml.parsers.FactoryConfigurationError if the implementation is
      * not available or cannot be instantiated.
      */
 
-    public static SAXParserFactory newInstance() {
+    public static SAXParserFactory newInstance()
+        throws FactoryConfigurationError
+    {
         try {
             return (SAXParserFactory) FactoryFinder.find(
                 /* The default property name according to the JAXP spec */
@@ -124,17 +146,16 @@ public abstract class SAXParserFactory {
     }
     
     /**
-     * <p>Creates a new instance of a SAXParser using the currently
-     * configured factory parameters.</p>
+     * Creates a new instance of a SAXParser using the currently
+     * configured factory parameters.
      *
      * @return A new instance of a SAXParser.
      *
      * @exception javax.xml.parsers.ParserConfigurationException if a parser cannot
-     *   be created which satisfies the requested configuration.
-     * @exception org.xml.sax.SAXException for SAX errors.
+     * be created which satisfies the requested configuration.
      */
     
-    public abstract SAXParser newSAXParser()
+    public abstract javax.xml.parsers.SAXParser newSAXParser()
         throws ParserConfigurationException, SAXException;
 
     
@@ -147,7 +168,8 @@ public abstract class SAXParserFactory {
      *                  provide support for XML namespaces; false otherwise.
      */
     
-    public void setNamespaceAware(boolean awareness) {
+    public void setNamespaceAware(boolean awareness)
+    {
         this.namespaceAware = awareness;
     }
 
@@ -155,29 +177,13 @@ public abstract class SAXParserFactory {
      * Specifies that the parser produced by this code will
      * validate documents as they are parsed. By default the value of this is
      * set to <code>false</code>.
-     * 
-     * <p>
-     * Note that "the validation" here means
-     * <a href="http://www.w3.org/TR/REC-xml#proc-types">a validating
-     * parser</a> as defined in the XML recommendation.
-     * In other words, it essentially just controls the DTD validation.
-     * (except the legacy two properties defined in JAXP 1.2.
-     * See <a href="#validationCompatibility">here</a> for more details.)
-     * </p>
-     * 
-     * <p>
-     * To use modern schema languages such as W3C XML Schema or
-     * RELAX NG instead of DTD, you can configure your parser to be
-     * a non-validating parser by leaving the {@link #setValidating(boolean)}
-     * method <tt>false</tt>, then use the {@link #setSchema(javax.xml.validation.Schema)}
-     * method to associate a schema to a parser.
-     * </p>
      *
      * @param validating true if the parser produced by this code will
      *                   validate documents as they are parsed; false otherwise.
      */
     
-    public void setValidating(boolean validating) {
+    public void setValidating(boolean validating)
+    {
         this.validating = validating;
     }
 
@@ -207,38 +213,19 @@ public abstract class SAXParserFactory {
 
     /**
      *
-     * <p>Sets the particular feature in the underlying implementation of
+     * Sets the particular feature in the underlying implementation of
      * org.xml.sax.XMLReader.
      * A list of the core features and properties can be found at
-     * <a href="http://www.saxproject.org/">http://www.saxproject.org/</a></p>
+     * <a href="http://www.megginson.com/SAX/Java/features.html"> http://www.megginson.com/SAX/Java/features.html </a>
      *
-	 * <p>All implementations are required to support the {@link javax.xml.XMLConstants#FEATURE_SECURE_PROCESSING} feature.
-	 * When the feature is</p>
-	 * <ul>
-	 *   <li>
-	 *     <code>true</code>: the implementation will limit XML processing to conform to implementation limits.
-	 *     Examples include enity expansion limits and XML Schema constructs that would consume large amounts of resources.
-	 *     If XML processing is limited for security reasons, it will be reported via a call to the registered
-	 *     {@link org.xml.sax.ErrorHandler#fatalError(SAXParseException exception)}.
-	 *     See {@link javax.xml.parsers.SAXParser} <code>parse</code> methods for handler specification.
-	 *   </li>
-	 *   <li>
-	 *     When the feature is <code>false</code>, the implementation will processing XML according to the XML specifications without
-	 *     regard to possible implementation limits.
-	 *   </li>
-	 * </ul>
-	 * 
      * @param name The name of the feature to be set.
      * @param value The value of the feature to be set.
-     * 
-     * @exception javax.xml.parsers.ParserConfigurationException if a parser cannot
-     *     be created which satisfies the requested configuration.
      * @exception org.xml.sax.SAXNotRecognizedException When the underlying XMLReader does
      *            not recognize the property name.
+     *
      * @exception org.xml.sax.SAXNotSupportedException When the underlying XMLReader
      *            recognizes the property name but doesn't support the
      *            property.
-     * @throws NullPointerException If the <code>name</code> parameter is null.
      *
      * @see org.xml.sax.XMLReader#setFeature
      */
@@ -248,159 +235,22 @@ public abstract class SAXParserFactory {
 
     /**
      *
-     * <p>Returns the particular property requested for in the underlying
-     * implementation of org.xml.sax.XMLReader.</p>
+     * Returns the particular property requested for in the underlying
+     * implementation of org.xml.sax.XMLReader.
      *
      * @param name The name of the property to be retrieved.
-     * 
      * @return Value of the requested property.
      *
-     * @exception javax.xml.parsers.ParserConfigurationException if a parser cannot be created which satisfies the requested configuration.
-     * @exception org.xml.sax.SAXNotRecognizedException When the underlying XMLReader does not recognize the property name.
-     * @exception org.xml.sax.SAXNotSupportedException When the underlying XMLReader recognizes the property name but doesn't support the property.
+     * @exception org.xml.sax.SAXNotRecognizedException When the underlying XMLReader does
+     *            not recognize the property name.
+     *
+     * @exception org.xml.sax.SAXNotSupportedException When the underlying XMLReader
+     *            recognizes the property name but doesn't support the
+     *            property.
      *
      * @see org.xml.sax.XMLReader#getProperty
      */
     public abstract boolean getFeature(String name)
         throws ParserConfigurationException, SAXNotRecognizedException,
                 SAXNotSupportedException;
-    
-    /**
-     * Gets the {@link javax.xml.validation.Schema} object specified through
-     * the {@link #setSchema(javax.xml.validation.Schema schema)} method.
-     * 
-     * 
-     * @throws UnsupportedOperationException
-     *      For backward compatibility, when implementations for
-     *      earlier versions of JAXP is used, this exception will be
-     *      thrown.
-     * 
-     * @return
-     *      the {@link javax.xml.validation.Schema} object that was last set through
-     *      the {@link #setSchema(javax.xml.validation.Schema)} method, or null
-     *      if the method was not invoked since a {@link javax.xml.parsers.SAXParserFactory}
-     *      is created.
-     * 
-     * @since 1.5
-     */
-    public Schema getSchema() {
-        throw new UnsupportedOperationException(
-            "This parser does not support specification \""
-            + this.getClass().getPackage().getSpecificationTitle()
-            + "\" version \""
-            + this.getClass().getPackage().getSpecificationVersion()
-            + "\""
-            );
-    }
-    
-    /**
-     * <p>Set the {@link javax.xml.validation.Schema} to be used by parsers created
-     * from this factory.</p>
-     * 
-     * <p>When a {@link javax.xml.validation.Schema} is non-null, a parser will use a validator
-     * created from it to validate documents before it passes information
-     * down to the application.</p>
-     * 
-     * <p>When warnings/errors/fatal errors are found by the validator, the parser must
-     * handle them as if those errors were found by the parser itself. 
-     * In other words, if the user-specified {@link org.xml.sax.ErrorHandler}
-     * is set, it must receive those errors, and if not, they must be
-     * treated according to the implementation specific
-     * default error handling rules.
-     * 
-     * <p>A validator may modify the SAX event stream (for example by
-     * adding default values that were missing in documents), and a parser
-     * is responsible to make sure that the application will receive
-     * those modified event stream.</p>  
-     * 
-     * <p>Initialy, <code>null</code> is set as the {@link javax.xml.validation.Schema}.</p>
-     * 
-     * <p>This processing will take effect even if
-     * the {@link #isValidating()} method returns <code>false</code>.
-     * 
-     * <p>It is an error to use
-     * the <code>http://java.sun.com/xml/jaxp/properties/schemaSource</code>
-     * property and/or the <code>http://java.sun.com/xml/jaxp/properties/schemaLanguage</code>
-     * property in conjunction with a non-null {@link javax.xml.validation.Schema} object.
-     * Such configuration will cause a {@link org.xml.sax.SAXException}
-     * exception when those properties are set on a {@link javax.xml.parsers.SAXParser}.</p>
-     * 
-     * <h4>Note for implmentors</h4>
-     * <p>
-     * A parser must be able to work with any {@link javax.xml.validation.Schema}
-     * implementation. However, parsers and schemas are allowed
-     * to use implementation-specific custom mechanisms
-     * as long as they yield the result described in the specification.
-     * </p>
-     * 
-     * @param schema <code>Schema</code> to use, <code>null</code> to remove a schema.
-     * 
-     * @throws UnsupportedOperationException
-     *      For backward compatibility, when implementations for
-     *      earlier versions of JAXP is used, this exception will be
-     *      thrown.
-     * 
-     * @since 1.5
-     */
-    public void setSchema(Schema schema) {
-        throw new UnsupportedOperationException(
-            "This parser does not support specification \""
-            + this.getClass().getPackage().getSpecificationTitle()
-            + "\" version \""
-            + this.getClass().getPackage().getSpecificationVersion()
-            + "\""
-            );
-    }
-
-    /**
-     * <p>Set state of XInclude processing.</p>
-     * 
-     * <p>If XInclude markup is found in the document instance, should it be
-     * processed as specified in <a href="http://www.w3.org/TR/xinclude/">
-     * XML Inclusions (XInclude) Version 1.0</a>.</p>
-     * 
-     * <p>XInclude processing defaults to <code>false</code>.</p>
-     * 
-     * @param state Set XInclude processing to <code>true</code> or
-     *   <code>false</code>
-     * 
-     * @throws UnsupportedOperationException
-     *      For backward compatibility, when implementations for
-     *      earlier versions of JAXP is used, this exception will be
-     *      thrown.
-     * 
-     * @since 1.5
-     */
-    public void setXIncludeAware(final boolean state) {
-        throw new UnsupportedOperationException(
-            "This parser does not support specification \""
-            + this.getClass().getPackage().getSpecificationTitle()
-            + "\" version \""
-            + this.getClass().getPackage().getSpecificationVersion()
-            + "\""
-            );
-    }
-
-    /**
-     * <p>Get state of XInclude processing.</p>
-     * 
-     * @return current state of XInclude processing
-     * 
-     * @throws UnsupportedOperationException
-     *      For backward compatibility, when implementations for
-     *      earlier versions of JAXP is used, this exception will be
-     *      thrown.
-     * 
-     * @since 1.5
-     */
-    public boolean isXIncludeAware() {
-        throw new UnsupportedOperationException(
-            "This parser does not support specification \""
-            + this.getClass().getPackage().getSpecificationTitle()
-            + "\" version \""
-            + this.getClass().getPackage().getSpecificationVersion()
-            + "\""
-            );
-    }
 }
-

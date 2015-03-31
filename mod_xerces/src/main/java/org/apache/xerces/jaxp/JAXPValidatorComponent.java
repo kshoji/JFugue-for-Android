@@ -104,7 +104,7 @@ final class JAXPValidatorComponent
     private final TypeInfoProvider typeInfoProvider;
     
     /**
-     * Used to store the {@link org.apache.xerces.xni.Augmentations} associated with the
+     * Used to store the {@link Augmentations} associated with the
      * current event, so that we can pick it up again
      * when the event is forwarded by the {@link javax.xml.validation.ValidatorHandler}.
      * 
@@ -113,7 +113,7 @@ final class JAXPValidatorComponent
     private Augmentations fCurrentAug;
     
     /**
-     * {@link org.apache.xerces.xni.XMLAttributes} version of {@link #fCurrentAug}.
+     * {@link XMLAttributes} version of {@link #fCurrentAug}.
      */
     private XMLAttributes fCurrentAttributes;
     
@@ -228,13 +228,13 @@ final class JAXPValidatorComponent
     private final class SAX2XNI extends DefaultHandler {
         
         /**
-         * {@link org.apache.xerces.xni.Augmentations} to send along with events.
+         * {@link Augmentations} to send along with events.
          * We reuse one object for efficiency.
          */
         private final Augmentations fAugmentations = new AugmentationsImpl();
         
         /**
-         * {@link org.apache.xerces.xni.QName} to send along events.
+         * {@link QName} to send along events.
          * we reuse one QName for efficiency.
          */
         private final QName fQName = new QName(); 
@@ -280,7 +280,7 @@ final class JAXPValidatorComponent
 
         
         /**
-         * Gets the {@link org.apache.xerces.xni.Augmentations} that should be associated with
+         * Gets the {@link Augmentations} that should be associated with
          * the current event.
          */
         private Augmentations aug() {
@@ -301,7 +301,7 @@ final class JAXPValidatorComponent
         }
         
         /**
-         * Converts the {@link org.apache.xerces.xni.XNIException} received from a downstream
+         * Converts the {@link XNIException} received from a downstream
          * component to a {@link org.xml.sax.SAXException}.
          */
         private SAXException toSAXException( XNIException xe ) {
@@ -312,7 +312,7 @@ final class JAXPValidatorComponent
         }
         
         /**
-         * Creates a proper {@link org.apache.xerces.xni.QName} object from 3 parts.
+         * Creates a proper {@link QName} object from 3 parts.
          * <p>
          * This method does the symbolization.
          */
@@ -336,7 +336,7 @@ final class JAXPValidatorComponent
      * Converts {@link XNI} events to {@link org.xml.sax.ContentHandler} events.
      * 
      * <p>
-     * Deriving from {@link org.apache.xerces.impl.xs.opti.DefaultXMLDocumentHandler}
+     * Deriving from {@link DefaultXMLDocumentHandler}
      * to reuse its default {@link org.apache.xerces.xni.XMLDocumentHandler}
      * implementation.
      * 

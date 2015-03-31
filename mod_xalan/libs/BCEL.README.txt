@@ -1,0 +1,6 @@
+BCEL Jar - Byte Code Engineering library
+
+Sourced From:	http://jakarta.apache.org/bcel
+Used By: 	XSLTC component of xml-xalan/java
+
+See licenses/BCEL.LICENSE.txt and web site for further information.

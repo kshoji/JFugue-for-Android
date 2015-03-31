@@ -1,7 +1,6 @@
 // LexicalHandler.java - optional handler for lexical parse events.
-// http://www.saxproject.org
 // Public Domain: no warranty.
-// $Id: LexicalHandler.java 226184 2005-04-08 10:53:24Z neeraj $
+// $Id: LexicalHandler.java,v 1.3 2000/10/04 14:39:44 david Exp $
 
 package org.xml.sax.ext;
 
@@ -13,15 +12,13 @@ import org.xml.sax.SAXException;
  * <blockquote>
  * <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em>
- * See <a href='http://www.saxproject.org'>http://www.saxproject.org</a>
- * for further information.
  * </blockquote>
  *
  * <p>This is an optional extension handler for SAX2 to provide
  * lexical information about an XML document, such as comments
- * and CDATA section boundaries.
- * XML readers are not required to recognize this handler, and it
- * is not part of core-only SAX2 distributions.</p>
+ * and CDATA section boundaries; XML readers are not required to 
+ * support this handler, and it is not part of the core SAX2
+ * distribution.</p>
  *
  * <p>The events in the lexical handler apply to the entire document,
  * not just to the document element, and all lexical handler events
@@ -30,16 +27,20 @@ import org.xml.sax.SAXException;
  *
  * <p>To set the LexicalHandler for an XML reader, use the
  * {@link org.xml.sax.XMLReader#setProperty setProperty} method
- * with the property name
- * <code>http://xml.org/sax/properties/lexical-handler</code>
- * and an object implementing this interface (or null) as the value.
- * If the reader does not report lexical events, it will throw a
+ * with the propertyId "http://xml.org/sax/properties/lexical-handler".
+ * If the reader does not support lexical events, it will throw a
  * {@link org.xml.sax.SAXNotRecognizedException SAXNotRecognizedException}
+ * or a
+ * {@link org.xml.sax.SAXNotSupportedException SAXNotSupportedException}
  * when you attempt to register the handler.</p>
  *
- * @since SAX 2.0 (extensions 1.0)
- * @author David Megginson
- * @version 2.0.1 (sax2r2)
+ * @since 1.0
+ * @author David Megginson, 
+ *         <a href="mailto:sax@megginson.com">sax@megginson.com</a>
+ * @version 1.0
+ * @see org.xml.sax.XMLReader#setProperty
+ * @see org.xml.sax.SAXNotRecognizedException
+ * @see org.xml.sax.SAXNotSupportedException
  */
 public interface LexicalHandler
 {
@@ -75,8 +76,6 @@ public interface LexicalHandler
      *        external DTD subset, or null if none was declared.
      * @param systemId The declared system identifier for the
      *        external DTD subset, or null if none was declared.
-     *        (Note that this is not resolved against the document
-     *        base URI.)
      * @exception org.xml.sax.SAXException The application may raise an
      *            exception.
      * @see #endDTD
@@ -106,7 +105,7 @@ public interface LexicalHandler
      *
      * <p>The reporting of parameter entities (including
      * the external DTD subset) is optional, and SAX2 drivers that
-     * report LexicalHandler events may not implement it; you can use the
+     * support LexicalHandler may not support it; you can use the
      * <code
      * >http://xml.org/sax/features/lexical-handler/parameter-entities</code>
      * feature to query or control the reporting of parameter entities.</p>
