@@ -36,7 +36,7 @@ configurations.compile {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.io7m.xom:xom:1.2.10'
-    compile 'jp.kshoji:javax-sound-midi:0.0.2:@aar'
+    compile 'jp.kshoji:javax-sound-midi:0.0.3:@aar'
     compile project(':mod_xmlapis')
 }
 
@@ -45,7 +45,7 @@ group = 'jp.kshoji'
 uploadArchives {
     repositories {
         mavenDeployer {
-            pom.version = '5.0.1.201503'
+            pom.version = '5.0.1.201512-SNAPSHOT'
             pom.artifactId = 'jfugue-android'
             repository url: 'file://' + file('snapshot').absolutePath
         }
