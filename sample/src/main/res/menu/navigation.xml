@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_enable_usb"
+        android:orderInCategory="100"
+        android:title="@string/use_usb_midi"
+        android:checkable="true"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_enable_ble_central"
+        android:orderInCategory="100"
+        android:title="@string/use_ble_midi_central"
+        android:checkable="true"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_enable_ble_peripheral"
+        android:orderInCategory="100"
+        android:title="@string/use_ble_midi_peripheral"
+        android:checkable="true"
+        app:showAsAction="never" />
+</menu>

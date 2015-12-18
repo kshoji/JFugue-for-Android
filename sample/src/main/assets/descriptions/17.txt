@@ -1,0 +1,1 @@
+A Lindenmayer system is a string rewriting system that can be used to create fractal shapes. You can use JFugue's ReplacementMap capability to create music based on string rewrite rules! (File this one under, "I didn't intentionally create a fractal music tool, it just kinda happened. Oops.")

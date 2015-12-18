@@ -1,0 +1,9 @@
+import java.io.File;
+import java.io.IOException;
+import jp.kshoji.javax.sound.midi.InvalidMidiDataException;
+import org.jfugue.midi.MidiFileManager;
+
+public void start() {
+    Pattern pattern = MidiFileManager.loadPatternFromMidi(new File(PUT YOUR MIDI FILENAME HERE));
+    System.out.println(pattern);
+}

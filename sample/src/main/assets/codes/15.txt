@@ -1,0 +1,9 @@
+import org.jfugue.player.Player;
+import org.staccato.maps.CarnaticReplacementMap;
+
+public void start() {
+    ReplacementMapPreprocessor.getInstance().setReplacementMap(new CarnaticReplacementMap());
+
+    Player player = new Player();
+    player.play("<S> <R1> <R2> <R3> <R4>");
+}

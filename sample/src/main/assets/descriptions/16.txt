@@ -1,0 +1,1 @@
+JFugue comes with a SolfegeReplacementMap, which means you can program music using "Do Re Me Fa So La Ti Do." The ReplacementMapParser converts those solfege tones to C D E F G A B. Using Replacement Maps, which are simply Map<String, String>, you can create any kind of music in a pattern that will be converted to musical notes (or whatever you put in the values of your Map).

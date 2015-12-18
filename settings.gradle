@@ -1,2 +1,2 @@
 include ':mod_xerces', ':mod_xmlapis', 'mod_xalan'
-include ':jfugue-android'
+include ':jfugue-android', ':sample'

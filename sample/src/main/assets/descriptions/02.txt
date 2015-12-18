@@ -1,0 +1,1 @@
+Patterns are one of the fundamental units of music in JFugue. They can be manipulated in musically interesting ways.

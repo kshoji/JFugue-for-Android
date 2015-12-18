@@ -1,0 +1,1 @@
+Create interactive musical programs using the RealtimePlayer.

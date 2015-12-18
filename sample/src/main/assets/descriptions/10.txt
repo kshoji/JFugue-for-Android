@@ -1,0 +1,1 @@
+Want to see the music in your MIDI file? Of course, you could load it in a sheet music tool. Here's how you can load it with JFugue. You'll get a Pattern of your music, which you can then pick apart in interesting ways (for example, count how many "C" notes there are... that's coming up in a few examples)

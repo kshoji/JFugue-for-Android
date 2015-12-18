@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_ex_00"
+            android:title="&quot;Hello, World&quot; in JFugue" />
+        <item
+            android:id="@+id/nav_ex_01"
+            android:title="Playing multiple voices, multiple instruments, rests, chords, and durations" />
+        <item
+            android:id="@+id/nav_ex_02"
+            android:title="Introduction to Patterns" />
+        <item
+            android:id="@+id/nav_ex_03"
+            android:title="Introduction to Patterns, Part 2" />
+        <item
+            android:id="@+id/nav_ex_04"
+            android:title="Introduction to Chord Progressions" />
+        <item
+            android:id="@+id/nav_ex_05"
+            android:title="Advanced Chord Progressions" />
+        <item
+            android:id="@+id/nav_ex_06"
+            android:title="Twelve-Bar Blues in Two Lines of Code" />
+        <item
+            android:id="@+id/nav_ex_07"
+            android:title="Introduction to Rhythms" />
+        <item
+            android:id="@+id/nav_ex_08"
+            android:title="Advanced Rhythms" />
+        <item
+            android:id="@+id/nav_ex_09"
+            android:title="All That, in One Line of Code?" />
+        <item
+            android:id="@+id/nav_ex_10"
+            android:title="See the Contents of a MIDI File in Human-Readable and Machine-Parseable Staccato Format" />
+        <item
+            android:id="@+id/nav_ex_11"
+            android:title="Connecting Any Parser to Any ParserListener" />
+        <item
+            android:id="@+id/nav_ex_12"
+            android:title="Create a Listener to Find Out About Music" />
+        <item
+            android:id="@+id/nav_ex_13"
+            android:title="Play Music in Realtime" />
+        <item
+            android:id="@+id/nav_ex_14"
+            android:title="Anticipate Musical Events Before They Occur" />
+        <item
+            android:id="@+id/nav_ex_15"
+            android:title="Use &quot;Replacement Maps&quot; to Create Carnatic Music" />
+        <item
+            android:id="@+id/nav_ex_16"
+            android:title="Use &quot;Replacement Maps&quot; to Play Solfege" />
+        <item
+            android:id="@+id/nav_ex_17"
+            android:title="Use &quot;Replacement Maps&quot; to Generate Fractal Music" />
+    </group>
+
+    <item android:title="Websites">
+        <menu>
+            <item
+                android:id="@+id/nav_github"
+                android:title="JFugue for Android on github" />
+            <item
+                android:id="@+id/nav_jfugue"
+                android:title="JFugue website" />
+        </menu>
+    </item>
+
+</menu>

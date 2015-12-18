@@ -1,0 +1,1 @@
+You can create a ParserListener to listen for any musical event that any parser is parsing. Here, we'll create a simple tool that counts how many "C" notes (of any octave) are played in any song.

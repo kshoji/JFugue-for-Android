@@ -1,0 +1,1 @@
+Voice and instruments for a pattern can also be set through the API. In JFugue, methods that would normally return 'void' instead return the object itself, which allows you do chain commands together, as seen in this example.

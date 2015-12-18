@@ -1,0 +1,1 @@
+One of my favorite parts of the JFugue API is the ability to create rhythms in a fun and easily understandable way. The letters are mapped to percussive instrument sounds, like "Acoustic Snare" and "Closed Hi Hat". JFugue comes with a default "rhythm set", which is a Map<Character, String> with entries like this: put('O', "[BASS_DRUM]i").

@@ -1,0 +1,1 @@
+Through the Rhythm API, you can specify a variety of alternate layers that occur once or recur regularly. You can even create your own "RhythmAltLayerProvider" if you'd like to create a new behavior that does not already exist in the Rhythm API.

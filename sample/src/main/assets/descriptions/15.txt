@@ -1,0 +1,1 @@
+JFugue's ReplacementMap capability lets you use your own symbols in a music string. JFugue comes with a CarnaticReplacementMap that maps Carnatic notes to microtone frequencies.
