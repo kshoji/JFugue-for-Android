@@ -173,6 +173,9 @@ final class MidiEventManager extends TrackTimeManager
      */
     public void addMetaMessage(int type, byte[] bytes) {
         try {
+            if (track[getCurrentTrack()] == null) {
+                track[getCurrentTrack()] = sequence.createTrack();
+            }
             MetaMessage message = new MetaMessage();
             message.setMessage(type, bytes, bytes.length);
             MidiEvent event = new MidiEvent(message, convertBeatsToTicks(getTrackBeatTime()));
@@ -191,6 +194,9 @@ final class MidiEventManager extends TrackTimeManager
      */
     public void addSystemExclusiveEvent(byte[] bytes) {
     	try {
+            if (track[getCurrentTrack()] == null) {
+                track[getCurrentTrack()] = sequence.createTrack();
+            }
     		SysexMessage message = new SysexMessage();
     		message.setMessage(bytes, bytes.length);
             MidiEvent event = new MidiEvent(message, convertBeatsToTicks(getTrackBeatTime()));
@@ -210,6 +216,9 @@ final class MidiEventManager extends TrackTimeManager
      */
     public void addEvent(int command, int data1) {
         try {
+            if (track[getCurrentTrack()] == null) {
+                track[getCurrentTrack()] = sequence.createTrack();
+            }
             ShortMessage message = new ShortMessage();
             message.setMessage(command, getCurrentTrack(), data1);
             track[getCurrentTrack()].add(new MidiEvent(message, convertBeatsToTicks(getTrackBeatTime())));
