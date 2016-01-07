@@ -6,26 +6,17 @@ import org.jfugue.pattern.Pattern;
 import org.jfugue.player.Player;
 import org.jfugue.theory.ChordProgression;
 
-import jp.kshoji.javax.sound.midi.MidiSystem;
-import jp.kshoji.javax.sound.midi.MidiUnavailableException;
-
 /**
  * Example 06: Twelve-Bar Blues in Two Lines of Code
  */
 @EFragment
 public class Example06Fragment extends AbstractExampleFragment {
-
-    @Override
-    public void stop() {
-        try {
-            MidiSystem.getSequencer().stop();
-        } catch (final MidiUnavailableException ignored) {
-        }
-    }
+    private final Player player = new Player();
 
     @Background
     @Override
     public void start() {
+        resetPlayer(player);
         Pattern pattern = new ChordProgression("I IV V")
                 .distribute("7%6")
                 .allChordsAs("$0 $0 $0 $0 $1 $1 $0 $0 $2 $1 $0 $0")
@@ -33,6 +24,17 @@ public class Example06Fragment extends AbstractExampleFragment {
                 .getPattern()
                 .setInstrument("Acoustic_Bass")
                 .setTempo(100);
-        new Player().play(pattern);
+        player.play(pattern);
+    }
+
+    @Override
+    public void stop() {
+        resetPlayer(player);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        resetPlayer(player);
     }
 }

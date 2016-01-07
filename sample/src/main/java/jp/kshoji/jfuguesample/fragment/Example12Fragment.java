@@ -1,6 +1,7 @@
 package jp.kshoji.jfuguesample.fragment;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EFragment;
@@ -8,7 +9,6 @@ import org.jfugue.midi.MidiParser;
 import org.jfugue.parser.ParserListenerAdapter;
 import org.jfugue.theory.Note;
 
-import java.io.File;
 import java.io.IOException;
 
 import jp.kshoji.javax.sound.midi.InvalidMidiDataException;
@@ -20,11 +20,6 @@ import jp.kshoji.javax.sound.midi.MidiSystem;
 @EFragment
 public class Example12Fragment extends AbstractExampleFragment {
 
-    @Override
-    public void stop() {
-
-    }
-
     @Background
     @Override
     public void start() {
@@ -32,9 +27,16 @@ public class Example12Fragment extends AbstractExampleFragment {
             MidiParser parser = new MidiParser(); // Remember, you can use any Parser!
             MyParserListener listener = new MyParserListener();
             parser.addParserListener(listener);
-            parser.parse(MidiSystem.getSequence(new File("PUT A MIDI FILE HERE")));
+            parser.parse(MidiSystem.getSequence(getResources().getAssets().open("smfs/fugue-c-major.mid"))); // TODO PUT A MIDI FILE HERE
             System.out.println("There are " + listener.counter + " 'C' notes in this music.");
-        } catch (IOException | InvalidMidiDataException e) {
+            println("There are " + listener.counter + " 'C' notes in this music.");
+        } catch (IOException | InvalidMidiDataException | NullPointerException e) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
             Log.e(getClass().getSimpleName(), e.getMessage(), e);
         }
     }
@@ -49,5 +51,10 @@ public class Example12Fragment extends AbstractExampleFragment {
                 counter++;
             }
         }
+    }
+
+    @Override
+    public void stop() {
+
     }
 }

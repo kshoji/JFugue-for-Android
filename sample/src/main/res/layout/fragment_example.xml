@@ -33,6 +33,13 @@
             android:background="#ffffee"
             android:fontFamily="monospace"
             android:singleLine="false" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:stackFromBottom="true"
+            android:id="@+id/listView"
+            android:visibility="gone"/>
     </LinearLayout>
 
 </ScrollView>

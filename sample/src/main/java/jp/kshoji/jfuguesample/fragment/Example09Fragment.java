@@ -6,26 +6,28 @@ import org.jfugue.player.Player;
 import org.jfugue.rhythm.Rhythm;
 import org.jfugue.theory.ChordProgression;
 
-import jp.kshoji.javax.sound.midi.MidiSystem;
-import jp.kshoji.javax.sound.midi.MidiUnavailableException;
-
 /**
  * Example 09: All That, in One Line of Code?
  */
 @EFragment
 public class Example09Fragment extends AbstractExampleFragment {
-
-    @Override
-    public void stop() {
-        try {
-            MidiSystem.getSequencer().stop();
-        } catch (final MidiUnavailableException ignored) {
-        }
-    }
+    private final Player player = new Player();
 
     @Background
     @Override
     public void start() {
-        new Player().play(new ChordProgression("I IV vi V").eachChordAs("$_i $_i Ri $_i"), new Rhythm().addLayer("..X...X...X...XO"));
+        resetPlayer(player);
+        player.play(new ChordProgression("I IV vi V").eachChordAs("$_i $_i Ri $_i"), new Rhythm().addLayer("..X...X...X...XO"));
+    }
+
+    @Override
+    public void stop() {
+        resetPlayer(player);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        resetPlayer(player);
     }
 }

@@ -5,31 +5,33 @@ import org.androidannotations.annotations.EFragment;
 import org.jfugue.player.Player;
 import org.jfugue.rhythm.Rhythm;
 
-import jp.kshoji.javax.sound.midi.MidiSystem;
-import jp.kshoji.javax.sound.midi.MidiUnavailableException;
-
 /**
  * Example 07: Introduction to Rhythms
  */
 @EFragment
 public class Example07Fragment extends AbstractExampleFragment {
-
-    @Override
-    public void stop() {
-        try {
-            MidiSystem.getSequencer().stop();
-        } catch (final MidiUnavailableException ignored) {
-        }
-    }
+    private final Player player = new Player();
 
     @Background
     @Override
     public void start() {
+        resetPlayer(player);
         Rhythm rhythm = new Rhythm()
                 .addLayer("O..oO...O..oOO..")
                 .addLayer("..S...S...S...S.")
                 .addLayer("````````````````")
                 .addLayer("...............+");
-        new Player().play(rhythm.getPattern().repeat(2));
+        player.play(rhythm.getPattern().repeat(2));
+    }
+
+    @Override
+    public void stop() {
+        resetPlayer(player);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        resetPlayer(player);
     }
 }

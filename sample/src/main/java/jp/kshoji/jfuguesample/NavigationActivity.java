@@ -1,9 +1,11 @@
 package jp.kshoji.jfuguesample;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -16,7 +18,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,7 +49,9 @@ import jp.kshoji.jfuguesample.fragment.Example17Fragment_;
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    @Nullable
     private UsbMidiSystem usbMidiSystem;
+    @Nullable
     private BleMidiSystem bleMidiSystem;
     private AbstractExampleFragment fragment;
 
@@ -60,24 +63,17 @@ public class NavigationActivity extends AppCompatActivity
         toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        final FloatingActionButton actionButton = (FloatingActionButton) findViewById(R.id.fab);
+        actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
                 if (fragment != null) {
-                    try {
-                        fragment.stop();
-                    } catch (final NullPointerException ignored) {
-                    }
                     fragment.start();
                     Snackbar.make(view, R.string.executing_sample, Snackbar.LENGTH_INDEFINITE)
                             .setAction(R.string.stop, new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    try {
-                                        fragment.stop();
-                                    } catch (final NullPointerException ignored) {
-                                    }
+                                    fragment.stop();
                                 }
                             }).show();
                 }
@@ -136,10 +132,7 @@ public class NavigationActivity extends AppCompatActivity
         super.onDestroy();
 
         if (usbMidiSystem != null) {
-            try {
-                usbMidiSystem.terminate();
-            } catch (final NullPointerException ignored) {
-            }
+            usbMidiSystem.terminate();
             usbMidiSystem = null;
         }
         if (bleMidiSystem != null) {
@@ -168,12 +161,47 @@ public class NavigationActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(final Menu menu) {
         getMenuInflater().inflate(R.menu.navigation, menu);
 
+        // restore check status
+        final SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        final MenuItem usbMidiMenuItem = menu.getItem(0);
+        usbMidiMenuItem.setChecked(preferences.getBoolean(getString(R.string.preference_usb_midi_enable), false));
+        if (usbMidiSystem != null) {
+            if (usbMidiMenuItem.isChecked()) {
+                usbMidiSystem.initialize();
+            } else {
+                usbMidiSystem.terminate();
+            }
+        }
+
+        final MenuItem bleCentralMenuItem = menu.getItem(1);
+        final MenuItem blePeripheralMenuItem = menu.getItem(2);
         if (BleUtils.isBleSupported(getApplicationContext()) && BleUtils.isBluetoothEnabled(getApplicationContext())) {
-            menu.getItem(1).setVisible(true);
-            menu.getItem(2).setVisible(BleUtils.isBlePeripheralSupported(getApplicationContext()));
+            bleCentralMenuItem.setVisible(true);
+            bleCentralMenuItem.setChecked(preferences.getBoolean(getString(R.string.preference_ble_midi_central_enable), false));
+            if (bleMidiSystem != null) {
+                if (bleCentralMenuItem.isChecked()) {
+                    bleMidiSystem.startScanDevice();
+                } else {
+                    bleMidiSystem.stopScanDevice();
+                }
+            }
+
+            if (BleUtils.isBlePeripheralSupported(getApplicationContext())) {
+                blePeripheralMenuItem.setVisible(true);
+                blePeripheralMenuItem.setChecked(preferences.getBoolean(getString(R.string.preference_ble_midi_peripheral_enable), false));
+                if (bleMidiSystem != null) {
+                    if (blePeripheralMenuItem.isChecked()) {
+                        bleMidiSystem.startAdvertising();
+                    } else {
+                        bleMidiSystem.stopAdvertising();
+                    }
+                }
+            } else {
+                blePeripheralMenuItem.setVisible(false);
+            }
         } else {
-            menu.getItem(1).setVisible(false);
-            menu.getItem(2).setVisible(false);
+            bleCentralMenuItem.setVisible(false);
+            blePeripheralMenuItem.setVisible(false);
         }
         return true;
     }
@@ -182,23 +210,33 @@ public class NavigationActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(final MenuItem item) {
         final int id = item.getItemId();
 
+        // remember check status
+        final SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
         switch (id) {
             case R.id.action_enable_usb:
                 item.setChecked(!item.isChecked());
-                if (item.isChecked()) {
-                    usbMidiSystem.initialize();
-                } else {
-                    usbMidiSystem.terminate();
+                if (usbMidiSystem != null) {
+                    editor.putBoolean(getString(R.string.preference_usb_midi_enable), item.isChecked());
+                    editor.apply();
+                    if (item.isChecked()) {
+                        usbMidiSystem.initialize();
+                    } else {
+                        usbMidiSystem.terminate();
+                    }
                 }
                 return true;
             case R.id.action_enable_ble_central:
                 item.setChecked(!item.isChecked());
                 if (BleUtils.isBleSupported(getApplicationContext()) && //
                         BleUtils.isBluetoothEnabled(getApplicationContext())) {
-                    if (item.isChecked()) {
-                        bleMidiSystem.startScanDevice();
-                    } else {
-                        bleMidiSystem.stopScanDevice();
+                    if (bleMidiSystem != null) {
+                        editor.putBoolean(getString(R.string.preference_ble_midi_central_enable), item.isChecked());
+                        editor.apply();
+                        if (item.isChecked()) {
+                            bleMidiSystem.startScanDevice();
+                        } else {
+                            bleMidiSystem.stopScanDevice();
+                        }
                     }
                 }
                 return true;
@@ -207,10 +245,14 @@ public class NavigationActivity extends AppCompatActivity
                 if (BleUtils.isBleSupported(getApplicationContext()) && //
                         BleUtils.isBluetoothEnabled(getApplicationContext()) && //
                         BleUtils.isBlePeripheralSupported(getApplicationContext())) {
-                    if (item.isChecked()) {
-                        bleMidiSystem.startAdvertising();
-                    } else {
-                        bleMidiSystem.stopAdvertising();
+                    if (bleMidiSystem != null) {
+                        editor.putBoolean(getString(R.string.preference_ble_midi_peripheral_enable), item.isChecked());
+                        editor.apply();
+                        if (item.isChecked()) {
+                            bleMidiSystem.startAdvertising();
+                        } else {
+                            bleMidiSystem.stopAdvertising();
+                        }
                     }
                 }
                 return true;
@@ -284,17 +326,13 @@ public class NavigationActivity extends AppCompatActivity
 
         if (fragmentChanged) {
             final FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.frame_container, fragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
 
         }
     }
 
     @Override
     public boolean onNavigationItemSelected(final MenuItem item) {
-        // Handle navigation view item clicks here.
-        Log.i(getLocalClassName(), "item.id: " + item.getItemId());
-
         setFragmentByItemId(item.getItemId());
 
         switch (item.getItemId()) {

@@ -21,4 +21,9 @@
     <string name="use_usb_midi">Use USB MIDI</string>
     <string name="use_ble_midi_central">Use BLE MIDI Central</string>
     <string name="use_ble_midi_peripheral">Use BLE MIDI Peripheral</string>
+
+    <!-- preference keys -->
+    <string name="preference_usb_midi_enable">usbMidiSystem</string>
+    <string name="preference_ble_midi_central_enable">bleCentralMidiSystem</string>
+    <string name="preference_ble_midi_peripheral_enable">blePeripheralMidiSystem</string>
 </resources>

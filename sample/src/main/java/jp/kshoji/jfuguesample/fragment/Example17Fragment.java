@@ -1,5 +1,7 @@
 package jp.kshoji.jfuguesample.fragment;
 
+import android.util.Log;
+
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EFragment;
 import org.jfugue.pattern.Pattern;
@@ -9,26 +11,17 @@ import org.staccato.ReplacementMapPreprocessor;
 import java.util.HashMap;
 import java.util.Map;
 
-import jp.kshoji.javax.sound.midi.MidiSystem;
-import jp.kshoji.javax.sound.midi.MidiUnavailableException;
-
 /**
  * Example 17: Use "Replacement Maps" to Generate Fractal Music
  */
 @EFragment
 public class Example17Fragment extends AbstractExampleFragment {
-
-    @Override
-    public void stop() {
-        try {
-            MidiSystem.getSequencer().stop();
-        } catch (final MidiUnavailableException ignored) {
-        }
-    }
+    private final Player player = new Player();
 
     @Background
     @Override
     public void start() {
+        resetPlayer(player);
         // Specify the transformation rules for this Lindenmayer system
         Map rules = new HashMap() {{
             put("Cmajw", "Cmajw Fmajw");
@@ -55,8 +48,23 @@ public class Example17Fragment extends AbstractExampleFragment {
                 + "V3 I[Warm] E6q G6i+D6i "
                 + "V4 I[Voice] C5q E6q");
 
-        Player player = new Player();
         System.out.println(rmp.preprocess(axiom.toString(), null));
-        player.play(axiom);
+        println(rmp.preprocess(axiom.toString(), null));
+        try {
+            player.play(axiom);
+        } catch (NullPointerException e) {
+            Log.e(getActivity().getLocalClassName(), e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public void stop() {
+        resetPlayer(player);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        resetPlayer(player);
     }
 }
