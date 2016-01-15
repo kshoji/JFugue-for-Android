@@ -9,7 +9,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
 import org.jfugue.pattern.Pattern;
 import org.jfugue.player.SynthesizerManager;
 import org.jfugue.realtime.RealtimePlayer;
@@ -31,58 +33,47 @@ public class Example13Fragment extends AbstractExampleFragment {
     private volatile boolean quit = false;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         fragmentLayoutId = R.layout.fragment_example_13;
-        final View view = super.onCreateView(inflater, container, savedInstanceState);
-        if (view != null) {
-            view.findViewById(R.id.plusButton).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View v) {
-                    Log.i(getActivity().getLocalClassName(), "+Button clicked. player: " + player);
-                    if (player != null) {
-                        final EditText editText = (EditText) view.findViewById(R.id.editText);
-                        player.startNote(new Note(editText.getText().toString().substring(0, 1)));
-                    }
-                }
-            });
-            view.findViewById(R.id.minusButton).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View v) {
-                    Log.i(getActivity().getLocalClassName(), "-Button clicked. player: " + player);
-                    if (player != null) {
-                        final EditText editText = (EditText) view.findViewById(R.id.editText);
-                        player.stopNote(new Note(editText.getText().toString().substring(0, 1)));
-                    }
-                }
-            });
-            view.findViewById(R.id.iButton).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View v) {
-                    Log.i(getActivity().getLocalClassName(), "iButton clicked. player: " + player);
-                    if (player != null) {
-                        player.changeInstrument(random.nextInt(128));
-                    }
-                }
-            });
-            view.findViewById(R.id.pButton).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View v) {
-                    Log.i(getActivity().getLocalClassName(), "pButton clicked. player: " + player);
-                    if (player != null) {
-                        player.play(PATTERNS[random.nextInt(PATTERNS.length)]);
-                    }
-                }
-            });
-            view.findViewById(R.id.qButton).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View v) {
-                    Log.i(getActivity().getLocalClassName(), "qButton clicked.");
-                    quit = true;
-                }
-            });
-        }
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
 
-        return view;
+    @ViewById
+    EditText editText;
+
+    @Click(R.id.plusButton)
+    void onPlusButton() {
+        Log.i(getActivity().getLocalClassName(), "+Button clicked. player: " + player);
+        if (player != null) {
+            player.startNote(new Note(editText.getText().toString().substring(0, 1)));
+        }
+    }
+
+    @Click(R.id.minusButton)
+    void onMinusButton() {
+        Log.i(getActivity().getLocalClassName(), "-Button clicked. player: " + player);
+        if (player != null) {
+            player.stopNote(new Note(editText.getText().toString().substring(0, 1)));
+        }
+    }
+
+    @Click(R.id.iButton)
+    void onIButton() {
+        if (player != null) {
+            player.changeInstrument(random.nextInt(128));
+        }
+    }
+
+    @Click(R.id.pButton)
+    void onPButton() {
+        if (player != null) {
+            player.play(PATTERNS[random.nextInt(PATTERNS.length)]);
+        }
+    }
+
+    @Click(R.id.qButton)
+    void onQButton() {
+        quit = true;
     }
 
     @Background
