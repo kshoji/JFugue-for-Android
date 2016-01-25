@@ -1,0 +1,1 @@
+Input Staccato Music Markup sequence and play it.

@@ -27,27 +27,12 @@ import jp.kshoji.blemidi.util.BleUtils;
 import jp.kshoji.javax.sound.midi.BleMidiSystem;
 import jp.kshoji.javax.sound.midi.UsbMidiSystem;
 import jp.kshoji.jfuguesample.fragment.AbstractExampleFragment;
-import jp.kshoji.jfuguesample.fragment.Example00Fragment_;
-import jp.kshoji.jfuguesample.fragment.Example01Fragment_;
-import jp.kshoji.jfuguesample.fragment.Example02Fragment_;
-import jp.kshoji.jfuguesample.fragment.Example03Fragment_;
-import jp.kshoji.jfuguesample.fragment.Example04Fragment_;
-import jp.kshoji.jfuguesample.fragment.Example05Fragment_;
-import jp.kshoji.jfuguesample.fragment.Example06Fragment_;
-import jp.kshoji.jfuguesample.fragment.Example07Fragment_;
-import jp.kshoji.jfuguesample.fragment.Example08Fragment_;
-import jp.kshoji.jfuguesample.fragment.Example09Fragment_;
-import jp.kshoji.jfuguesample.fragment.Example10Fragment_;
-import jp.kshoji.jfuguesample.fragment.Example11Fragment_;
-import jp.kshoji.jfuguesample.fragment.Example12Fragment_;
-import jp.kshoji.jfuguesample.fragment.Example13Fragment_;
-import jp.kshoji.jfuguesample.fragment.Example14Fragment_;
-import jp.kshoji.jfuguesample.fragment.Example15Fragment_;
-import jp.kshoji.jfuguesample.fragment.Example16Fragment_;
-import jp.kshoji.jfuguesample.fragment.Example17Fragment_;
+import jp.kshoji.jfuguesample.util.AssetUtils;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    // generated unique id
+    private static final int MENU_ITEM_0 = 0xD7B0E7E4;
 
     @Nullable
     private UsbMidiSystem usbMidiSystem;
@@ -100,8 +85,15 @@ public class NavigationActivity extends AppCompatActivity
             }
         });
 
+        // setup menu items dynamically
+        final int menuSize = AssetUtils.getAssetFileCount(this, "titles");
+        for (int i = 0; i < menuSize; i++) {
+            navigationView.getMenu().add(R.id.group01, MENU_ITEM_0 + i, 1, AssetUtils.getAssetFileAsString(this, String.format("titles/%02d.txt", i)));
+        }
+        navigationView.getMenu().setGroupCheckable(R.id.group01, true, true);
+
+        onNavigationItemSelected(navigationView.getMenu().findItem(MENU_ITEM_0));
         navigationView.setNavigationItemSelectedListener(this);
-        onNavigationItemSelected(navigationView.getMenu().findItem(R.id.nav_ex_00));
 
         if (usbMidiSystem == null) {
             usbMidiSystem = new UsbMidiSystem(getApplicationContext());
@@ -251,7 +243,6 @@ public class NavigationActivity extends AppCompatActivity
                     }
                 }
                 return true;
-
         }
 
         return super.onOptionsItemSelected(item);
@@ -259,70 +250,17 @@ public class NavigationActivity extends AppCompatActivity
 
     private void setFragmentByItemId(final int itemId) {
         boolean fragmentChanged = true;
-        switch (itemId) {
-            case R.id.nav_ex_00:
-                fragment = new Example00Fragment_();
-                break;
-            case R.id.nav_ex_01:
-                fragment = new Example01Fragment_();
-                break;
-            case R.id.nav_ex_02:
-                fragment = new Example02Fragment_();
-                break;
-            case R.id.nav_ex_03:
-                fragment = new Example03Fragment_();
-                break;
-            case R.id.nav_ex_04:
-                fragment = new Example04Fragment_();
-                break;
-            case R.id.nav_ex_05:
-                fragment = new Example05Fragment_();
-                break;
-            case R.id.nav_ex_06:
-                fragment = new Example06Fragment_();
-                break;
-            case R.id.nav_ex_07:
-                fragment = new Example07Fragment_();
-                break;
-            case R.id.nav_ex_08:
-                fragment = new Example08Fragment_();
-                break;
-            case R.id.nav_ex_09:
-                fragment = new Example09Fragment_();
-                break;
-            case R.id.nav_ex_10:
-                fragment = new Example10Fragment_();
-                break;
-            case R.id.nav_ex_11:
-                fragment = new Example11Fragment_();
-                break;
-            case R.id.nav_ex_12:
-                fragment = new Example12Fragment_();
-                break;
-            case R.id.nav_ex_13:
-                fragment = new Example13Fragment_();
-                break;
-            case R.id.nav_ex_14:
-                fragment = new Example14Fragment_();
-                break;
-            case R.id.nav_ex_15:
-                fragment = new Example15Fragment_();
-                break;
-            case R.id.nav_ex_16:
-                fragment = new Example16Fragment_();
-                break;
-            case R.id.nav_ex_17:
-                fragment = new Example17Fragment_();
-                break;
-            default:
-                fragmentChanged = false;
-                break;
+        try {
+            final String packageName = AbstractExampleFragment.class.getPackage().getName();
+            final String className = String.format(packageName + ".Example%02dFragment_", itemId - MENU_ITEM_0);
+            fragment = (AbstractExampleFragment)Class.forName(className).newInstance();
+        } catch (final Exception ignored) {
+            fragmentChanged = false;
         }
 
         if (fragmentChanged) {
             final FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
-
         }
     }
 

@@ -1,0 +1,58 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="jp.kshoji.jfuguesample.fragment.Example00Fragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/snackbar_margin"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="20dp"
+            android:lineSpacingMultiplier="1.15" />
+
+        <TextView
+            android:id="@+id/code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffee"
+            android:fontFamily="monospace"
+            android:singleLine="false" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="C D E F G A B"
+            android:gravity="bottom|start"
+            android:textAllCaps="false"
+            android:lines="5"
+            android:singleLine="false"
+            android:inputType="textMultiLine" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:stackFromBottom="true"
+            android:id="@+id/listView"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+</ScrollView>
