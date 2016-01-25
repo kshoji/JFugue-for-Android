@@ -89,7 +89,7 @@ public class Example13Fragment extends AbstractExampleFragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(getContext(), "RealtimePlayer is not available", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "RealtimePlayer is not available", Toast.LENGTH_LONG).show();
                 }
             });
             return;

@@ -34,9 +34,9 @@ dependencies {
     compile project(':jfugue-android')
     compile 'jp.kshoji:midi-driver:0.1.4:@aar'
     compile 'jp.kshoji:ble-midi:0.0.9:@aar'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
-    compile 'com.android.support:support-v4:23.1.1'
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.android.support:design:22.2.1'
+    compile 'com.android.support:support-v4:22.2.1'
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
 }
@@ -48,13 +48,13 @@ apt {
 }
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
 
     defaultConfig {
         applicationId "jp.kshoji.jfuguesample"
-        minSdkVersion 19
-        targetSdkVersion 23
+        minSdkVersion 18
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }

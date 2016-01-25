@@ -89,7 +89,7 @@ public class NavigationActivity extends AppCompatActivity
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         // make url text linkable
-        final TextView textView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.textView);
+        final TextView textView = (TextView) navigationView.findViewById(R.id.textView);
         final Spannable content = new SpannableString(textView.getText());
         content.setSpan(new UnderlineSpan(), 0, textView.getText().length(), 0);
         textView.setText(content);
@@ -101,7 +101,7 @@ public class NavigationActivity extends AppCompatActivity
         });
 
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_ex_00);
+        onNavigationItemSelected(navigationView.getMenu().findItem(R.id.nav_ex_00));
 
         if (usbMidiSystem == null) {
             usbMidiSystem = new UsbMidiSystem(getApplicationContext());
@@ -115,11 +115,6 @@ public class NavigationActivity extends AppCompatActivity
                 }
             }
         }
-
-        fragment = new Example00Fragment_();
-        final FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.frame_container, fragment).commit();
     }
 
     @Override
@@ -333,6 +328,8 @@ public class NavigationActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(final MenuItem item) {
+        item.setChecked(true);
+
         setFragmentByItemId(item.getItemId());
 
         switch (item.getItemId()) {

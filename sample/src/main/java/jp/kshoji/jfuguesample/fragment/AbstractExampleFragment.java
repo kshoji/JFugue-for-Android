@@ -1,6 +1,5 @@
 package jp.kshoji.jfuguesample.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -46,6 +45,7 @@ public abstract class AbstractExampleFragment extends Fragment {
 
     /**
      * Obtains asset file content as String
+     *
      * @param filename asset file name
      * @return read String
      */
@@ -66,15 +66,6 @@ public abstract class AbstractExampleFragment extends Fragment {
         return "";
     }
 
-    protected AbstractExampleFragment() {
-        super();
-    }
-
-    @Override
-    public void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
@@ -86,27 +77,28 @@ public abstract class AbstractExampleFragment extends Fragment {
 
         logView = (ListView) fragmentView.findViewById(R.id.listView);
         if (logView != null) {
-            logViewAdapter = new ArrayAdapter<>(getContext(), R.layout.list_item_log, R.id.textView);
+            logViewAdapter = new ArrayAdapter<>(getActivity(), R.layout.list_item_log, R.id.textView);
             logView.setAdapter(logViewAdapter);
         }
 
         return fragmentView;
     }
 
-    @Override
-    public void onAttach(final Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
+    /**
+     * Do something to start playing
+     */
     public abstract void start();
 
+    /**
+     * Do something to stop playing
+     */
     public abstract void stop();
 
+    /**
+     * Print messages to logView
+     *
+     * @param message the message
+     */
     public final void println(@Nullable final Object message) {
         // add log to ListView
         getActivity().runOnUiThread(new Runnable() {

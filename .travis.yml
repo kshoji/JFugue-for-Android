@@ -1,10 +1,10 @@
 language: android
-jdk: openjdk7
+jdk: oraclejdk7
 android:
   components:
-    - build-tools-21.1.2
+    - build-tools-22.0.1
     - extra-android-m2repository
-    - android-19
+    - android-22
   licenses:
     - '.+'
 before_install:

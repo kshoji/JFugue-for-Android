@@ -40,7 +40,7 @@ public class Example11Fragment extends AbstractExampleFragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
             Log.e(getClass().getSimpleName(), e.getMessage(), e);
