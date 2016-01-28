@@ -48,11 +48,10 @@ public class Example17Fragment extends AbstractExampleFragment {
                 + "V3 I[Warm] E6q G6i+D6i "
                 + "V4 I[Voice] C5q E6q");
 
-        System.out.println(rmp.preprocess(axiom.toString(), null));
         println(rmp.preprocess(axiom.toString(), null));
         try {
             player.play(axiom);
-        } catch (NullPointerException e) {
+        } catch (final NullPointerException e) {
             Log.e(getActivity().getLocalClassName(), e.getMessage(), e);
         }
     }

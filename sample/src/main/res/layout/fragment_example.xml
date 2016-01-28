@@ -34,6 +34,27 @@
             android:fontFamily="monospace"
             android:singleLine="false" />
 
+        <LinearLayout
+            android:id="@+id/chooseFileLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+            <Button
+                android:id="@+id/chooseFileButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose File..." />
+
+            <TextView
+                android:id="@+id/filenameText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="120dp"

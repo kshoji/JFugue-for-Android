@@ -1,6 +1,12 @@
 package jp.kshoji.jfuguesample.fragment;
 
+import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -32,6 +38,8 @@ import jp.kshoji.jfuguesample.util.AssetUtils;
  * http://www.jfugue.org/examples.html
  */
 public abstract class AbstractExampleFragment extends Fragment {
+    protected static final int FILE_OPEN = 0x0000C36B;
+
     private ListView logView;
     private ArrayAdapter<String> logViewAdapter;
 
@@ -146,6 +154,58 @@ public abstract class AbstractExampleFragment extends Fragment {
 
             player.play(sequence);
         } catch (final InvalidMidiDataException ignored) {
+        }
+    }
+
+    /**
+     * Select a file with using Intent
+     */
+    protected final void selectMidiFile() {
+        final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("audio/midi");
+        startActivityForResult(intent, FILE_OPEN);
+    }
+
+    /**
+     * Get the filepath from data Uri
+     * @param uri the Uri
+     * @return filepath
+     */
+    private String getMidiFilepath(final Uri uri){
+        final ContentResolver contentResolver = getActivity().getContentResolver();
+
+        final Cursor uriCursor = contentResolver.query(uri, null, null, null, null);
+        if (uriCursor != null) {
+            uriCursor.moveToFirst();
+            final String cursorString = uriCursor.getString(0);
+            final String documentId = cursorString.substring(cursorString.lastIndexOf(":") + 1);
+            uriCursor.close();
+
+            final Cursor pathCursor = contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, MediaStore.Audio.Media._ID + " = ? ", new String[]{documentId}, null);
+            if (pathCursor != null) {
+                pathCursor.moveToFirst();
+                final String path = pathCursor.getString(pathCursor.getColumnIndex(MediaStore.Audio.Media.DATA));
+                pathCursor.close();
+                return path;
+            }
+        }
+
+        return null;
+    }
+
+    protected void onMidiFileSelected(final String filepath) {
+        // implement on the subclasses
+    }
+
+    @Override
+    public final void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == FILE_OPEN && resultCode == Activity.RESULT_OK) {
+            final String midiFilePath = getMidiFilepath(Uri.parse(data.getDataString()));
+
+            if (midiFilePath != null) {
+                onMidiFileSelected(midiFilePath);
+            }
         }
     }
 }
