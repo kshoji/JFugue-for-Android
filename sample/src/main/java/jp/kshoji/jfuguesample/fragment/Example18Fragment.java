@@ -1,5 +1,7 @@
 package jp.kshoji.jfuguesample.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
@@ -9,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.androidannotations.annotations.AfterTextChange;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
@@ -41,6 +45,20 @@ public class Example18Fragment extends AbstractExampleFragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
+    @AfterViews
+    void afterViews() {
+        final SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        editText.setText(preferences.getString(getString(R.string.preference_sequence), getString(R.string.preference_sequence_default)));
+    }
+
+    @AfterTextChange(R.id.editText)
+    void textChanged() {
+        final SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(getString(R.string.preference_sequence), editText.getText().toString());
+        editor.apply();
+    }
+
     @Background
     @Override
     public void start() {
@@ -59,7 +77,7 @@ public class Example18Fragment extends AbstractExampleFragment {
 
         try {
             final File dir = getActivity().getExternalFilesDir(Environment.DIRECTORY_MUSIC);
-            final File resultFile = new File(dir, filenameText.getText().toString() + ".mid");
+            final File resultFile = new File(dir, filenameText.getText() + ".mid");
 
             MidiSystem.write(sequence, 0, resultFile);
             Toast.makeText(getActivity(), "SMF saved to: " + resultFile.getAbsolutePath(), Toast.LENGTH_LONG).show();

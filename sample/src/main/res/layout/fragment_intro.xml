@@ -1,0 +1,58 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="jp.kshoji.jfuguesample.fragment.Example00Fragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            android:text="@string/how_to_use" />
+
+        <TextView
+            android:id="@+id/description01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="20dp"
+            android:lineSpacingMultiplier="1.15"
+            android:text="@string/how_to_use_01" />
+
+        <Button
+            android:id="@+id/showMenuButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Open menu"
+            android:layout_gravity="center_horizontal" />
+
+
+        <TextView
+            android:id="@+id/description02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="20dp"
+            android:lineSpacingMultiplier="1.15"
+            android:text="@string/how_to_use_02" />
+
+        <Button
+            android:id="@+id/showDrawerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Open drawer"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+</ScrollView>

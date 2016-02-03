@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="C D E F G A B"
+            android:text="@string/preference_sequence_default"
             android:gravity="bottom|start"
             android:textAllCaps="false"
             android:lines="5"

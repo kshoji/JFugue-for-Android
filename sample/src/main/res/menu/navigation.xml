@@ -3,19 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_enable_usb"
-        android:orderInCategory="100"
+        android:orderInCategory="1"
         android:title="@string/use_usb_midi"
         android:checkable="true"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_enable_bluetooth"
+        android:orderInCategory="2"
+        android:title="@string/enable_bluetooth"
+        android:checkable="false"
+        app:showAsAction="never"
+        />
     <item
         android:id="@+id/action_enable_ble_central"
-        android:orderInCategory="100"
+        android:orderInCategory="3"
         android:title="@string/use_ble_midi_central"
         android:checkable="true"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_enable_ble_peripheral"
-        android:orderInCategory="100"
+        android:orderInCategory="4"
         android:title="@string/use_ble_midi_peripheral"
         android:checkable="true"
         app:showAsAction="never" />

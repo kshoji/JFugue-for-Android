@@ -1,6 +1,10 @@
 package jp.kshoji.jfuguesample;
 
+import android.bluetooth.BluetoothAdapter;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -27,12 +31,17 @@ import jp.kshoji.blemidi.util.BleUtils;
 import jp.kshoji.javax.sound.midi.BleMidiSystem;
 import jp.kshoji.javax.sound.midi.UsbMidiSystem;
 import jp.kshoji.jfuguesample.fragment.AbstractExampleFragment;
+import jp.kshoji.jfuguesample.fragment.IntroductionFragment_;
 import jp.kshoji.jfuguesample.util.AssetUtils;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     // generated unique id
     private static final int MENU_ITEM_0 = 0xD7B0E7E4;
+
+    private MenuItem bluetoothMenuItem;
+    private MenuItem bleCentralMenuItem;
+    private MenuItem blePeripheralMenuItem;
 
     @Nullable
     private UsbMidiSystem usbMidiSystem;
@@ -92,21 +101,23 @@ public class NavigationActivity extends AppCompatActivity
         }
         navigationView.getMenu().setGroupCheckable(R.id.group01, true, true);
 
-        onNavigationItemSelected(navigationView.getMenu().findItem(MENU_ITEM_0));
+        onNavigationItemSelected(navigationView.getMenu().findItem(R.id.nav_intro));
         navigationView.setNavigationItemSelectedListener(this);
 
         if (usbMidiSystem == null) {
             usbMidiSystem = new UsbMidiSystem(getApplicationContext());
         }
 
-        if (bleMidiSystem == null) {
-            if (BleUtils.isBleSupported(getApplicationContext())) {
-                bleMidiSystem = new BleMidiSystem(getApplicationContext());
-                if (BleUtils.isBluetoothEnabled(getApplicationContext())) {
+        if (BleUtils.isBleSupported(getApplicationContext())) {
+            if (BleUtils.isBluetoothEnabled(getApplicationContext())) {
+                if (bleMidiSystem == null) {
+                    bleMidiSystem = new BleMidiSystem(getApplicationContext());
                     bleMidiSystem.initialize();
                 }
             }
         }
+
+        registerReceiver(bluetoothStatusReceiver, new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED));
     }
 
     @Override
@@ -132,6 +143,8 @@ public class NavigationActivity extends AppCompatActivity
                 bleMidiSystem = null;
             }
         }
+
+        unregisterReceiver(bluetoothStatusReceiver);
     }
 
     @Override
@@ -144,24 +157,55 @@ public class NavigationActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-        getMenuInflater().inflate(R.menu.navigation, menu);
+    private final BroadcastReceiver bluetoothStatusReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
 
-        // restore check status
-        final SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-        final MenuItem usbMidiMenuItem = menu.getItem(0);
-        usbMidiMenuItem.setChecked(preferences.getBoolean(getString(R.string.preference_usb_midi_enable), false));
-        if (usbMidiSystem != null) {
-            if (usbMidiMenuItem.isChecked()) {
-                usbMidiSystem.initialize();
-            } else {
-                usbMidiSystem.terminate();
+            if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
+                final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE,
+                        BluetoothAdapter.ERROR);
+                switch (state) {
+                    case BluetoothAdapter.STATE_OFF:
+                    case BluetoothAdapter.STATE_ON:
+                        if (BleUtils.isBleSupported(getApplicationContext())) {
+                            if (BleUtils.isBluetoothEnabled(getApplicationContext())) {
+                                if (bleMidiSystem == null) {
+                                    bleMidiSystem = new BleMidiSystem(getApplicationContext());
+                                    bleMidiSystem.initialize();
+                                }
+                            } else {
+                                if (bleMidiSystem != null) {
+                                    bleMidiSystem.stopScanDevice();
+                                    if (BleUtils.isBlePeripheralSupported(getApplicationContext())) {
+                                        bleMidiSystem.stopAdvertising();
+                                    }
+                                    bleMidiSystem.terminate();
+                                    bleMidiSystem = null;
+                                }
+                            }
+                        }
+                        applyBluetoothStatusToMenu();
+                        break;
+                }
             }
         }
+    };
 
-        final MenuItem bleCentralMenuItem = menu.getItem(1);
-        final MenuItem blePeripheralMenuItem = menu.getItem(2);
+    /**
+     * apply menu status
+     */
+    private void applyBluetoothStatusToMenu() {
+        final SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+
+        if (BleUtils.isBleSupported(getApplicationContext())) {
+            bluetoothMenuItem.setTitle(R.string.enable_bluetooth);
+            bluetoothMenuItem.setVisible(!BleUtils.isBluetoothEnabled(getApplicationContext()));
+        } else {
+            bluetoothMenuItem.setTitle(R.string.ble_not_supported);
+            bluetoothMenuItem.setVisible(false);
+        }
+
         if (BleUtils.isBleSupported(getApplicationContext()) && BleUtils.isBluetoothEnabled(getApplicationContext())) {
             bleCentralMenuItem.setVisible(true);
             bleCentralMenuItem.setChecked(preferences.getBoolean(getString(R.string.preference_ble_midi_central_enable), false));
@@ -190,6 +234,29 @@ public class NavigationActivity extends AppCompatActivity
             bleCentralMenuItem.setVisible(false);
             blePeripheralMenuItem.setVisible(false);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        getMenuInflater().inflate(R.menu.navigation, menu);
+
+        // restore check status
+        final SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        final MenuItem usbMidiMenuItem = menu.getItem(0);
+        usbMidiMenuItem.setChecked(preferences.getBoolean(getString(R.string.preference_usb_midi_enable), false));
+        if (usbMidiSystem != null) {
+            if (usbMidiMenuItem.isChecked()) {
+                usbMidiSystem.initialize();
+            } else {
+                usbMidiSystem.terminate();
+            }
+        }
+
+        bluetoothMenuItem = menu.getItem(1);
+        bleCentralMenuItem = menu.getItem(2);
+        blePeripheralMenuItem = menu.getItem(3);
+
+        applyBluetoothStatusToMenu();
         return true;
     }
 
@@ -210,6 +277,11 @@ public class NavigationActivity extends AppCompatActivity
                     } else {
                         usbMidiSystem.terminate();
                     }
+                }
+                return true;
+            case R.id.action_enable_bluetooth:
+                if (!BleUtils.isBluetoothEnabled(getApplicationContext())) {
+                    BleUtils.enableBluetooth(this);
                 }
                 return true;
             case R.id.action_enable_ble_central:
@@ -248,34 +320,30 @@ public class NavigationActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void setFragmentByItemId(final int itemId) {
-        boolean fragmentChanged = true;
-        try {
-            final String packageName = AbstractExampleFragment.class.getPackage().getName();
-            final String className = String.format(packageName + ".Example%02dFragment_", itemId - MENU_ITEM_0);
-            fragment = (AbstractExampleFragment)Class.forName(className).newInstance();
-        } catch (final Exception ignored) {
-            fragmentChanged = false;
-        }
-
-        if (fragmentChanged) {
-            final FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
-        }
-    }
-
     @Override
     public boolean onNavigationItemSelected(final MenuItem item) {
         item.setChecked(true);
 
-        setFragmentByItemId(item.getItemId());
-
+        final FragmentManager fragmentManager = getSupportFragmentManager();
         switch (item.getItemId()) {
             case R.id.nav_github:
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_github))));
                 break;
             case R.id.nav_jfugue:
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_jfugue))));
+                break;
+            case R.id.nav_intro:
+                fragmentManager.beginTransaction().replace(R.id.frame_container, new IntroductionFragment_()).commit();
+                break;
+
+            default:
+                try {
+                    final String packageName = AbstractExampleFragment.class.getPackage().getName();
+                    final String className = String.format(packageName + ".Example%02dFragment_", item.getItemId() - MENU_ITEM_0);
+                    fragment = (AbstractExampleFragment)Class.forName(className).newInstance();
+                    fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
+                } catch (final Exception ignored) {
+                }
                 break;
         }
 
